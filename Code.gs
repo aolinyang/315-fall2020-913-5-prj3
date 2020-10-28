@@ -10,3 +10,11 @@ function getExperienceHTML() {
   var mydoc = DocumentApp.getActiveDocument();
   return HtmlService.createHtmlOutputFromFile('experience');
 }
+
+function showHeaderInputDialog() {
+  var html = HtmlService.createHtmlOutputFromFile('headerInput')
+      .setWidth(800)
+      .setHeight(600);
+  DocumentApp.getUi()
+      .showModalDialog(html, 'Input header information');
+}
