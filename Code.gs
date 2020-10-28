@@ -2,16 +2,16 @@ function onInstall(e) {
   onOpen(e);
 }
 
-function showSidebar() {
-  var ui = HtmlService.createHtmlOutputFromFile('sidebar')
-      .setTitle('Resume Builder');
-  DocumentApp.getUi().showSidebar(ui);
-}
-
 function onOpen(e) {
   DocumentApp.getUi().createAddonMenu()
       .addItem('Run', 'showSidebar')
       .addToUi();
+}
+
+function showSidebar() {
+  var ui = HtmlService.createHtmlOutputFromFile('sidebar')
+      .setTitle('Resume Builder');
+  DocumentApp.getUi().showSidebar(ui);
 }
 
 function getExperienceHTML() {
