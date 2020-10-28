@@ -27,3 +27,11 @@ function showHeaderInputDialog() {
   DocumentApp.getUi()
       .showModalDialog(html, 'Input header information');
 }
+
+function showSkillSetDialog() {
+  var html = HtmlService.createHtmlOutputFromFile('skillsetInput')
+      .setWidth(800)
+      .setHeight(600);
+  DocumentApp.getUi()
+      .showModalDialog(html, 'Input Skills');
+}
