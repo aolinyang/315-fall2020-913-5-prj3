@@ -1,9 +1,18 @@
-function myFunction() {
-  Logger.log("Hello World!");
-  Logger.log("Hi!");
-  doGet()
+function onInstall(e) {
+  onOpen(e);
 }
 
+function showSidebar() {
+  var ui = HtmlService.createHtmlOutputFromFile('sidebar')
+      .setTitle('Resume Builder');
+  DocumentApp.getUi().showSidebar(ui);
+}
+
+function onOpen(e) {
+  DocumentApp.getUi().createAddonMenu()
+      .addItem('Run', 'showSidebar')
+      .addToUi();
+}
 
 function getExperienceHTML() {
   url = "https://docs.google.com/document/d/18Vm7BKzr5nkgkxhu92fq4Dk-22c8YxvYzxiDLh0Vl_o/edit"
