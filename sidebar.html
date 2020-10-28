@@ -1,20 +1,149 @@
 <html>
   <head>
-    <title>Resume Add-on</title>
-    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
     <style>
+      font-family:Merriweather;
     
+      div {
+        margin: 0px0px0px30px;
+      }
+      .dropdown {
+        margin:0px0px0px30px;
+        position:relative;
+        display:inline-block;
+      }
+      .dropbtn {
+        background-color: #4CAF50; 
+        color:black;
+        font-size:14px; 
+      }
+      .dropdown-content {
+        display:none; 
+        position:absolute;
+        background-color:#f1f1f1; 
+        min-width:100px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index:1;
+      }
+      .dropdown-content a {
+        color:black;
+        padding:12px 16px;
+        text-decoration:none;
+        display:block;
+      }
+      .dropdown-content a:hover {
+        background-color:#ddd;
+        text-decoration:none;
+      }
+      .dropdown:hover .dropdown-content {display:block;}
+      .dropdown:hover .dropbtn {background-color:#3e8e41;}
+      
+      input[type='checkbox'] {
+        color:black;
+        text-decoration:none;
+        display:block;
+        position:relative; 
+        padding: 4px 8px
+      }
     </style>
+    
+   
+    
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+    <title>Resume Add-on</title>
   </head>
   <body>
-  
-    <script>
-      
-    </script>
+    <h1 style="margin:30px;"> Resume Generator </h1>
+    <hr>
     
-
+    <!-- TEMPLATE SELECTION -->
+    <div class="dropdown" style="margin:30px">
+      <button class="dropbtn">Templates</button>
+      <div class="dropdown-content">
+        <a href="#">Template 1</a> <!-- THIS WILL NEED TO BE A SCRIPT, NOT HREF -->
+        <a href="#">Template 2</a>
+        <a href="#">Template 3</a>
+      </div>
+    </div>
     
- 
+    <!-- SECTION SELECTION -->
+    <div class="dropdown">
+      <button class="dropbtn">Sections</button>
+      <div class="dropdown-content">
+        <input type="checkbox" class="sectionCheck" name="sections" id="header" value="header" checked="true"/>
+        <label for="header">Header</label>
+        <input type="checkbox" class="sectionCheck" name="sections" id="education" value="education" checked="true"/>
+        <label for="education">Education</label>
+        <input type="checkbox" class="sectionCheck" name="sections" id="skills" value="skills" checked="true"/>
+        <label for="skills">Skills</label>
+        <input type="checkbox" class="sectionCheck" name="sections" id="experience" value="experience" checked="true"/>
+        <label for="experience">Experience</label>
+        <input type="checkbox" class="sectionCheck" name="sections" id="footer" value="footer" checked="true"/>
+        <label for="footer">Footer</label>
+        <input type="button" id="sectionSubmit" value="Submit" onclick="onSectionSubmit()"/>
+      </div>
+    </div>
     
+    <!-- HTML sections 
+      This is where the buttons interact with .gs functions to open pop-ups
+    -->
+    <hr>
+    <div id="header-section" style="display:block;">  
+      <input type="button" value="Header">
+    </div>
+    <hr>
+    <div id="experience-section" style="display:block;">
+      <input type="button" value="Experience" onclick="google.script.run.getExperienceHTML()">
+    </div>
+    <hr>
+    <div id="skills-section" style="display:block;">
+      <input type="button" value="Skills">
+    </div>
+    <hr>
+    <div id="education-section" style="display:block;">
+      <input type="button" value="Education">
+    </div>
+    <hr>
+    <div id="footer-section" style="display:block;">
+      <input type="button" value="Footer">
+    </div>
+    <hr>
   </body>
+  
+  <footer style="margin:30px;">
+    <input type="button" value="Close" onclick="google.script.host.close()" />
+    <input type="button" value="Survey" style="padding-left:5px;"/> <!-- NEEDS ONLCLICK TO RENDER SURVEY HTML -->
+  </footer>
+  
+  <!-- ALL JS -->
+  <script>
+      /** GLOBAL VARIABLES **/ 
+      var template_id; 
+      
+      /** 
+        Updates HTML based on sections selected
+        sections variables can be forwarded to whatever file
+      **/
+      function onSectionSubmit() {
+        var boxes = document.getElementsByClassName("sectionCheck");
+        var sections = [];
+        alert("here");
+        for (var i = 0; i < boxes.length; i++) {
+          if (boxes[i].checked) {
+            sections.push(boxes[i].value);
+            var id = sections[i].concat("-section");
+            var divObj = document.getElementById(id); 
+            if (divObj.style.display == "none") {
+              divObj.style.display = "block";
+            }
+          } else {
+            var value = boxes[i].value;
+            var id = value.concat("-section");
+            var divObj = document.getElementById(id); 
+            if (divObj.style.display == "block") {
+              divObj.style.display = "none";
+            }
+          }
+        }
+      }
+  </script>
 </html>
