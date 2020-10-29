@@ -2,27 +2,57 @@
 <html>
   <head>
     <base target="_top">
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+
+    <script>
+    
+    function experienceText(){
+      var company1 = document.getElementById("company1").value;
+      var position1 = document.getElementById("position1").value;
+      var description1 = document.getElementById("description1").value;
+
+      var company2 = document.getElementById("company2").value;
+      var position2 = document.getElementById("position2").value;
+      var description2 = document.getElementById("description2").value;
+
+      if(!company2 && !position2 && !description2){
+        google.script.run.storeExperienceInfo(1,[company1,position1,description1],[company2,position2,description2]);
+      } else {
+        google.script.run.storeExperienceInfo(2,[company1,position1,description1],[company2,position2,description2])
+      }
+    }
+
+
+    </script>
   </head>
+
   <body>
-  
-  <form action = "experience.html" method = "get">
-         company1: 
-            <input type = "text" name = "company1" value = "" maxlength = "200" />
+  <center>
+
+    <br>
+    <br>
+    <h4> Experience for Company 1 </h4>
+  <!-- <form action = "experience.html" method = "get"> -->
+         company_1:
+            <input type = "text" name = "company1 " id= "company1" value = "" maxlength = "200" />
          <br />
          <br />
-         
-         position1: 
-            <input type = "text" name = "position1" value = "" maxlength = "200" />
+
+         position__1:
+            <input type = "text" name = "position1" id="position1" value = "" maxlength = "200" />
          <br />
          <br />
          description1:
-            <input type = "text" name = "description1" value = "" maxlength = "1000"/>
+            <input type = "text" name = "description1" id="description1" value = "" maxlength = "1000"/>
          <br />
          <br />
          <input type = "submit" value ="Submit" />
-  </form>
-    
+  <!-- </form> -->
+
+
+
+
+
+</center>
   </body>
 </html>
-
-

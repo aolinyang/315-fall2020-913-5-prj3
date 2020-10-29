@@ -1,0 +1,8 @@
+https://www.youtube.com/watch?v=v6WgrDwgx2U
+https://www.geeksforgeeks.org/javascript-console-log-with-examples/#:~:text=log()%20is%20a%20function,log(A)%3B
+https://stackoverflow.com/questions/22057610/uncaught-typeerror-cannot-read-property-value-of-null
+
+
+
+appscript link
+https://www.youtube.com/watch?v=SnzFCC3tkZY
