@@ -7,14 +7,28 @@
     <script>
     function experienceText(){
 
-     var company = document.getElementById("company").value;
-     var position = document.getElementById("position").value;
-     var department = document.getElementById("department").value;
-     var description = document.getElementById("description").value;
-     var supervisor = document.getElementById("supervisor").value;
-     var contactEmail = document.getElementById("contactEmail").value;
+      if (!document.getElementById("company")||
+          !document.getElementById("position") ||
+          !document.getElementById("department") ||
+          !document.getElementById("description") ||
+          !document.getElementById("supervisor") ||
+          !document.getElementById("contactEmail")
+        )
+      {
+        document.getElementById("msg").innerHTML = "You did not enter all the entries";
+      } else{
+        var company = document.getElementById("company").value;
+        var position = document.getElementById("position").value;
+        var department = document.getElementById("department").value;
+        var description = document.getElementById("description").value;
+        var supervisor = document.getElementById("supervisor").value;
+        var contactEmail = document.getElementById("contactEmail").value;
 
-     google.script.run.putExperienceInfo(company,position,description,department,supervisor,contactEmail);
+        google.script.run.putExperienceInfo(company,position,description,department,supervisor,contactEmail);
+        document.getElementById("msg").innerHTML = "Insert successfully. Please close the windows";
+        window.close();
+      }
+
 
     }
 
@@ -59,6 +73,9 @@
         <br>
         <br>
          <button onclick = "experienceText()"> Submit </button>
+        <br>
+        <br>
+        <p id="msg"> </p>
   <!-- </form> -->
 
 
