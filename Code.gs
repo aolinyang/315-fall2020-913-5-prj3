@@ -15,7 +15,7 @@ function showSidebar() {
   DocumentApp.getUi().showSidebar(ui);
 }
 
-function storeExperienceInfo(comp,pos,desc) {
+function putExperienceInfo(comp,pos,desc) {
   var doc = DocumentApp.getActiveDocument();
   var docBody = doc.getBody();
   var displayText1 = "";

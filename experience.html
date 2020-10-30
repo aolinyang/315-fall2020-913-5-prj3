@@ -7,10 +7,11 @@
     <script>
     function experienceText(){
 
-     var company1 = document.getElementById("company1").value;
-     var position1 = document.getElementById("position1").value;
-     var description1 = document.getElementById("description1").value;
-     google.script.run.storeExperienceInfo(company1,position1,description1);
+     var company = document.getElementById("company").value;
+     var position = document.getElementById("position").value;
+     var salary = document.getElementById("salary")
+     var description = document.getElementById("description").value;
+     google.script.run.putExperienceInfo(company1,position1,description1);
 
     }
 
@@ -24,17 +25,17 @@
     <br>
     <h4> Experience for Company 1 </h4>
   <!-- <form action = "experience.html" method = "get"> -->
-         company_1:
-            <input type = "text" name = "company1 " id= "company1" value = "" maxlength = "200" />
+         company:
+            <input type = "text" name = "company" id= "company" value = "" maxlength = "200" />
          <br />
          <br />
 
-         position__1:
-            <input type = "text" name = "position1" id="position1" value = "" maxlength = "200" />
+         position:
+            <input type = "text" name = "position" id="position" value = "" maxlength = "200" />
          <br />
          <br />
-         description1:
-            <input type = "text" name = "description1" id="description1" value = "" maxlength = "1000"/>
+         description:
+            <input type = "text" name = "description" id="description" value = "" maxlength = "1000"/>
          <br />
          <br />
          <button onclick = "experienceText()"> Submit </button>
