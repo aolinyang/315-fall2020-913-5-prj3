@@ -1,4 +1,5 @@
 function onInstall(e) {
+  popExperience();
   onOpen(e);
 }
 
@@ -36,6 +37,21 @@ function storeExperienceInfo(comp,pos,desc) {
   docBody.appendTable(cells);
   // doc.saveAndClose();
 }
+
+function popExperience(){
+  DocumentApp.getUi().createAddonMenu()
+      .addItem('Run', 'showExperienceDialog')
+      .addToUi();
+}
+
+
+function popInstructions(){
+  DocumentApp.getUi().createAddonMenu()
+      .addItem('Run', 'showInstructions')
+      .addToUi();
+}
+
+
 function showExperienceDialog() {
   var html = HtmlService.createHtmlOutputFromFile('experience')
       .setWidth(800)
