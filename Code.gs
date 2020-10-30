@@ -1,5 +1,5 @@
 function onInstall(e) {
-  
+
   onOpen(e);
 }
 
@@ -48,7 +48,7 @@ function showExperienceDialog() {
       .showModalDialog(html, 'experience');
 }
 
-function showInstructions() {
+function showInstructionsDialog() {
   var html = HtmlService.createHtmlOutputFromFile('instructions')
       .setWidth(800)
       .setHeight(600);
