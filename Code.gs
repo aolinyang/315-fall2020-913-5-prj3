@@ -15,15 +15,18 @@ function showSidebar() {
   DocumentApp.getUi().showSidebar(ui);
 }
 
-function putExperienceInfo(comp,pos,desc) {
+function putExperienceInfo(comp,pos,desc,dept,supvr,cntemail) {
   var doc = DocumentApp.getActiveDocument();
   var docBody = doc.getBody();
   var displayText1 = "";
 
   displayText1 = "Most Recent Experience\n";
-  displayText1 = displayText1 + "company1:" + comp + "\n";
-  displayText1 = displayText1 + "position1:" + pos + "\n";
-  displayText1 = displayText1 + "description1:" + desc + "\n\n";
+  displayText1 = displayText1 + "company:" + comp + "\n";
+  displayText1 = displayText1 + "position:" + pos + "\n";
+  displayText1 = displayText1 + "description:" + desc + "\n";
+  displayText1 = displayText1 + "department:" + dept + "\n";
+  displayText1 = displayText1 + "supervisor:" + supvr + "\n";
+  displayText1 = displayText1 + "contactEmail:" + cntemail + "\n\n";
   Logger.log("displayed:"+displayText1);
 
 

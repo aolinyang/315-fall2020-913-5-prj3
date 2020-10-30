@@ -9,9 +9,12 @@
 
      var company = document.getElementById("company").value;
      var position = document.getElementById("position").value;
-     var salary = document.getElementById("salary")
+     var department = document.getElementById("department").value;
      var description = document.getElementById("description").value;
-     google.script.run.putExperienceInfo(company1,position1,description1);
+     var supervisor = document.getElementById("supervisor").value;
+     var contactEmail = document.getElementById("contactEmail").value;
+
+     google.script.run.putExperienceInfo(company,position,description,department,supervisor,contactEmail);
 
     }
 
@@ -27,17 +30,34 @@
   <!-- <form action = "experience.html" method = "get"> -->
          company:
             <input type = "text" name = "company" id= "company" value = "" maxlength = "200" />
-         <br />
-         <br />
+         <br>
+         <br>
 
          position:
             <input type = "text" name = "position" id="position" value = "" maxlength = "200" />
-         <br />
-         <br />
+         <br>
+         <br>
          description:
             <input type = "text" name = "description" id="description" value = "" maxlength = "1000"/>
-         <br />
-         <br />
+         <br>
+         <br>
+         department:
+         <select name="department" id="department">
+            <option value="tech">tech</option>
+            <option value="HR">HR</option>
+            <option value="business">business</option>
+            <option value="other">other</option>
+        </select>
+        <br>
+        <br>
+        supervisor:
+          <input type = "text" name = "supervisor" id= "supervisor" value = "" maxlength = "200" />
+        <br>
+        <br>
+        contactEmail:
+          <input type = "text" name = "contactEmail" id= "contactEmail" value = "" maxlength = "200" />
+        <br>
+        <br>
          <button onclick = "experienceText()"> Submit </button>
   <!-- </form> -->
 
