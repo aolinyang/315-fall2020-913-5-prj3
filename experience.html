@@ -7,10 +7,28 @@
     <script>
     function experienceText(){
 
-     var company1 = document.getElementById("company1").value;
-     var position1 = document.getElementById("position1").value;
-     var description1 = document.getElementById("description1").value;
-     google.script.run.storeExperienceInfo(company1,position1,description1);
+      if (!document.getElementById("company").value||
+          !document.getElementById("position").value ||
+          !document.getElementById("department").value ||
+          !document.getElementById("description").value ||
+          !document.getElementById("supervisor").value ||
+          !document.getElementById("contactEmail").value
+        )
+      {
+        document.getElementById("msg").innerHTML = "All fields are required. You did not enter all the entries";
+      } else{
+        var company = document.getElementById("company").value;
+        var position = document.getElementById("position").value;
+        var department = document.getElementById("department").value;
+        var description = document.getElementById("description").value;
+        var supervisor = document.getElementById("supervisor").value;
+        var contactEmail = document.getElementById("contactEmail").value;
+
+        google.script.run.putExperienceInfo(company,position,description,department,supervisor,contactEmail);
+        document.getElementById("msg").innerHTML = "Insert successfully. Please close the windows";
+        window.close();
+      }
+
 
     }
 
@@ -24,20 +42,40 @@
     <br>
     <h4> Experience for Company 1 </h4>
   <!-- <form action = "experience.html" method = "get"> -->
-         company_1:
-            <input type = "text" name = "company1 " id= "company1" value = "" maxlength = "200" />
-         <br />
-         <br />
+         company:
+            <input type = "text" name = "company" id= "company" value = "" maxlength = "200" />
+         <br>
+         <br>
 
-         position__1:
-            <input type = "text" name = "position1" id="position1" value = "" maxlength = "200" />
-         <br />
-         <br />
-         description1:
-            <input type = "text" name = "description1" id="description1" value = "" maxlength = "1000"/>
-         <br />
-         <br />
+         position:
+            <input type = "text" name = "position" id="position" value = "" maxlength = "200" />
+         <br>
+         <br>
+         description:
+            <input type = "text" name = "description" id="description" value = "" maxlength = "1000"/>
+         <br>
+         <br>
+         department:
+         <select name="department" id="department">
+            <option value="tech">tech</option>
+            <option value="HR">HR</option>
+            <option value="business">business</option>
+            <option value="other">other</option>
+        </select>
+        <br>
+        <br>
+        supervisor:
+          <input type = "text" name = "supervisor" id= "supervisor" value = "" maxlength = "200" />
+        <br>
+        <br>
+        contactEmail:
+          <input type = "text" name = "contactEmail" id= "contactEmail" value = "" maxlength = "200" />
+        <br>
+        <br>
          <button onclick = "experienceText()"> Submit </button>
+        <br>
+        <br>
+        <p id="msg"> </p>
   <!-- </form> -->
 
 
