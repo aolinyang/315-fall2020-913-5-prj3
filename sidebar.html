@@ -181,7 +181,7 @@
       }
 
       function showSurvey() {
-
+        google.script.run.withFailureHandler(onFailure).showSurveyDialog();
       }
 
       function showInstructions() {
