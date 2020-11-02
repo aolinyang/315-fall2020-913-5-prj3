@@ -1,3 +1,5 @@
+var skills = [];
+
 function onInstall(e) {
 
   onOpen(e);
@@ -82,4 +84,12 @@ function showSkillSetDialog() {
       .setHeight(600);
   DocumentApp.getUi()
       .showModalDialog(html, 'Input Skills');
+}
+
+function saveAllSkills(var allSkills) {
+  skills = allSkills;
+}
+
+function getAllSkills() {
+  return skills;
 }
