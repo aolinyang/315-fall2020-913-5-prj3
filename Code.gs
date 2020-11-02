@@ -1,7 +1,6 @@
 var skills = [];
 
 function onInstall(e) {
-
   onOpen(e);
 }
 
@@ -9,6 +8,7 @@ function onOpen(e) {
   DocumentApp.getUi().createAddonMenu()
       .addItem('Run', 'showSidebar')
       .addToUi();
+  skills = [];
 }
 
 function showSidebar() {
