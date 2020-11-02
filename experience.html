@@ -17,15 +17,24 @@
       {
         document.getElementById("msg").innerHTML = "All fields are required. You did not enter all the entries";
       } else{
-        var company = document.getElementById("company").value;
-        var position = document.getElementById("position").value;
-        var department = document.getElementById("department").value;
-        var description = document.getElementById("description").value;
-        var supervisor = document.getElementById("supervisor").value;
-        var contactEmail = document.getElementById("contactEmail").value;
+        var company_val = document.getElementById("company").value;
+        var position_val = document.getElementById("position").value;
+        var department_val = document.getElementById("department").value;
+        var description_val = document.getElementById("description").value;
+        var supervisor_val = document.getElementById("supervisor").value;
+        var contactEmail_val = document.getElementById("contactEmail").value;
 
-        google.script.run.putExperienceInfo(company,position,description,department,supervisor,contactEmail);
-        document.getElementById("msg").innerHTML = "Insert successfully. Please close the windows";
+        const experienceJson = {
+          company : company_val,
+          position : position_val,
+          department : department_val,
+          description : description_val,
+          supervisor : supervisor_val,
+          contactEmail : contactEmail_val,
+        };
+        google.script.run.saveExperience(JSON.stringify(experienceJson));
+        // google.script.run.putExperienceInfo(company,position,description,department,supervisor,contactEmail);
+        // document.getElementById("msg").innerHTML = "Insert successfully. Please close the windows";
         window.close();
       }
 

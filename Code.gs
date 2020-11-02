@@ -10,6 +10,8 @@ function onOpen(e) {
       .addToUi();
   props.setProperty("skills", "[]");
   props.setProperty("header", "{\"fname\":\"\",\"lname\":\"\",\"email\":\"\",\"phone\":\"\",\"lkacc\":\"\",\"porturl\":\"\"}");
+  props.setProperty("workExperience","{\"company\":\"\", \"position\":\"\", \"department\":\"\", \"description\":\"\", \"supervisor\":\"\", \"contactEmail\":\"\" }");
+
 }
 
 function showSidebar() {
@@ -50,7 +52,7 @@ function showEducationDialog() {
       .setWidth(800)
       .setHeight(600);
   DocumentApp.getUi()
-      .showModalDialog(html, 'education');  
+      .showModalDialog(html, 'education');
 }
 
 function showExperienceDialog() {
@@ -98,6 +100,21 @@ function saveHeader(headerJSON) {
   Logger.log("SAVING: " + headerJSON);
   props.setProperty("header", headerJSON);
 }
+
+function saveExperience(experienceJSON){
+  Logger.log("Saved:" + experienceJSON);
+  console.log("Saved:" + experienceJSON);
+  props.setProperty("workExperience",experienceJSON);
+}
+
+
+function getExperience() {
+  var exp = props.getProperty("workExperience");
+  Logger.log("RETRIEVING: " + exp);
+  console.log("RETRIEVING: " + exp);
+  return exp;
+}
+
 
 function getHeader() {
   var header = props.getProperty("header");
