@@ -6,18 +6,24 @@
         var header = JSON.parse(stringifiedObj);
         const content = "<label for=\"fname\">First name: </label>\
             <input type=\"text\" id=\"fname\" name=\"fname\" value=\"" + header.fname + "\">\
+            <br>\
             <label for=\"lname\">Last name: </label>\
             <input type=\"text\" id=\"lname\" name=\"lname\" value=\"" + header.lname + "\">\
+            <br>\
             \
             <label for=\"email\">Email: </label>\
             <input type=\"email\" id=\"email\" name=\"email\" value=\"" + header.email + "\">\
+            <br>\
             <label for=\"phone\">Phone: </label>\
             <input type=\"tel\" id=\"phone\" name=\"phone\" value=\"" + header.phone + "\">\
+            <br>\
             \
             <label for=\"lkacc\">LinkedIn Account URL: </label>\
             <input type=\"url\" id=\"lkacc\" name=\"lkacc\" value=\"" + header.lkacc + "\">\
+            <br>\
             <label for=\"porturl\">Portfolio URL: </label>\
             <input type=\"url\" id=\"porturl\" name=\"porturl\" value=\"" + header.porturl + "\">\
+            <br>\
             \
             <input type=\"button\" value=\"Save\" onclick=\"saveHeader()\" />";
 
