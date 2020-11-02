@@ -43,10 +43,13 @@
   }
 
   function initialize(stringifiedArr) {
+    console.log("SUCCESS");
+    console.log(stringifiedArr);
     var skills = JSON.parse(stringifiedArr);
     numSkills = skills.length;
     var counter = 0;
     skills.forEach(function(skill) {
+      console.log(skill);
       const input = getInputField(skill.name, skill.level, counter);
       $(input).appendTo("#skills-form");
     });
