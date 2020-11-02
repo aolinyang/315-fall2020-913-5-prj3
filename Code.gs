@@ -8,7 +8,8 @@ function onOpen(e) {
   DocumentApp.getUi().createAddonMenu()
       .addItem('Run', 'showSidebar')
       .addToUi();
-  PropertiesService.getScriptProperties().setProperty("skills", "[]");
+  props.setProperty("skills", "[]");
+  props.setProperty("header", "{\"fname\":\"\",\"lname\":\"\",\"email\":\"\",\"phone\":\"\",\"lkacc\":\"\",\"porturl\":\"\"}");
 }
 
 function showSidebar() {
@@ -93,12 +94,24 @@ function showSkillSetDialog() {
       .showModalDialog(html, 'Input Skills');
 }
 
+function saveHeader(headerJSON) {
+  Logger.log("SAVING: " + headerJSON);
+  props.setProperty("header", headerJSON);
+}
+
+function getHeader() {
+  var header = props.getProperty("header");
+  Logger.log("RETRIEVING: " + header);
+  return header;
+}
+
 function saveAllSkills(allSkills) {
   Logger.log("SAVING: " + allSkills);
   props.setProperty("skills", allSkills);
 }
 
 function getAllSkills() {
-  Logger.log("RETRIEVING: " + props.getProperty("skills"));
-  return props.getProperty("skills");
+  var skills = props.getProperty("skills");
+  Logger.log("RETRIEVING: " + skills);
+  return skills;
 }

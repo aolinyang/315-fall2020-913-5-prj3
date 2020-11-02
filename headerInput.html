@@ -1,16 +1,46 @@
-<label for="fname">First name: </label>
-<input type="text" id="fname" name="fname">
-<label for="lname">Last name: </label>
-<input type="text" id="lname" name="lname">
-  
-<label for="email">Email: </label>
-<input type="email" id="email" name="email">
-<label for="phone">Phone: </label>
-<input type="tel" id="phone" name="phone">
-  
-<label for="lkacc">LinkedIn Account URL: </label>
-<input type="url" id="lkacc" name="lkacc">
-<label for="porturl">Portfolio URL: </label>
-<input type="url" id="porturl" name="porturl">
+<div id="resume-header"></div>
 
-<input type="button" value="Save" onclick="" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    function initialize(stringifiedObj) {
+        var header = JSON.parse(stringifiedObj);
+        const content = "<label for=\"fname\">First name: </label>\
+            <input type=\"text\" id=\"fname\" name=\"fname\" value=\"" + header.fname + "\">\
+            <label for=\"lname\">Last name: </label>\
+            <input type=\"text\" id=\"lname\" name=\"lname\" value=\"" + header.lname + "\">\
+            \
+            <label for=\"email\">Email: </label>\
+            <input type=\"email\" id=\"email\" name=\"email\" value=\"" + header.email + "\">\
+            <label for=\"phone\">Phone: </label>\
+            <input type=\"tel\" id=\"phone\" name=\"phone\" value=\"" + header.phone + "\">\
+            \
+            <label for=\"lkacc\">LinkedIn Account URL: </label>\
+            <input type=\"url\" id=\"lkacc\" name=\"lkacc\" value=\"" + header.lkacc + "\">\
+            <label for=\"porturl\">Portfolio URL: </label>\
+            <input type=\"url\" id=\"porturl\" name=\"porturl\" value=\"" + header.porturl + "\">\
+            \
+            <input type=\"button\" value=\"Save\" onclick=\"saveHeader()\" />";
+
+        $("#resume-header").replaceWith(content);
+    }
+
+    function printFail(error) {
+        console.log("ERROR: " + error);
+    }
+
+    function saveHeader() {
+        const headerObj = {
+            fname: $("#fname").val(),
+            lname: $("#lname").val(),
+            email: $("#email").val(),
+            phone: $("#phone").val(),
+            lkacc: $("#lkacc").val(),
+            porturl: $("#porturl").val(),
+        };
+        google.script.run.saveHeader(JSON.stringify(headerObj));
+    }
+
+    $(document).ready(function() {
+        google.script.run.withSuccessHandler(initialize).withFailureHandler(printFail).getHeader(); 
+    });
+</script>
