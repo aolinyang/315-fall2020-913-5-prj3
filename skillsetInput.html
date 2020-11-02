@@ -39,17 +39,21 @@
       };
       skillArr.push(skillObj);
     }
-    google.script.run.saveAllSkills(skillArr);
+    google.script.run.saveAllSkills(JSON.stringify(skillArr));
+    console.log(JSON.stringify(skillArr));
   }
 
-  $(document).ready(function() {
-    console.log("here");
-    var skills = google.script.run.getAllSkills();
+  function initialize(stringifiedArr) {
+    var skills = JSON.parse(stringifiedArr);
     numSkills = skills.length;
     var counter = 0;
     skills.forEach(function(skill) {
       const input = getInputField(skill.name, skill.level, counter);
       $(input).appendTo("#skills-form");
     });
+  }
+
+  $(document).ready(function() {
+    google.script.run.withSuccessHandler(initialize).getAllSkills(); 
   });
 </script>

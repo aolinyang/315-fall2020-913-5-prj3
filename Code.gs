@@ -8,7 +8,6 @@ function onOpen(e) {
   DocumentApp.getUi().createAddonMenu()
       .addItem('Run', 'showSidebar')
       .addToUi();
-  skills = [];
 }
 
 function showSidebar() {
@@ -87,9 +86,9 @@ function showSkillSetDialog() {
 }
 
 function saveAllSkills(allSkills) {
-  skills = allSkills;
+  skills = JSON.parse(allSkills);
 }
 
 function getAllSkills() {
-  return skills;
+  return JSON.stringify(skills);
 }
