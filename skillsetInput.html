@@ -40,7 +40,6 @@
       skillArr.push(skillObj);
     }
     google.script.run.saveAllSkills(JSON.stringify(skillArr));
-    console.log(JSON.stringify(skillArr));
   }
 
   function initialize(stringifiedArr) {
@@ -53,7 +52,11 @@
     });
   }
 
+  function printFail(error) {
+    console.log("ERROR: " + error);
+  }
+
   $(document).ready(function() {
-    google.script.run.withSuccessHandler(initialize).getAllSkills(); 
+    google.script.run.withSuccessHandler(initialize).withFailureHandler(printFail).getAllSkills(); 
   });
 </script>
