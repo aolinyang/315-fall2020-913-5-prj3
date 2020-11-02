@@ -1,3 +1,5 @@
+var props = PropertiesService.getScriptProperties();
+
 function onInstall(e) {
   onOpen(e);
 }
@@ -85,9 +87,11 @@ function showSkillSetDialog() {
 }
 
 function saveAllSkills(allSkills) {
-  PropertiesService.getScriptProperties().setProperty("skills", allSkills);
+  Logger.log("SAVING: " + allSkills);
+  props.setProperty("skills", allSkills);
 }
 
 function getAllSkills() {
-  return PropertiesService.getScriptProperties().getProperty("skills");
+  Logger.log("RETRIEVING: " + props.getProperty("skills"));
+  return props.getProperty("skills");
 }
