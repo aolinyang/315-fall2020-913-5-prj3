@@ -44,6 +44,13 @@ function putExperienceInfo(comp,pos,desc,dept,supvr,cntemail) {
 }
 
 
+function showEducationDialog() {
+  var html = HtmlService.createHtmlOutputFromFile('education')
+      .setWidth(800)
+      .setHeight(600);
+  DocumentApp.getUi()
+      .showModalDialog(html, 'education');  
+}
 
 function showExperienceDialog() {
   var html = HtmlService.createHtmlOutputFromFile('experience')
