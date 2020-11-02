@@ -1,5 +1,3 @@
-var skills = [];
-
 function onInstall(e) {
   onOpen(e);
 }
@@ -8,6 +6,7 @@ function onOpen(e) {
   DocumentApp.getUi().createAddonMenu()
       .addItem('Run', 'showSidebar')
       .addToUi();
+  PropertiesService.getScriptProperties().setProperty("skills", "[]");
 }
 
 function showSidebar() {
@@ -86,9 +85,9 @@ function showSkillSetDialog() {
 }
 
 function saveAllSkills(allSkills) {
-  skills = JSON.parse(allSkills);
+  PropertiesService.getScriptProperties().setProperty("skills", allSkills);
 }
 
 function getAllSkills() {
-  return JSON.stringify(skills);
+  return PropertiesService.getScriptProperties().getProperty("skills");
 }
