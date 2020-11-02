@@ -2,7 +2,7 @@
   <head>
     <style>
       font-family:Merriweather;
-    
+
       div {
         margin: 0px0px0px30px;
       }
@@ -12,14 +12,14 @@
         display:inline-block;
       }
       .dropbtn {
-        background-color: #4CAF50; 
+        background-color: #4CAF50;
         color:black;
-        font-size:14px; 
+        font-size:14px;
       }
       .dropdown-content {
-        display:none; 
+        display:none;
         position:absolute;
-        background-color:#f1f1f1; 
+        background-color:#f1f1f1;
         min-width:100px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index:1;
@@ -36,25 +36,25 @@
       }
       .dropdown:hover .dropdown-content {display:block;}
       .dropdown:hover .dropbtn {background-color:#3e8e41;}
-      
+
       input[type='checkbox'] {
         color:black;
         text-decoration:none;
         display:block;
-        position:relative; 
+        position:relative;
         padding: 4px 8px
       }
     </style>
-    
-   
-    
+
+
+
     <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
     <title>Resume Add-on</title>
   </head>
   <body>
     <h1 style="margin:30px;"> Resume Generator </h1>
     <hr>
-    
+
     <!-- TEMPLATE SELECTION -->
     <div class="dropdown" style="margin:30px">
       <button class="dropbtn">Templates</button>
@@ -64,7 +64,7 @@
         <a href="#">Template 3</a>
       </div>
     </div>
-    
+
     <!-- SECTION SELECTION -->
     <div class="dropdown">
       <button class="dropbtn">Sections</button>
@@ -82,51 +82,52 @@
         <input type="button" id="sectionSubmit" value="Submit" onclick="onSectionSubmit()"/>
       </div>
     </div>
-    
-    <!-- HTML sections 
+
+    <!-- HTML sections
       This is where the buttons interact with .gs functions to open pop-ups
     -->
     <hr>
-    <div id="header-section" style="display:block;">  
+    <div id="header-section" style="display:block;margin-left:30px;">
       <input type="button" value="Header" onclick="showHeader()">
     </div>
     <hr>
-    <div id="experience-section" style="display:block;">
+    <div id="experience-section" style="display:block;margin-left:30px;">
       <input type="button" value="Experience" onclick="showExperience()">
     </div>
     <hr>
-    <div id="skills-section" style="display:block;" onclick="showSkills()">
-      <input type="button" value="Skills">
+    <div id="skills-section" style="display:block;margin-left:30px;" onclick="showSkills()">
+      <input type="button" value="Skills" onclick="showSkills()">
     </div>
     <hr>
-    <div id="education-section" style="display:block;">
-      <input type="button" value="Education">
+    <div id="education-section" style="display:block;margin-left:30px;">
+      <input type="button" value="Education" onclick="showEducation()">
     </div>
     <hr>
-    <div id="footer-section" style="display:block;">
+    <div id="footer-section" style="display:block;margin-left:30px;">
       <input type="button" value="Footer">
     </div>
     <hr>
   </body>
-  
+
   <footer style="margin:30px;">
     <input type="button" value="Close" onclick="google.script.host.close()" />
-    <input type="button" value="Survey" style="padding-left:5px;"/> <!-- NEEDS ONLCLICK TO RENDER SURVEY HTML -->
+    <input type="button" value="Survey" onclick="showSurvey()" style="padding-left:5px;"/> 
+    <input type="button" value="Instructions" onclick="showInstructions()"/>
   </footer>
-  
+
   <!-- ALL JS -->
   <script>
-      /** GLOBAL VARIABLES **/ 
-      var template_id; 
-      
-      /** 
+      /** GLOBAL VARIABLES **/
+      var template_id;
+
+      /**
         Prints errors on google.script.run statements
       **/
       function onFailure(error) {
         alert("ERROR: " + error.message);
       }
-      
-      /** 
+
+      /**
         Updates HTML based on sections selected
         sections variables can be forwarded to whatever file
       **/
@@ -138,49 +139,53 @@
           if (boxes[i].checked) {
             sections.push(boxes[i].value);
             var id = sections[i].concat("-section");
-            var divObj = document.getElementById(id); 
+            var divObj = document.getElementById(id);
             if (divObj.style.display == "none") {
               divObj.style.display = "block";
             }
           } else {
             var value = boxes[i].value;
             var id = value.concat("-section");
-            var divObj = document.getElementById(id); 
+            var divObj = document.getElementById(id);
             if (divObj.style.display == "block") {
               divObj.style.display = "none";
             }
           }
         }
       }
-      
-      /** 
+
+      /**
         JS functions for calling Code.gs methods
-        
-        As far as I know we have to go through these to be able to call the html functions, 
+
+        As far as I know we have to go through these to be able to call the html functions,
         so make a function here and connect it to its corresponding button above
       **/
       function showHeader() {
         google.script.run.withFailureHandler(onFailure).showHeaderInputDialog();
       }
-      
+
       function showExperience() {
-        google.script.run.withFailureHandler(onFailure).getExperienceHTML();
+        google.script.run.withFailureHandler(onFailure).showExperienceDialog();
       }
-      
+
       function showSkills() {
         google.script.run.withFailureHandler(onFailure).showSkillSetDialog();
       }
-      
+
       function showEducation() {
-      
+        google.script.run.withFailureHandler(onFailure).showEducationInputDialog();
       }
-      
+
       function showFooter() {
 
       }
-      
+
       function showSurvey() {
-      
+        google.script.run.withFailureHandler(onFailure).showSurveyDialog();
+      }
+
+      function showInstructions() {
+        google.script.run.withFailureHandler(onFailure).showInstructionsDialog();
       }
   </script>
 </html>
