@@ -86,7 +86,7 @@ function showSkillSetDialog() {
       .showModalDialog(html, 'Input Skills');
 }
 
-function saveAllSkills(var allSkills) {
+function saveAllSkills(allSkills) {
   skills = allSkills;
 }
 
