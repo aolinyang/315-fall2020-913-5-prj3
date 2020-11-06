@@ -63,6 +63,14 @@ function showExperienceDialog() {
       .showModalDialog(html, 'experience');
 }
 
+function showEditDialog() {
+  var html = HtmlService.createHtmlOutputFromFile('edit')
+      .setWidth(800)
+      .setHeight(600);
+  DocumentApp.getUi()
+      .showModalDialog(html, 'edit');
+}
+
 
 function showSurveyDialog() {
   var html = HtmlService.createHtmlOutputFromFile('survey')
