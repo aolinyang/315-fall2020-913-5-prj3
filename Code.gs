@@ -130,6 +130,11 @@ function getHeader() {
   return header;
 }
 
+function getEducation(){
+  var edu = props.getProperty("education");
+  return edu;
+}
+
 function saveAllSkills(allSkills) {
   Logger.log("SAVING: " + allSkills);
   props.setProperty("skills", allSkills);

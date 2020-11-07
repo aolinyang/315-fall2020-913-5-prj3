@@ -8,7 +8,7 @@
     <!-- <script src="https://unpkg.com/js-logger/src/logger.min.js"></script> -->
     <script>
 
-    function editCheckedItems(jsonString){
+    function editCheckedItems3(jsonString){
       var json3 = JSON.parse(jsonString);
       console.log("********************");
       console.log(json3);
@@ -31,11 +31,52 @@
       google.script.run.saveExperience(json3str);
     }
 
-    function errorCaught(){
-      console.log("fail to get header.");
+
+    function editCheckedItems2(jsonString){
+      var json2 = JSON.parse(jsonString);
+      console.log("********************");
+      console.log(json2);
+      var allchecks = document.getElementsByName("editchecks2");
+      for (var i = 0; i < allchecks.length;i++){
+        // console.log(allchecks[i]);
+        console.log("checkbox:"+allchecks[i].checked);
+        if (allchecks[i].checked == true){
+          var curr_check_id = allchecks[i].getAttribute("id");
+          var curr_input_id = curr_check_id.replace("check","replace");
+          var user_enter = document.getElementById(curr_input_id).value;
+          console.log("curr_check_id:"+curr_check_id + " curr_input_id:"+curr_input_id + " user_enter:" + user_enter + "\n");
+          json2[curr_check_id.replace("check","")] = user_enter.trim();
+        }// end if
+
+      }// end for
+      var json2str = JSON.stringify(json2);
+      console.log("---------");
+      console.log(json2str);
+      google.script.run.saveExperience(json2str);
     }
 
+    function editCheckedItems1(jsonString){
+      var json1 = JSON.parse(jsonString);
+      console.log("********************");
+      console.log(json1);
+      var allchecks = document.getElementsByName("editchecks1");
+      for (var i = 0; i < allchecks.length;i++){
+        // console.log(allchecks[i]);
+        console.log("checkbox:"+allchecks[i].checked);
+        if (allchecks[i].checked == true){
+          var curr_check_id = allchecks[i].getAttribute("id");
+          var curr_input_id = curr_check_id.replace("check","replace");
+          var user_enter = document.getElementById(curr_input_id).value;
+          console.log("curr_check_id:"+curr_check_id + " curr_input_id:"+curr_input_id + " user_enter:" + user_enter + "\n");
+          json1[curr_check_id.replace("check","")] = user_enter.trim();
+        }// end if
 
+      }// end for
+      var json1str = JSON.stringify(json1);
+      console.log("---------");
+      console.log(json1str);
+      google.script.run.saveExperience(json1str);
+    }
 
 
     </script>
@@ -136,8 +177,9 @@
       <br>
     </div>
 
-    <button onclick = "google.script.run.withSuccessHandler(editCheckedItems).withUserObject(this).getExperience()"> edit items</button>
-
+    <button onclick = "google.script.run.withSuccessHandler(editCheckedItems3).withUserObject(this).getExperience()"> edit items</button>
+    <button onclick = "google.script.run.withSuccessHandler(editCheckedItems2).withUserObject(this).getHeader()"> edit items</button>
+    <button onclick = "google.script.run.withSuccessHandler(editCheckedItems1).withUserObject(this).getEducation()"> edit items</button>
 
   </body>
 </html>
