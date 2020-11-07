@@ -36,9 +36,8 @@
     }
 
 
-    $(document).ready(function() {
-        google.script.run.withSuccessHandler(editCheckedItems).withFailureHandler(errorCaught).getExperience();
-    });
+
+
     </script>
 
 
@@ -137,7 +136,7 @@
       <br>
     </div>
 
-    <button onclick = "editCheckedItems()"> edit items</button>
+    <button onclick = "google.script.run.withSuccessHandler(editCheckedItems).withUserObject(this).getExperience()"> edit items</button>
 
 
   </body>
