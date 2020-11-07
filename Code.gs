@@ -46,6 +46,34 @@ function putExperienceInfo(comp,pos,desc,dept,supvr,cntemail) {
   // doc.saveAndClose();
 }
 
+// template 1 format
+function insertTemplate(){
+  var doc = DocumentApp.getActiveDocument();
+  var doc_body = doc.getBody();
+  // http://www.googleappsscript.org/home/create-table-in-google-document-using-apps-script
+  var table_style = {}
+  var table_cell = {}
+  var heading_style = {}
+  table_style[DocumentApp.Attribute.BORDER_COLOR] = "#34ebd5";
+  heading_style[DocumentApp.Attribute.HEADING] = 1;
+  heading_style[DocumentApp.Attribute.FONT_FAMILY] = COMFORTAA;
+  heading_style[DocumentApp.Attribute.BOLD] = true;
+  var table = body.appendTable();
+
+  for(var i=0; i<5; i++){
+    var tr = table.appendTableRow();
+
+    for(var j=0; j<2; j++){
+      var td = tr.appendTableCell('Cell '+i+j);
+      //Apply the para style to each paragraph in cell
+      var paraInCell = td.getChild(0).asParagraph();
+      paraInCell.setAttributes(heading_style);
+    }
+  }
+
+
+}
+
 
 function showEducationDialog() {
   var html = HtmlService.createHtmlOutputFromFile('education')

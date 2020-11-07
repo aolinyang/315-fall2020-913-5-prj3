@@ -115,6 +115,7 @@
     <input type="button" value="Instructions" onclick="showInstructions()"/>
     <br>
     <input type="button" value="Edit sections" onclick="showEdit()"/>
+    <input type="button" value="Test-temporary" onclick="InsertFrame()"/>
   </footer>
 
   <!-- ALL JS -->
@@ -192,6 +193,9 @@
 
       function showEdit(){
         google.script.run.withFailureHandler(onFailure).showEditDialog();
+      }
+      function InsertFrame(){
+        google.script.run.withFailureHandler(onFailure).insertTemplate();
       }
   </script>
 </html>

@@ -109,6 +109,8 @@
       <br>
     </div>
 
+    <button onclick = "google.script.run.withSuccessHandler(editCheckedItems1).withUserObject(this).getEducation()"> submit education</button>
+
     <h2> Edit Header Info </h2>
     <div>
       <input type="checkbox" id="fnamecheck" name="editchecks2" value="fnamecheck">
@@ -142,6 +144,8 @@
       <br>
       <br>
     </div>
+
+    <button onclick = "google.script.run.withSuccessHandler(editCheckedItems2).withUserObject(this).getHeader()"> submit header</button>
 
     <h2> Edit Lastest Experience Info </h2>
     <div>
@@ -177,9 +181,8 @@
       <br>
     </div>
 
-    <button onclick = "google.script.run.withSuccessHandler(editCheckedItems3).withUserObject(this).getExperience()"> edit items</button>
-    <button onclick = "google.script.run.withSuccessHandler(editCheckedItems2).withUserObject(this).getHeader()"> edit items</button>
-    <button onclick = "google.script.run.withSuccessHandler(editCheckedItems1).withUserObject(this).getEducation()"> edit items</button>
+    <button onclick = "google.script.run.withSuccessHandler(editCheckedItems3).withUserObject(this).getExperience()"> submit experience</button>
+
 
   </body>
 </html>
