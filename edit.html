@@ -11,10 +11,14 @@
       var allchecks = document.getElementsByName("editchecks3");
       for (var i = 0; i < allchecks.length;i++){
         // console.log(allchecks[i]);
-        Logger.debug("checkbox:"+allchecks[i].checked);
-        var curr_check_id = allchecks[i].getAttribute("id");
-        var curr_input_id = curr_check_id.replace("check","replace");
-        var user_enter = document.getElementById(curr_input_id);
+        console.log("checkbox:"+allchecks[i].checked);
+        if (allchecks[i].checked == true){
+          var curr_check_id = allchecks[i].getAttribute("id");
+          var curr_input_id = curr_check_id.replace("check","replace");
+          var user_enter = document.getElementById(curr_input_id).value;
+          console.log("curr_check_id:"+curr_check_id + " curr_input_id:"+curr_input_id + " user_enter:" + user_enter + "\n");
+
+        }// end if
 
       }
 
