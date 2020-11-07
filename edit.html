@@ -4,14 +4,14 @@
   <head>
     <base target="_top">
     <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
-
+    <script src="https://unpkg.com/js-logger/src/logger.min.js"></script>
     <script>
 
     function editCheckedItems(){
       allchecks = document.getElementsByName("editchecks");
       for (var i = 0; i < allchecks.length;i++){
         console.log(allchecks[i]);
-        Logger.log(allchecks[i]);
+        Logger.debug("checkbox:"+allchecks[i]);
       }
 
 
