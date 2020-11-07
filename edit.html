@@ -8,9 +8,9 @@
     <script>
 
     function editCheckedItems(){
-      allchecks = document.getElementsByName("editchecks");
+      allchecks = document.getElementsByName("editchecks").checked;
       for (var i = 0; i < allchecks.length;i++){
-        console.log(allchecks[i]);
+        // console.log(allchecks[i]);
         Logger.debug("checkbox:"+allchecks[i]);
       }
 
