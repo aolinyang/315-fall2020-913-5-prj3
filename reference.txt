@@ -9,11 +9,14 @@ https://www.youtube.com/watch?v=SnzFCC3tkZY
 https://stackoverflow.com/questions/8616334/submit-a-form-in-a-popup-and-then-close-the-popup
 https://www.w3schools.com/jsref/met_document_getelementbyid.asp
 
+http://googleappscripting.com/json/
+https://stackoverflow.com/questions/46613243/uncaught-syntaxerror-unexpected-token-u-in-json-at-position-0
+https://developers.google.com/apps-script/guides/html/communication#index.html_3
 
 
 
 
+https://stackoverflow.com/questions/9565831/how-to-get-id-of-an-element-whose-name-is-known-in-javascript
 
-
-
+https://pietschsoft.com/post/2015/09/05/javascript-basics-how-to-create-a-dictionary-with-keyvalue-pairs
 https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_document_getelementbyid
