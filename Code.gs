@@ -49,7 +49,7 @@ function putExperienceInfo(comp,pos,desc,dept,supvr,cntemail) {
 // template 1 format
 function insertTemplate(){
   var doc = DocumentApp.getActiveDocument();
-  var doc_body = doc.getBody();
+  var body = doc.getBody();
   // http://www.googleappsscript.org/home/create-table-in-google-document-using-apps-script
   var table_style = {}
   var table_cell = {}
@@ -64,8 +64,8 @@ function insertTemplate(){
     for(var j=0; j<2; j++){
       var td = tr.appendTableCell('Cell '+i+j);
       //Apply the para style to each paragraph in cell
-      var paraInCell = td.getChild(0).asParagraph();
-      paraInCell.setFontFamily("Consolas");
+      var paraInCell = td.getChild(0).editAsText().setFontFamily("Consolas");
+
     }
   }
 
