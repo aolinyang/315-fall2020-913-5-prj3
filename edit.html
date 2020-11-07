@@ -8,10 +8,14 @@
     <script>
 
     function editCheckedItems(){
-      allchecks = document.getElementsByName("editchecks").checked;
+      var allchecks = document.getElementsByName("editchecks3");
       for (var i = 0; i < allchecks.length;i++){
         // console.log(allchecks[i]);
-        Logger.debug("checkbox:"+allchecks[i]);
+        Logger.debug("checkbox:"+allchecks[i].checked);
+        var curr_check_id = allchecks[i].getAttribute("id");
+        var curr_input_id = curr_check_id.replace("check","replace");
+        var user_enter = document.getElementById(curr_input_id);
+
       }
 
 
@@ -25,92 +29,92 @@
   <body>
     <h2> Edit Lastest Education Info </h2>
     <div>
-      <input type="checkbox" id="schoolcheck" name="editchecks" value="schoolcheck">
+      <input type="checkbox" id="schoolcheck" name="editchecks1" value="schoolcheck">
       <label for="schoolcheck"> education school </label>
-      <input type="text" id="schoolrepl" name="schoolrepl" value=" ">
+      <input type="text" id="schoolreplace" name="editinputs1" value=" ">
       <br>
       <br>
-      <input type="checkbox" id="majorcheck" name="editchecks" value="majorcheck">
+      <input type="checkbox" id="majorcheck" name="editchecks1" value="majorcheck">
       <label for="majorcheck"> education major </label>
-      <input type="text" id="majorrepl" name="majorrepl" value=" ">
+      <input type="text" id="majorreplace" name="editinputs1" value=" ">
       <br>
       <br>
-      <input type="checkbox" id="gpacheck" name="editchecks" value="gpacheck">
+      <input type="checkbox" id="gpacheck" name="editchecks1" value="gpacheck">
       <label for="gpacheck"> education GPA </label>
-      <input type="text" id="gparepl" name="gparepl" value=" ">
+      <input type="text" id="gpareplace" name="editinputs1" value=" ">
       <br>
       <br>
-      <input type="checkbox" id="afflcheck" name="editchecks" value="afflcheck">
+      <input type="checkbox" id="afflcheck" name="editchecks1" value="afflcheck">
       <label for="afflcheck"> education affiliation</label>
-      <input type="text" id="afflrepl" name="afflrepl" value=" ">
+      <input type="text" id="afflreplace" name="editinputs1" value=" ">
       <br>
       <br>
     </div>
 
     <h2> Edit Header Info </h2>
     <div>
-      <input type="checkbox" id="fnamecheck" name="editchecks" value="fnamecheck">
+      <input type="checkbox" id="fnamecheck" name="editchecks2" value="fnamecheck">
       <label for="fnamecheck"> header first name </label>
-      <input type="text" id="fnamereplace" value=" ">
+      <input type="text" id="fnamereplace" name="editinputs2" value=" ">
       <br>
       <br>
-      <input type="checkbox" id="lnamecheck" name="editchecks" value="lnamecheck">
+      <input type="checkbox" id="lnamecheck" name="editchecks2" value="lnamecheck">
       <label for="lnamecheck"> header last name </label>
-      <input type="text" id="lnamereplace" value=" ">
+      <input type="text" id="lnamereplace" name="editinputs2" value=" ">
       <br>
       <br>
-      <input type="checkbox" id="headeremailcheck" name="editchecks" value="headeremailcheck">
+      <input type="checkbox" id="emailcheck" name="editchecks2" value="headeremailcheck">
       <label for="headeremailcheck"> header email </label>
-      <input type="text" id="emailreplace" value=" ">
+      <input type="text" id="emailreplace" name="editinputs2" value=" ">
       <br>
       <br>
-      <input type="checkbox" id="headerphonecheck" name="editchecks" value="headerphonecheck">
+      <input type="checkbox" id="phonecheck" name="editchecks2" value="headerphonecheck">
       <label for="headerphonecheck"> header phone </label>
-      <input type="text" id="phonereplace" value=" ">
+      <input type="text" id="phonereplace" name="editinputs2" value=" ">
       <br>
       <br>
-      <input type="checkbox" id="lkacccheck" name="editchecks" value="lkacccheck">
+      <input type="checkbox" id="lkacccheck" name="editchecks2" value="lkacccheck">
       <label for="lkacccheck"> header linkedin url </label>
-      <input type="text" id="lkaccreplace" value=" ">
+      <input type="text" id="lkaccreplace" name="editinputs2" value=" ">
       <br>
       <br>
-      <input type="checkbox" id="porturlcheck" name="editchecks" value="porturlcheck">
+      <input type="checkbox" id="porturlcheck" name="editchecks2" value="porturlcheck">
       <label for="porturlcheck"> header profile url </label>
-      <input type="text" id="porturlreplace" value=" ">
+      <input type="text" id="porturlreplace" name="editinputs2" value=" ">
       <br>
       <br>
     </div>
 
     <h2> Edit Lastest Experience Info </h2>
     <div>
-      <input type="checkbox" id="companycheck" name="editchecks" value="companycheck">
+      <input type="checkbox" id="companycheck" name="editchecks3" value="companycheck">
       <label for="companycheck"> experience company </label>
-      <input type="text" id="companyreplace"  value=" ">
+      <input type="text" id="companyreplace" name="editinputs3"  value=" ">
       <br>
       <br>
-      <input type="checkbox" id="positioncheck" name="editchecks" value="positioncheck">
+      <input type="checkbox" id="positioncheck" name="editchecks3" value="positioncheck">
       <label for="positioncheck"> experience postion </label>
-      <input type="text" id="positionreplace"  value=" ">
+      <input type="text" id="positionreplace" name="editinputs3" value=" ">
       <br>
       <br>
-      <input type="checkbox" id="departmentcheck" name="editchecks" value="departmentcheck">
+      <input type="checkbox" id="departmentcheck" name="editchecks3" value="departmentcheck">
       <label for="departmentcheck"> experience department </label>
-      <input type="text" id="departmentreplace"  value=" ">
+      <input type="text" id="departmentreplace" name="editinputs3" value=" ">
       <br>
       <br>
-      <input type="checkbox" id="descriptioncheck" name= "editchecks" value="descriptioncheck">
+      <input type="checkbox" id="descriptioncheck" name= "editchecks3" value="descriptioncheck">
       <label for="descriptioncheck"> experience description </label>
-      <input type="text" id="descriptionreplace" value=" ">
+      <input type="text" id="descriptionreplace" name="editinputs3" value=" ">
       <br>
       <br>
-      <input type="checkbox" id="supervisorcheck" name="editchecks" value="supervisorcheck">
+      <input type="checkbox" id="supervisorcheck" name="editchecks3" value="supervisorcheck">
       <label for="supervisorcheck"> experience supervisor </label>
-      <input type="text" id="supervisorreplace" value=" ">
+      <input type="text" id="supervisorreplace" name="editinputs3" value=" ">
       <br>
       <br>
-      <input type="checkbox" id="contactEmailcheck" name="editchecks" value="contactEmailcheck">
+      <input type="checkbox" id="contactEmailcheck" name="editchecks3" value="contactEmailcheck">
       <label for="contactEmailcheck"> experience supervisor email </label>
-      <input type="text" id="contactEmailreplace" value=" ">
+      <input type="text" id="contactEmailreplace" name="editinputs3" value=" ">
       <br>
       <br>
     </div>
