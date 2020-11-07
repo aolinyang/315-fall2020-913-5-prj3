@@ -111,7 +111,7 @@ function saveHeader(headerJSON) {
 
 function saveExperience(experienceJSON){
   Logger.log("Saved:" + experienceJSON);
-  console.log("Saved:" + experienceJSON);
+  // console.log("Saved:" + experienceJSON);
   props.setProperty("workExperience",experienceJSON);
 }
 
@@ -119,7 +119,7 @@ function saveExperience(experienceJSON){
 function getExperience() {
   var exp = props.getProperty("workExperience");
   Logger.log("RETRIEVING: " + exp);
-  console.log("RETRIEVING: " + exp);
+  // console.log("RETRIEVING: " + exp);
   return exp;
 }
 
