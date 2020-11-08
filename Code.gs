@@ -97,7 +97,7 @@ function insertTemplate1(){
 
   // cell 4
   var cell4 = row2.appendTableCell();
-  var content4 = cell4.appendParagraph("Sep 2018 - Jun 2022");
+  var content4 = cell4.appendParagraph("#monEdu1 #yearEdu1 - #monEdu2 #yearEdu2");
   content4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
 
   // row 3
@@ -110,14 +110,14 @@ function insertTemplate1(){
 
   var content5p1 = cell5.appendParagraph("#experience-company");
   content5p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
-  var content5p2 = cell5.appendParagraph("#experience-position");
+  var content5p2 = cell5.appendParagraph("Position:  #experience-position");
   content5p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
-  var content5p3 = cell5.appendParagraph("#experience-department");
+  var content5p3 = cell5.appendParagraph("Department: #experience-department");
   content5p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
-  var content5p4 = cell5.appendParagraph("#experience-superviser");
+  var content5p4 = cell5.appendParagraph("Supervisor: #experience-supervisor");
   content5p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
 
-  var content5p5 = cell5.appendParagraph("#experience-contactEmail");
+  var content5p5 = cell5.appendParagraph("#Contact Supervisor: experience-contactEmail");
   content5p5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
 
   var content5p6 = cell5.appendParagraph("#experience-description");
@@ -125,7 +125,7 @@ function insertTemplate1(){
 
   // cell 6
   var cell6 = row3.appendTableCell();
-  var content6 = cell6.appendParagraph("Sep 2018 - Jun 2022");
+  var content6 = cell6.appendParagraph("#monExp1 #yearExp1 - #monExp1 #yearExp2");
   content6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
 
 
@@ -141,7 +141,7 @@ function insertTemplate1(){
 
   // cell 8
   var cell8 = row4.appendTableCell();
-  var content8 = cell8.appendParagraph("Sep 2018 - Jun 2022");
+  var content8 = cell8.appendParagraph("#monSkl1 #yearSkl1 - #monSkl2 #yearSkl2");
   content8.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
 
 
@@ -149,7 +149,7 @@ function insertTemplate1(){
   var row5 = table.appendTableRow();
 
   // cell 9
-  var cell9 = row4.appendTableCell();
+  var cell9 = row5.appendTableCell();
   var heading9 = cell9.appendParagraph("Honor");
   heading9.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#809fff");
 
