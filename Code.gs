@@ -47,27 +47,73 @@ function putExperienceInfo(comp,pos,desc,dept,supvr,cntemail) {
 }
 
 // template 1 format
-function insertTemplate(){
+function insertTemplate1(){
   var doc = DocumentApp.getActiveDocument();
   var body = doc.getBody();
   // http://www.googleappsscript.org/home/create-table-in-google-document-using-apps-script
-  var table_style = {}
-  var table_cell = {}
-  var heading_style = {}
-  table_style[DocumentApp.Attribute.BORDER_COLOR] = "#34ebd5";
+  // var table_style = {}
+  // var table_cell = {}
+  // var heading_style = {}
+  // table_style[DocumentApp.Attribute.BORDER_COLOR] = "#34ebd5";
 
   var table = body.appendTable();
+  table.setBorderColor("#ffffff");
+  // row 1
+  var row1 = table.appendTableRow();
+  // cell 1
+  var cell1 = row1.appendTableCell();
+  var heading1 = cell1.appendParagraph("Your Name");
+  heading1.setFontFamily("Arial").setFontSize(32).setBold(true).setForegroundColor("#ccccff"); //
+  var content1 = cell1.appendParagraph("#header");
+  content1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
+  // cell 2
+  var cell2 = row1.appendTableCell();
 
-  for(var i=0; i<5; i++){
-    var tr = table.appendTableRow();
 
-    for(var j=0; j<2; j++){
-      var td = tr.appendTableCell('Cell '+i+j);
-      //Apply the para style to each paragraph in cell
-      var paraInCell = td.getChild(0).editAsText().setFontFamily("Consolas");
+  // row2
+  var row2 = table.appendTableRow();
+  // cell 3
+  var cell3 = row2.appendTableCell();
+  var heading3 = cell3.appendParagraph("Education");
+  heading3.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#809fff");
+  var content3 = cell3.appendParagraph("#education");
+  content3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
 
-    }
-  }
+  // cell 4
+  var cell4 = row2.appendTableCell();
+  var content4 = cell4.appendParagraph("Sep 2018 - Jun 2022");
+  content4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
+
+  // row 3
+  var row3 = table.appendTableRow();
+
+  // cell 5
+  var cell5 = row3.appendTableCell();
+  var heading5 = cell5.appendParagraph("Experience");
+  heading5.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#809fff");
+  var content5 = cell5.appendParagraph("#experience");
+  content5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
+
+  // cell 6
+  var cell6 = row3.appendTableCell();
+  var content6 = cell6.appendParagraph("Sep 2018 - Jun 2022");
+  content6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
+
+
+  // row 4
+  var row4 = table.appendTableRow();
+
+  // cell 7
+  var cell7 = row4.appendTableCell();
+  var heading7 = cell7.appendParagraph("Skills");
+  heading7.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#809fff");
+  var content7 = cell7.appendParagraph("#skills");
+  content7.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
+
+  // cell 8
+  var cell8 = row4.appendTableCell();
+  var content8 = cell8.appendParagraph("Sep 2018 - Jun 2022");
+  content8.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
 
 
 }
