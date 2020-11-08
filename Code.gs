@@ -12,6 +12,7 @@ function onOpen(e) {
   props.setProperty("header", "{\"fname\":\"\",\"lname\":\"\",\"email\":\"\",\"phone\":\"\",\"lkacc\":\"\",\"porturl\":\"\"}");
   props.setProperty("workExperience","{\"company\":\"\", \"position\":\"\", \"department\":\"\", \"description\":\"\", \"supervisor\":\"\", \"contactEmail\":\"\" }");
   props.setProperty("education","{\"school\":\"\",\"major\":\"\",\"GPA\":\"\",\"affil\":\"\"}");
+  props.setProperty("honor","{\"awardedHonor\":\"\",\"awardedBy\":\"\",\"description\":\"\",\"awardedYear\":\"\", \"awardedType\":\"\"}");
 }
 
 function showSidebar() {
@@ -127,12 +128,20 @@ function showEducationDialog() {
       .showModalDialog(html, 'education');
 }
 
+function showHonorDialog() {
+  var html = HtmlService.createHtmlOutputFromFile('honor')
+      .setWidth(800)
+      .setHeight(600);
+  DocumentApp.getUi()
+      .showModalDialog(html, 'Honor & Award');
+}
+
 function showExperienceDialog() {
   var html = HtmlService.createHtmlOutputFromFile('experience')
       .setWidth(800)
       .setHeight(600);
   DocumentApp.getUi()
-      .showModalDialog(html, 'experience');
+      .showModalDialog(html, 'Experience');
 }
 
 function showEditDialog() {
@@ -140,7 +149,7 @@ function showEditDialog() {
       .setWidth(800)
       .setHeight(600);
   DocumentApp.getUi()
-      .showModalDialog(html, 'edit');
+      .showModalDialog(html, 'Edit');
 }
 
 
@@ -207,10 +216,27 @@ function getEducation(){
   return edu;
 }
 
+function saveEducation(eduJSON){
+  Logger.log("Saved:" + eduJSON);
+  props.setProperty("education",eduJSON);
+}
+
+function getHonor(){
+  var honor = props.getProperty("honor");
+  return honor;
+}
+
+function saveHonor(honorJSON){
+  Logger.log("Saved:" + honorJSON);
+  props.setProperty("honor",honorJSON);
+}
+
 function saveAllSkills(allSkills) {
   Logger.log("SAVING: " + allSkills);
   props.setProperty("skills", allSkills);
 }
+
+
 
 function getAllSkills() {
   var skills = props.getProperty("skills");

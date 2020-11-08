@@ -77,6 +77,8 @@
         <label for="skills">Skills</label>
         <input type="checkbox" class="sectionCheck" name="sections" id="experience" value="experience" checked="true"/>
         <label for="experience">Experience</label>
+        <input type="checkbox" class="sectionCheck" name="sections" id="honor" value="honor" checked="true"/>
+        <label for="honor">Honor</label>
         <input type="checkbox" class="sectionCheck" name="sections" id="footer" value="footer" checked="true"/>
         <label for="footer">Footer</label>
         <input type="button" id="sectionSubmit" value="Submit" onclick="onSectionSubmit()"/>
@@ -103,10 +105,15 @@
       <input type="button" value="Education" onclick="showEducation()">
     </div>
     <hr>
+    <div id="honor-section" style="display:block;margin-left:30px;">
+      <input type="button" value="Honor / Awards">
+    </div>
+    <hr>
     <div id="footer-section" style="display:block;margin-left:30px;">
       <input type="button" value="Footer">
     </div>
     <hr>
+
   </body>
 
   <footer style="margin:30px;">
@@ -115,7 +122,7 @@
     <input type="button" value="Instructions" onclick="showInstructions()"/>
     <br>
     <input type="button" value="Edit sections" onclick="showEdit()"/>
-    <input type="button" value="Test-temporary" onclick="InsertFrame()"/>
+    <input type="button" value="Insert Resume" onclick="InsertFrame()"/>
   </footer>
 
   <!-- ALL JS -->
@@ -177,6 +184,9 @@
 
       function showEducation() {
         google.script.run.withFailureHandler(onFailure).showEducationDialog();
+      }
+      function showHonor(){
+        google.script.run.withFailureHandler(onFailure).showHonorDialog();
       }
 
       function showFooter() {
