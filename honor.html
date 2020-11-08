@@ -30,7 +30,9 @@
           awardedYear : awardedYear_val,
           awardedType : awardedType_val
         };
+        console.log(honorJson);
         google.script.run.saveHonor(JSON.stringify(honorJson));
+
       }
     }
 
