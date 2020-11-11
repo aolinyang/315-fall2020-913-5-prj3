@@ -104,28 +104,29 @@ function insertTemplate1(){
   var row3 = table.appendTableRow();
 
   // cell 5
+  var exp = JSON.parse(getExperience());
   var cell5 = row3.appendTableCell();
   var heading5 = cell5.appendParagraph("Experience");
   heading5.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#809fff");
 
-  var content5p1 = cell5.appendParagraph("#experience-company");
+  var content5p1 = cell5.appendParagraph(exp.company);
   content5p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
-  var content5p2 = cell5.appendParagraph("Position:  #experience-position");
+  var content5p2 = cell5.appendParagraph("Position: " + exp.position);
   content5p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
-  var content5p3 = cell5.appendParagraph("Department: #experience-department");
+  var content5p3 = cell5.appendParagraph("Department: " + exp.department);
   content5p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
-  var content5p4 = cell5.appendParagraph("Supervisor: #experience-supervisor");
+  var content5p4 = cell5.appendParagraph("Supervisor: " + exp.supervisor);
   content5p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
 
-  var content5p5 = cell5.appendParagraph("#Contact Supervisor: experience-contactEmail");
+  var content5p5 = cell5.appendParagraph("Contact Supervisor: " + exp.contactEmail);
   content5p5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
 
-  var content5p6 = cell5.appendParagraph("#experience-description");
+  var content5p6 = cell5.appendParagraph(exp.description);
   content5p6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
 
   // cell 6
   var cell6 = row3.appendTableCell();
-  var content6 = cell6.appendParagraph("#monExp1 #yearExp1 - #monExp1 #yearExp2");
+  var content6 = cell6.appendParagraph(exp.startDate + " - " + exp.endDate);
   content6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
 
 
@@ -209,7 +210,6 @@ function showEditDialog() {
       .showModalDialog(html, 'Edit');
 }
 
-
 function showSurveyDialog() {
   var html = HtmlService.createHtmlOutputFromFile('survey')
       .setWidth(800)
@@ -242,17 +242,16 @@ function showSkillSetDialog() {
       .showModalDialog(html, 'Input Skills');
 }
 
+function getHeader() {
+  var header = props.getProperty("header");
+  Logger.log("RETRIEVING: " + header);
+  return header;
+}
+
 function saveHeader(headerJSON) {
   Logger.log("SAVING: " + headerJSON);
   props.setProperty("header", headerJSON);
 }
-
-function saveExperience(experienceJSON){
-  Logger.log("Saved:" + experienceJSON);
-  // console.log("Saved:" + experienceJSON);
-  props.setProperty("workExperience",experienceJSON);
-}
-
 
 function getExperience() {
   var exp = props.getProperty("workExperience");
@@ -261,11 +260,10 @@ function getExperience() {
   return exp;
 }
 
-
-function getHeader() {
-  var header = props.getProperty("header");
-  Logger.log("RETRIEVING: " + header);
-  return header;
+function saveExperience(experienceJSON){
+  Logger.log("SAVING:" + experienceJSON);
+  // console.log("Saved:" + experienceJSON);
+  props.setProperty("workExperience",experienceJSON);
 }
 
 function getEducation(){
@@ -288,15 +286,13 @@ function saveHonor(honorJSON){
   props.setProperty("honor",honorJSON);
 }
 
-function saveAllSkills(allSkills) {
-  Logger.log("SAVING: " + allSkills);
-  props.setProperty("skills", allSkills);
-}
-
-
-
 function getAllSkills() {
   var skills = props.getProperty("skills");
   Logger.log("RETRIEVING: " + skills);
   return skills;
+}
+
+function saveAllSkills(allSkills) {
+  Logger.log("SAVING: " + allSkills);
+  props.setProperty("skills", allSkills);
 }
