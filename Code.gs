@@ -134,11 +134,14 @@ function insertTemplate1(){
   var row4 = table.appendTableRow();
 
   // cell 7
+  var skills = JSON.parse(getAllSkills());
   var cell7 = row4.appendTableCell();
   var heading7 = cell7.appendParagraph("Skills");
   heading7.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#809fff");
-  var content7 = cell7.appendParagraph("#skills");
-  content7.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
+  for (var i = 0; i < skills.length; i++) {
+    var content7 = cell7.appendParagraph(skills[i].name + ", proficiency: " + skills[i].level);
+    content7.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
+  }
 
   // cell 8
   var cell8 = row4.appendTableCell();
