@@ -8,18 +8,6 @@
 
     <script>
     function experienceText(){
-
-      if (!document.getElementById("company").value||
-          !document.getElementById("position").value ||
-          !document.getElementById("department").value ||
-          !document.getElementById("description").value ||
-          !document.getElementById("supervisor").value ||
-          !document.getElementById("contactEmail").value
-        )
-      {
-        document.getElementById("msg").innerHTML = "All fields are required. You did not enter all the entries";
-      } else{
-
         const experienceJson = {
           company : $("#company").val(),
           position : $("#position").val(),
@@ -34,10 +22,6 @@
         // google.script.run.putExperienceInfo(company,position,description,department,supervisor,contactEmail);
         // document.getElementById("msg").innerHTML = "Insert successfully. Please close the windows";
         // window.close();
-        
-      }
-
-
     }
 
     function initialize(stringifiedExp) {
