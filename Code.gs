@@ -180,6 +180,13 @@ function insertTemplate1(){
 
 }
 
+function insertTemplate2() {
+
+}
+
+function insertTemplate3() {
+
+}
 
 function showEducationDialog() {
   var html = HtmlService.createHtmlOutputFromFile('education')

@@ -55,15 +55,12 @@
     <h1 style="margin:30px;"> Resume Generator </h1>
     <hr>
 
-    <!-- TEMPLATE SELECTION -->
-    <div class="dropdown" style="margin:30px">
-      <button class="dropbtn">Templates</button>
-      <div class="dropdown-content">
-        <a href="#">Template 1</a> <!-- THIS WILL NEED TO BE A SCRIPT, NOT HREF -->
-        <a href="#">Template 2</a>
-        <a href="#">Template 3</a>
-      </div>
-    </div>
+    <label for="resume-template-select">Choosen Template:</label>
+    <select id="resume-template-select" name="resume-template-select">
+      <option value="Template 1" selected></option>
+      <option value="Template 2"></option>
+      <option value="Template 3"></option>
+    </select>
 
     <!-- SECTION SELECTION -->
     <div class="dropdown">
@@ -126,6 +123,7 @@
   </footer>
 
   <!-- ALL JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
       /** GLOBAL VARIABLES **/
       var template_id;
@@ -205,7 +203,13 @@
         google.script.run.withFailureHandler(onFailure).showEditDialog();
       }
       function InsertFrame(){
-        google.script.run.withFailureHandler(onFailure).insertTemplate1();
+        var template = $("#resume-template-select").val();
+        if (template === "Template 1")
+          google.script.run.withFailureHandler(onFailure).insertTemplate1();
+        else if (template === "Template 2")
+          google.script.run.withFailureHandler(onFailure).insertTemplate2();
+        else
+          google.script.run.withFailureHandler(onFailure).insertTemplate3();
       }
   </script>
 </html>
