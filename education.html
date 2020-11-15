@@ -10,10 +10,10 @@
 
     function updateEdu(){
         const eduJson = {
-          company : $("#school").val(),
-          position : $("#major").val(),
-          department : $("#GPA").val(),
-          description : $("#affil").val()
+          school : $("#school").val(),
+          major : $("#major").val(),
+          GPA : $("#GPA").val(),
+          affil : $("#affil").val()
         };
         google.script.run.saveExperience(JSON.stringify(eduJson));
     }
@@ -34,7 +34,7 @@
    <br>
    <br>
    <label for="affil">Affiliation: </label>
-   <input type="text" id="affiliation" name="affiliation">
+   <input type="text" id="affil" name="affil">
    <br>
 
  <input type="button" value="Save" onclick="updateEdu()" />
