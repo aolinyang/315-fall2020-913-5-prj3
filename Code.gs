@@ -218,7 +218,7 @@ function insertTemplate3() {
   heading3.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#2d8659").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
   var content3p1 = cell3.appendParagraph(edu.school + " | " + edu.major);
   content3p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
-  var content3p2 = cell3.appendParagraph("GPA: " + edu.gpa);
+  var content3p2 = cell3.appendParagraph("GPA: " + edu.GPA);
   content3p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
   var content3p3 = cell3.appendParagraph("Affiliation: " + edu.affil);
   content3p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
@@ -251,7 +251,7 @@ function insertTemplate3() {
   // modify to what ever that fits later
   for (var i = 0; i < skills.length; i++) {
     var content5 = cell5.appendParagraph(skills[i].name + ", proficiency: " + skills[i].level);
-    content5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300");
+    content5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
   }
 
   // var content5 = cell5.appendParagrap("#skill-type" + ", proficiency: " + "#skill proficiency");
