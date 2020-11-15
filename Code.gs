@@ -250,7 +250,7 @@ function insertTemplate3() {
   // modify to what ever that fits later
   for (var i = 0; i < skills.length; i++) {
     var content5 = cell5.appendParagraph(skills[i].name + ", proficiency: " + skills[i].level);
-    content7.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300");
+    content5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300");
   }
 
   // var content5 = cell5.appendParagraph("#skill-type" + ", proficiency: " + "#skill proficiency");
