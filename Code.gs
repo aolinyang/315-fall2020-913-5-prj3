@@ -249,7 +249,7 @@ function insertTemplate3() {
   heading5.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#2d8659").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
   // modify to what ever that fits later
   for (var i = 0; i < skills.length; i++) {
-    var content7 = cell7.appendParagraph(skills[i].name + ", proficiency: " + skills[i].level);
+    var content5 = cell5.appendParagraph(skills[i].name + ", proficiency: " + skills[i].level);
     content7.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300");
   }
 
