@@ -155,26 +155,24 @@ function insertTemplate1(){
   // cell 9
   var cell9 = row5.appendTableCell();
   var heading9 = cell9.appendParagraph("Honor");
+  var honorInfo = JSON.parse(getHonor());
   heading9.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#809fff");
 
-  var content9p1 = cell9.appendParagraph("Honor:  #honor-awardedHonor");
+  var content9p1 = cell9.appendParagraph("Honor: "+ honorInfo.awardedHonor);
   content9p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
 
-  var content9p2 = cell9.appendParagraph("#honor-awardedBy");
+  var content9p2 = cell9.appendParagraph("Awarded Institution: " + honorInfo.awardedBy);
   content9p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
 
-  var content9p3 = cell9.appendParagraph("#honor-description");
+  var content9p3 = cell9.appendParagraph("Overview: " + honorInfo.description);
   content9p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
 
-  // var content9p4 = cell9.appendParagraph("#honor-awardedYear");
-  // content9p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
-
-  var content9p5 = cell9.appendParagraph("#honor-awardedType  |  #honor-awardedYear");
+  var content9p5 = cell9.appendParagraph(honorInfo.awardedType + "  |  " + honorInfo.awardedYear);
   content9p5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
 
   // cell 10
   var cell10 = row5.appendTableCell();
-  var content10 = cell10.appendParagraph("#honor-awardedYear");
+  var content10 = cell10.appendParagraph(honorInfo.awardedYear);
   content10.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
 
 
@@ -193,6 +191,7 @@ function insertTemplate3() {
   // row 1
   var row1 = table.appendTableRow();
   var cell1 = row1.appendTableCell();
+  var headerInfo = JSON.parse(getHeader());
   var heading1 = cell1.appendParagraph("Your Name");
   //var content1p1 = cell1.appendParagraph("");
   var content1p1 = cell1.appendParagraph("#header-email | #header-phone | #header-linkedin");
