@@ -61,23 +61,29 @@ function insertTemplate1(){
   table.setBorderColor("#ffffff");
   // row 1
   var row1 = table.appendTableRow();
-  // cell 1
+  
+// cell 1
+
+  var header = JSON.parse(getHeader());
   var cell1 = row1.appendTableCell();
-  var heading1 = cell1.appendParagraph("Your Name");
+  var heading1 = cell1.appendParagraph(header.fname+" "+ header.lname);
   heading1.setFontFamily("Arial").setFontSize(32).setBold(true).setForegroundColor("#ccccff");
   var content1 = cell1.appendParagraph("");
   content1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
-  // cell 2
-  var cell2 = row1.appendTableCell();
-  var content2p1 = cell2.appendParagraph("email:   #header-email");
-  content2p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
-  var content2p2 = cell2.appendParagraph("phone:   #header-phone");
-  content2p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
-  var content2p3 = cell2.appendParagraph("linkedin:   #header-linkedin");
-  content2p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
-  var content2p4 = cell2.appendParagraph("portfolio:   #header-portfolio");
-  content2p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
 
+  // cell 2
+
+  var cell2 = row1.appendTableCell();
+
+ 
+  var content2p1 = cell2.appendParagraph("email:" + header.email );
+  content2p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
+  var content2p2 = cell2.appendParagraph("phone:" + header.phone);
+  content2p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
+  var content2p3 = cell2.appendParagraph("linkedin:" + header.lkacc);
+  content2p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
+  var content2p4 = cell2.appendParagraph("portfolio:" + header.porturl);
+  content2p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
 
   // row2
   var row2 = table.appendTableRow();
