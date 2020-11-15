@@ -3,30 +3,41 @@
 <html>
   <head>
     <base target="_top">
-    
-     <br>
-    <label for="school">School: </label>
-    <input type="text" id="school" name="school">
-    <br>
-    
-    <br>
-    <label for="major">Major: </label>
-    <input type="text" id="major" name="major">
-    <br>
-    
-   <br>
-  <label for="GPA">GPA: </label>
-  <input type="text" id="GPA" name="GPA">
-  <br>
-  
-  <br>
-  <label for="affil">Affiliation: </label>
-  <input type="text" id="affiliation" name="affiliation">
-  <br>
+    <script src="https://unpkg.com/js-logger/src/logger.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+    <script>
 
-  <input type="button" value="Save" onclick="" />
+    function updateEdu(){
+        const eduJson = {
+          company : $("#school").val(),
+          position : $("#major").val(),
+          department : $("#GPA").val(),
+          description : $("#affil").val()
+        };
+        google.script.run.saveExperience(JSON.stringify(eduJson));
+    }
+
+    </script>
   </head>
   <body>
-    
+   <label for="school">School: </label>
+   <input type="text" id="school" name="school">
+   <br>
+   <br>
+   <label for="major">Major: </label>
+   <input type="text" id="major" name="major">
+   <br>
+   <br>
+   <label for="GPA">GPA: </label>
+   <input type="text" id="GPA" name="GPA">
+   <br>
+   <br>
+   <label for="affil">Affiliation: </label>
+   <input type="text" id="affiliation" name="affiliation">
+   <br>
+
+ <input type="button" value="Save" onclick="updateEdu()" />
+
   </body>
 </html>
