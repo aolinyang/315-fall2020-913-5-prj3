@@ -185,6 +185,81 @@ function insertTemplate2() {
 }
 
 function insertTemplate3() {
+  var doc = DocumentApp.getActiveDocument();
+  var body = doc.getBody();
+  var table = body.appendTable();
+  table.setBorderColor("#ffffff");
+
+  // row 1
+  var row1 = table.appendTableRow();
+  var cell1 = row1.appendTableCell();
+  var heading1 = cell1.appendParagraph("Your Name");
+  //var content1p1 = cell1.appendParagraph("");
+  var content1p1 = cell1.appendParagraph("#header-email | #header-phone | #header-linkedin");
+  var content1p2 = cell1.appendParagraph("| #header-portfolio |");
+  heading1.setFontFamily("Arial").setFontSize(32).setBold(true).setForegroundColor("#008080").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+  content1p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+  content1p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+
+  //var row2 = table.appendTableRow();
+  //var cell2 = row2.appendTableCell();
+  //var content2p1 = cell2.appendParagraph("#header-email | #header-phone | #header-linkedin");
+  //var content2p2 = cell2.appendParagraph("| #header-portfolio |");
+  //content2p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300");
+  //content2p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300");
+
+  var row3 = table.appendTableRow();
+  var cell3 = row3.appendTableCell();
+  var heading3 = cell3.appendParagraph("Education");
+  heading3.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#2d8659").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+  var content3p1 = cell3.appendParagraph("#education-school" + " | " + "#education-major");
+  content3p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+  var content3p2 = cell3.appendParagraph("GPA: " + "#education-gpa");
+  content3p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+  var content3p3 = cell3.appendParagraph("#education-affli");
+  content3p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+
+  var row4 = table.appendTableRow();
+  var cell4 = row4.appendTableCell();
+  var heading4 = cell4.appendParagraph("Experience");
+  heading4.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#2d8659").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+  var content4p1 = cell4.appendParagraph("#exp-company");
+  content4p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+  var content4p2 = cell4.appendParagraph("Position: #exp-position");
+  content4p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+  var content4p3 = cell4.appendParagraph("Department: #exp-department");
+  content4p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+  var content4p4 = cell4.appendParagraph("Supervisor: #exp-supervisor");
+  content4p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+  var content4p5 = cell4.appendParagraph("Contact Supervisor: #exp-contactEmail");
+  content4p5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+  var content4p6 = cell4.appendParagraph("#exp-description");
+  content4p6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+
+
+
+  var row5 = table.appendTableRow();
+  var cell5 = row5.appendTableCell();
+  var heading5 = cell5.appendParagraph("Skills");
+  heading5.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#2d8659").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+  // modify to what ever that fits later
+  var content5 = cell5.appendParagraph("#skill-type" + ", proficiency: " + "#skill proficiency");
+  content5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+
+
+  var row6 = table.appendTableRow();
+  var cell6 = row6.appendTableCell();
+  var heading6 = cell6.appendParagraph("Honor & Awards");
+  heading6.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#2d8659").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+
+  var content6p1 = cell6.appendParagraph("Honor:  #honor-awardedHonor");
+  content6p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+  var content6p2 = cell6.appendParagraph("#honor-awardedBy");
+  content6p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+  var content6p3 = cell6.appendParagraph("#honor-description");
+  content6p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+  var content6p5 = cell6.appendParagraph("#honor-awardedType  |  #honor-awardedYear");
+  content6p5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
 
 }
 
