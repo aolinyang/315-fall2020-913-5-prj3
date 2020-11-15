@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
 
     <script>
-    function experienceText(){
+    function updateEdu(){
 
       if (!document.getElementById("school").value||
           !document.getElementById("major").value ||
@@ -24,13 +24,14 @@
         var affil_val = document.getElementById("affil").value;
 
 
-        const experienceJson = {
+        const eduJson = {
           school : company_val,
           major : position_val,
           GPA: department_val,
           affil : description_val
         };
-        google.script.run.saveExperience(JSON.stringify(experienceJson));
+        console.log(eduJSON);
+        google.script.run.saveExperience(JSON.stringify(eduJson));
         // google.script.run.putExperienceInfo(company,position,description,department,supervisor,contactEmail);
         // document.getElementById("msg").innerHTML = "Insert successfully. Please close the windows";
         // window.close();
