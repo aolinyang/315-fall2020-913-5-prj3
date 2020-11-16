@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="https://unpkg.com/js-logger/src/logger.min.js"></script> -->
+    <script>
+
+    function deleteCheckedItems3(jsonString){
+      var json3 = JSON.parse(jsonString);
+      console.log("********************");
+      console.log(json3);
+      var allchecks = document.getElementsByName("deletechecks3");
+      for (var i = 0; i < allchecks.length;i++){
+        // console.log(allchecks[i]);
+        console.log("checkbox:"+allchecks[i].checked);
+        if (allchecks[i].checked == true){
+          var curr_check_id = allchecks[i].getAttribute("id");
+          var curr_input_id = curr_check_id.replace("check","replace");
+          var user_enter = document.getElementById(curr_input_id).value;
+          console.log("curr_check_id:"+curr_check_id + " curr_input_id:"+curr_input_id + " user_enter:" + user_enter + "\n");
+          json3[curr_check_id.replace("check","")] = user_enter.trim();
+        }// end if
+
+      }// end for
+      var json3str = JSON.stringify(json3);
+      console.log("---------");
+      console.log(json3str);
+      google.script.run.saveExperience(json3str);
+    }
+
+
+    function deleteCheckedItems2(jsonString){
+      var json2 = JSON.parse(jsonString);
+      console.log("********************");
+      console.log(json2);
+      var allchecks = document.getElementsByName("deletechecks2");
+      for (var i = 0; i < allchecks.length;i++){
+        // console.log(allchecks[i]);
+        console.log("checkbox:"+allchecks[i].checked);
+        if (allchecks[i].checked == true){
+          var curr_check_id = allchecks[i].getAttribute("id");
+          var curr_input_id = curr_check_id.replace("check","replace");
+          var user_enter = document.getElementById(curr_input_id).value;
+          console.log("curr_check_id:"+curr_check_id + " curr_input_id:"+curr_input_id + " user_enter:" + user_enter + "\n");
+          json2[curr_check_id.replace("check","")] = user_enter.trim();
+        }// end if
+
+      }// end for
+      var json2str = JSON.stringify(json2);
+      console.log("---------");
+      console.log(json2str);
+      google.script.run.saveExperience(json2str);
+    }
+
+    function deleteCheckedItems1(jsonString){
+      var json1 = JSON.parse(jsonString);
+      console.log("********************");
+      console.log(json1);
+      var allchecks = document.getElementsByName("deletechecks1");
+      for (var i = 0; i < allchecks.length;i++){
+        // console.log(allchecks[i]);
+        console.log("checkbox:"+allchecks[i].checked);
+        if (allchecks[i].checked == true){
+          var curr_check_id = allchecks[i].getAttribute("id");
+          var curr_input_id = curr_check_id.replace("check","replace");
+          var user_enter = document.getElementById(curr_input_id).value;
+          console.log("curr_check_id:"+curr_check_id + " curr_input_id:"+curr_input_id + " user_enter:" + user_enter + "\n");
+          json1[curr_check_id.replace("check","")] = user_enter.trim();
+        }// end if
+
+      }// end for
+      var json1str = JSON.stringify(json1);
+      console.log("---------");
+      console.log(json1str);
+      google.script.run.saveExperience(json1str);
+    }
+
+
+    </script>
+
+
+  </head>
+
+  <body>
+
+    <h2> Delete Header Info </h2>
+    <div>
+      <input type="checkbox" id="fnamecheck" name="deletecheck2" value="fnamecheck">
+      <label for="fnamecheck"> header first name </label>
+      <input type="hidden" id="fnamereplace" name="deleteinputs2" value="">
+      <br>
+      <br>
+      <input type="checkbox" id="lnamecheck" name="deletecheck2" value="lnamecheck">
+      <label for="lnamecheck"> header last name </label>
+      <input type="hidden" id="lnamereplace" name="deleteinputs2" value="">
+      <br>
+      <br>
+      <input type="checkbox" id="emailcheck" name="deletecheck2" value="headeremailcheck">
+      <label for="headeremailcheck"> header email </label>
+      <input type="hidden" id="emailreplace" name="deleteinputs2" value="">
+      <br>
+      <br>
+      <input type="checkbox" id="phonecheck" name="deletecheck2" value="headerphonecheck">
+      <label for="headerphonecheck"> header phone </label>
+      <input type="hidden" id="phonereplace" name="deleteinputs2" value="">
+      <br>
+      <br>
+      <input type="checkbox" id="lkacccheck" name="deletecheck2" value="lkacccheck">
+      <label for="lkacccheck"> header linkedin url </label>
+      <input type="hidden" id="lkaccreplace" name="deleteinputs2" value="">
+      <br>
+      <br>
+      <input type="checkbox" id="porturlcheck" name="deletecheck2" value="porturlcheck">
+      <label for="porturlcheck"> header profile url </label>
+      <input type="hidden" id="porturlreplace" name="deleteinputs2" value="">
+      <br>
+      <br>
+    </div>
+
+    <button onclick = "google.script.run.withSuccessHandler(deleteCheckedItems2).withUserObject(this).getHeader()"> delete header</button>
+    
+    <h2> Delete Lastest Education Info </h2>
+    <div>
+      <input type="checkbox" id="schoolcheck" name="deletechecks1" value="schoolcheck">
+      <label for="schoolcheck"> education school </label>
+      <input type="hidden" id="schoolreplace" name="deleteinputs1" value=" ">
+      <br>
+      <br>
+      <input type="checkbox" id="majorcheck" name="deletechecks1" value="majorcheck">
+      <label for="majorcheck"> education major </label>
+      <input type="hidden" id="majorreplace" name="deleteinputs1" value=" ">
+      <br>
+      <br>
+      <input type="checkbox" id="gpacheck" name="deletechecks1" value="gpacheck">
+      <label for="gpacheck"> education GPA </label>
+      <input type="hidden" id="gpareplace" name="deleteinputs1" value=" ">
+      <br>
+      <br>
+      <input type="checkbox" id="afflcheck" name="deletechecks1" value="afflcheck">
+      <label for="afflcheck"> education affiliation</label>
+      <input type="hidden" id="afflreplace" name="deleteinputs1" value=" ">
+      <br>
+      <br>
+    </div>
+
+    <button onclick = "google.script.run.withSuccessHandler(deleteCheckedItems1).withUserObject(this).getEducation()"> delete education</button>
+
+    <h2> Delete Lastest Experience Info </h2>
+    <div>
+      <input type="checkbox" id="companycheck" name="deletechecks3" value="companycheck">
+      <label for="companycheck"> experience company </label>
+      <input type="hidden" id="companyreplace" name="deleteinputs3"  value=" ">
+      <br>
+      <br>
+      <input type="checkbox" id="positioncheck" name="deletechecks3" value="positioncheck">
+      <label for="positioncheck"> experience postion </label>
+      <input type="hidden" id="positionreplace" name="deleteinputs3" value=" ">
+      <br>
+      <br>
+      <input type="checkbox" id="departmentcheck" name="deletechecks3" value="departmentcheck">
+      <label for="departmentcheck"> experience department </label>
+      <input type="hidden" id="departmentreplace" name="deleteinputs3" value=" ">
+      <br>
+      <br>
+      <input type="checkbox" id="descriptioncheck" name= "deletechecks3" value="descriptioncheck">
+      <label for="descriptioncheck"> experience description </label>
+      <input type="hidden" id="descriptionreplace" name="deleteinputs3" value=" ">
+      <br>
+      <br>
+      <input type="checkbox" id="supervisorcheck" name="deletechecks3" value="supervisorcheck">
+      <label for="supervisorcheck"> experience supervisor </label>
+      <input type="hidden" id="supervisorreplace" name="deleteinputs3" value=" ">
+      <br>
+      <br>
+      <input type="checkbox" id="contactEmailcheck" name="deletechecks3" value="contactEmailcheck">
+      <label for="contactEmailcheck"> experience supervisor email </label>
+      <input type="hidden" id="contactEmailreplace" name="deleteinputs3" value=" ">
+      <br>
+      <br>
+    </div>
+
+    <button onclick = "google.script.run.withSuccessHandler(deleteCheckedItems3).withUserObject(this).getExperience()"> delete experience</button>
+
+
+  </body>
+</html>
+
+
