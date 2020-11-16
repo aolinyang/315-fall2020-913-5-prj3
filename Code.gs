@@ -217,18 +217,21 @@ function insertTemplate3() {
   //content2p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300");
   //content2p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300");
 
-  var row3 = table.appendTableRow();
-  var cell3 = row3.appendTableCell();
+  var cell3 = row2.appendTableCell();
   var edu = JSON.parse(getEducation());
+  
   var heading3 = cell3.appendParagraph("Education");
-  heading3.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#2d8659").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
-  var content3p1 = cell3.appendParagraph(edu.school + " | " + edu.major);
-  content3p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
-  var content3p2 = cell3.appendParagraph("GPA: " + edu.GPA);
-  content3p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
-  var content3p3 = cell3.appendParagraph("Affiliation: " + edu.affil);
-  content3p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+  heading3.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#809fff");
 
+  var content3p1 = cell3.appendParagraph("School: " + edu.school);
+  content3p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
+  var content3p2 = cell3.appendParagraph("Department: " + edu.major);
+  content3p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
+  var content3p3 = cell3.appendParagraph("GPA: " + edu.GPA);
+  content3p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
+  var content3p4 = cell3.appendParagraph("Classification: " + edu.affiliation);
+  content3p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
+  
   var row4 = table.appendTableRow();
   var cell4 = row4.appendTableCell();
   var exper = JSON.parse(getExperience());
@@ -379,12 +382,13 @@ function saveExperience(experienceJSON){
 
 function getEducation(){
   var edu = props.getProperty("education");
+  Logger.log("RETRIEVING: " + edu);
   return edu;
 }
 
-function saveEducation(eduJSON){
-  Logger.log("Saved:" + eduJSON);
-  props.setProperty("education",eduJSON);
+function saveEducation(educationJSON){
+  Logger.log("SAVING:" + educationJSON);
+  props.setProperty("education",educationJSON);
 }
 
 function getHonor(){
