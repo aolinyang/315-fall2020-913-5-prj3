@@ -87,24 +87,28 @@ function insertTemplate1(){
 
   // row2
   var row2 = table.appendTableRow();
-  // cell 3
+  
+  //cell 3
   var cell3 = row2.appendTableCell();
+  var edu = JSON.parse(getEducation());
+  
   var heading3 = cell3.appendParagraph("Education");
   heading3.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#809fff");
 
-  var content3p1 = cell3.appendParagraph("#education-school ");
+  var content3p1 = cell3.appendParagraph("School: " + edu.school);
   content3p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
-  var content3p2 = cell3.appendParagraph("Major | #education-major");
+  var content3p2 = cell3.appendParagraph("Department: " + edu.major);
   content3p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
-  var content3p3 = cell3.appendParagraph("current GPA: #education-gpa");
+  var content3p3 = cell3.appendParagraph("GPA: " + edu.GPA);
   content3p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
-  var content3p4 = cell3.appendParagraph("#education-affli");
+  var content3p4 = cell3.appendParagraph("Classification: " + edu.affiliation);
   content3p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
-
+  
   // cell 4
   var cell4 = row2.appendTableCell();
-  var content4 = cell4.appendParagraph("#monEdu1 #yearEdu1 - #monEdu2 #yearEdu2");
+  var content4 = cell4.appendParagraph(edu.startm + " - " + edu.starty + " - " + edu.endm + " - " + edu.endy);
   content4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
+
 
   // row 3
   var row3 = table.appendTableRow();
