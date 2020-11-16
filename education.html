@@ -14,6 +14,10 @@
           major : $("#major").val(),
           GPA : $("#GPA").val(),
           affiliation : $("#affiliation").val(),
+          startm : $("#startm").val(),
+          endm : $("#endm").val(),
+          starty : $("#starty").val(),
+          endy : $("#endy").val()          
         };
         
         google.script.run.saveEducation(JSON.stringify(educationJson));
@@ -26,7 +30,10 @@
         $("#major").val(edu.major);
         $("#GPA").val(edu.GPA);
         $("#affiliation").val(edu.affiliation);
-
+        $("#startm").val(edu.startm),
+        $("#endm").val(edu.endm),
+        $("#starty").val(edu.starty),
+        $("#endy").val(edu.endy) 
     }
 
     $(document).ready(function() {
@@ -35,15 +42,15 @@
 
     </script>
     
-     <br>
-    <label for="school">School: </label>
-    <input type="text" id="school" name="school">
-    <br>
+   <br>
+   <label for="school">School: </label>
+   <input type="text" id="school" name="school">
+   <br>
     
-    <br>
-    <label for="major">Major: </label>
-    <input type="text" id="major" name="major">
-    <br>
+   <br>
+   <label for="major">Major: </label>
+   <input type="text" id="major" name="major">
+   <br>
     
    <br>
   <label for="GPA">GPA: </label>
@@ -54,10 +61,32 @@
   <label for="affil">Affiliation: </label>
   <input type="text" id="affiliation" name="affiliation">
   <br>
-
+  
+  <br>
+  <label for="startm">Starting Month: </label>
+  <input type="text" id="startm" name="startm">
+  <br>
+    
+  <br>
+  <label for="starty">Starting Year: </label>
+  <input type="text" id="starty" name="starty">
+  <br>
+  
+  <br>
+  <label for="endm">Ending Month: </label>
+  <input type="text" id="endm" name="endm">
+  <br>
+   
+  <br>
+  <label for="endy">Ending Year: </label>
+  <input type="text" id="endy" name="endy">
+  <br>
+  
+  <br>
   <input type="button" value="Save" onclick="education()" />
   </head>
   <body>
     
   </body>
 </html>
+
