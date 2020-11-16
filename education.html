@@ -1,74 +1,63 @@
-
 <!DOCTYPE html>
 <html>
   <head>
     <base target="_top">
+    <base target="_top">
     <script src="https://unpkg.com/js-logger/src/logger.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
-
+    
     <script>
-
-
-    function updateEdu(){
-
-      if (!document.getElementById("school").value||
-          !document.getElementById("major").value ||
-          !document.getElementById("GPA").value ||
-          !document.getElementById("affil").value
-        )
-      {
-        document.getElementById("msg").innerHTML = "All fields are required. You did not enter all the entries";
-      } else{
-        var school_val = document.getElementById("school").value;
-        var major_val = document.getElementById("major").value;
-        var GPA_val = document.getElementById("GPA").value;
-        var affil_val = document.getElementById("affil").value;
-
-
-        const eduJson = {
-          school : school_val,
-          major : major_val,
-          GPA: GPA_val,
-          affil : affil_val
+    function education(){
+        const educationJson = {
+          school : $("#school").val(),
+          major : $("#major").val(),
+          GPA : $("#GPA").val(),
+          affiliation : $("#affiliation").val(),
         };
-        console.log(eduJson);
-        google.script.run.saveEducation(JSON.stringify(eduJson));
-        // google.script.run.putExperienceInfo(company,position,description,department,supervisor,contactEmail);
-        // document.getElementById("msg").innerHTML = "Insert successfully. Please close the windows";
-        // window.close();
-
-      }
-
+        
+        google.script.run.saveEducation(JSON.stringify(educationJson));
 
     }
 
+    function initialize(stringifiedExp) {
+        var edu = JSON.parse(stringifiedExp);
+        $("#school").val(edu.school);
+        $("#major").val(edu.major);
+        $("#GPA").val(edu.GPA);
+        $("#affiliation").val(edu.affiliation);
+
+    }
+
+    $(document).ready(function() {
+        google.script.run.withSuccessHandler(initialize).getEducation(); 
+    });
+
     </script>
+    
+     <br>
+    <label for="school">School: </label>
+    <input type="text" id="school" name="school">
+    <br>
+    
+    <br>
+    <label for="major">Major: </label>
+    <input type="text" id="major" name="major">
+    <br>
+    
+   <br>
+  <label for="GPA">GPA: </label>
+  <input type="text" id="GPA" name="GPA">
+  <br>
+  
+  <br>
+  <label for="affil">Affiliation: </label>
+  <input type="text" id="affiliation" name="affiliation">
+  <br>
 
-
-
-
-
-
+  <input type="button" value="Save" onclick="education()" />
   </head>
   <body>
-   <label for="school">School: </label>
-   <input type="text" id="school" name="school">
-   <br>
-   <br>
-   <label for="major">Major: </label>
-   <input type="text" id="major" name="major">
-   <br>
-   <br>
-   <label for="GPA">GPA: </label>
-   <input type="text" id="GPA" name="GPA">
-   <br>
-   <br>
-   <label for="affil">Affiliation: </label>
-   <input type="text" id="affil" name="affil">
-   <br>
-
- <input type="button" value="Save" onclick="updateEdu()" />
-
+    
   </body>
 </html>
