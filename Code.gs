@@ -313,6 +313,14 @@ function showEditDialog() {
       .showModalDialog(html, 'Edit');
 }
 
+function showDeleteDialog() {
+  var html = HtmlService.createHtmlOutputFromFile('delete')
+      .setWidth(800)
+      .setHeight(600);
+  DocumentApp.getUi()
+      .showModalDialog(html, 'Delete');
+}
+
 function showSurveyDialog() {
   var html = HtmlService.createHtmlOutputFromFile('survey')
       .setWidth(800)

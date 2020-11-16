@@ -119,6 +119,7 @@
     <input type="button" value="Instructions" onclick="showInstructions()"/>
     <br>
     <input type="button" value="Edit sections" onclick="showEdit()"/>
+    <input type="button" value="Delete sections" onclick="showDelete()"/>
     <input type="button" value="Insert Resume" onclick="InsertFrame()"/>
   </footer>
 
@@ -201,6 +202,9 @@
 
       function showEdit(){
         google.script.run.withFailureHandler(onFailure).showEditDialog();
+      }
+      function showDelete(){
+        google.script.run.withFailureHandler(onFailure).showDeleteDialog();
       }
       function InsertFrame(){
         var template = $("#resume-template-select").val();
