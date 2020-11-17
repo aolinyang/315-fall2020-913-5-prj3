@@ -86,6 +86,12 @@
        var edu = JSON.parse(jsonEdu);
        document.getElementById("pschool").innerHTML="school:"+edu.school+"<br> major:"+edu.major+"<br> GPA:"+edu.GPA+"<br> class:"+edu.affiliation+"<br>start month:"+edu.startm+"<br>start year:"+edu.starty+"<br>end month:"+edu.endm+"<br>end year:"+edu.endy+" ";
     }
+    
+     function showEditEXP(jsonExp){
+       console.log(jsonExp);
+       var EXP = JSON.parse(jsonExp);
+       document.getElementById("pEXP").innerHTML="company:"+EXP.company+"<br> position:"+EXP.position+"<br> department:"+EXP.department+"<br> description:"+EXP.description+"<br>supervisor:"+EXP.supervisor+"<br>supervisor contact:"+EXP.contactEmail+"<br>start date:"+EXP.startDate+"<br>end date:"+EXP.endDate+" ";
+    }
 
     </script>
 
@@ -97,6 +103,12 @@
     <div>
     <p id="pschool"> click here to see the latest info </p>
     <button onclick="google.script.run.withSuccessHandler(showEditEdu).withUserObject(this).getEducation()"> get latest edu </button>
+    </div>
+    
+    <h3> current experience </h3>
+    <div>
+    <p id="pEXP"> click here to see the latest info </p>
+    <button onclick="google.script.run.withSuccessHandler(showEditEXP).withUserObject(this).getExperience()"> get latest exp </button>
     </div>
     
     

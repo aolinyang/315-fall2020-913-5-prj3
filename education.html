@@ -19,9 +19,9 @@
           starty : $("#starty").val(),
           endy : $("#endy").val()          
         };
-        
+        console.log(educationJson);
         google.script.run.saveEducation(JSON.stringify(educationJson));
-
+        console.log("save education");
     }
 
     function initialize(stringifiedExp) {
@@ -58,7 +58,7 @@
   <br>
   
   <br>
-  <label for="affil">Affiliation: </label>
+  <label for="affiliation">Affiliation: </label>
   <input type="text" id="affiliation" name="affiliation">
   <br>
   
