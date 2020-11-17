@@ -11,7 +11,7 @@ function onOpen(e) {
   props.setProperty("skills", "[]");
   props.setProperty("header", "{\"fname\":\"\",\"lname\":\"\",\"email\":\"\",\"phone\":\"\",\"lkacc\":\"\",\"porturl\":\"\"}");
   props.setProperty("workExperience","{\"company\":\"\", \"position\":\"\", \"department\":\"\", \"description\":\"\", \"supervisor\":\"\", \"contactEmail\":\"\" }");
-  props.setProperty("education","{\"school\":\"\",\"major\":\"\",\"GPA\":\"\",\"affil\":\"\"}");
+  props.setProperty("education","{\"school\":\"\",\"major\":\"\",\"GPA\":\"\",\"affiliation\":\"\", \"startm\":\"\", \"endm\":\"\", \"starty\":\"\",\"endy\":\"\"}");
   props.setProperty("honor","{\"awardedHonor\":\"\",\"awardedBy\":\"\",\"description\":\"\",\"awardedYear\":\"\", \"awardedType\":\"\"}");
 }
 
@@ -191,7 +191,92 @@ function insertTemplate1(){
 }
 
 function insertTemplate2() {
-
+  //*************** table setting, please use this table setting otherwise it 's corresponding with the styling of other templates *********
+  // the table format & style is already set
+  var doc = DocumentApp.getActiveDocument();
+  var body = doc.getBody();
+  var table = body.appendTable();
+  table.setBorderColor("#ffffff");
+  // ***********************************************************************************************************
+  
+  // row 1, already set up the color and text
+  var row1 = table.appendTableRow();
+  var cell1 = row1.appendTableCell();
+  var heading1 = cell1.appendParagraph("Education");
+  // replace this line below with education info
+  var content1p1 = cell1.appendParagraph("(education contents, replace this line)...");
+  // add more content1pN ...
+  //  var content1p2, var content1p3 ...etc
+  
+  // row 1, cell2(same row)
+  var cell2 = row1.appendTableCell();
+  var heading2 = cell2.appendParagraph("Honor & Awards");
+  // replace this line below with honor info
+  var content2p1 = cell2.appendParagraph("honor content...");
+  // add more centent2pN
+  // var content2p2, var content2p3 ...etc
+  
+  //**************************New row 1 styling *********************
+  //styling for regular heading & content on the left column
+  // alignment to the right, color set
+  heading1.setFontFamily("Arial").setFontSize(18).setBold(true).setForegroundColor("#999966").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setItalic(false);
+  content1p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#404040").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setItalic(true);
+  
+  
+  // styling for regular heading & content on the right column
+  // alignment to the left, color set,
+  heading2.setFontFamily("Arial").setFontSize(18).setBold(true).setForegroundColor("#2F4F4F").setAlignment(DocumentApp.HorizontalAlignment.LEFT).setItalic(false);
+  content2p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#404040").setAlignment(DocumentApp.HorizontalAlignment.LEFT).setItalic(true);
+  
+  // *****************************************************************
+  
+  // row 2, cell3
+  var row2 = table.appendTableRow();
+  var cell3 = row2.appendTableCell();
+  var heading3 = cell3.appendParagraph("Experience");
+  var content3p1 = cell3.appendParagraph("experience content1..");
+  // add more content
+  // var content3p2, var content3p3 ...etc
+  
+  // row 2, cell 4, Name(main heading)
+  var cell4 = row2.appendTableCell();
+  var heading4 = cell4.appendParagraph("#Firstname #Lastname");
+  var content4p1 = cell4.appendParagraph("header content1...");
+  // add more content..
+  // var content4p2, var content4p3... etc
+  
+  //**************************New row 2 styling *********************
+  //styling for regular heading & content on the left column
+  // alignment to the right, color set
+  heading3.setFontFamily("Arial").setFontSize(18).setBold(true).setForegroundColor("#2F4F4F").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setItalic(false);
+  content3p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#404040").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setItalic(true);
+  
+  
+  // styling for FIRST NAME LAST NAME & header
+  // alignment to the left, color set,
+  heading4.setFontFamily("Arial").setFontSize(32).setBold(true).setForegroundColor("#669999").setAlignment(DocumentApp.HorizontalAlignment.LEFT).setItalic(false);
+  content4p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#404040").setAlignment(DocumentApp.HorizontalAlignment.LEFT).setItalic(true);
+  
+  // *****************************************************************
+  
+  // row 3
+  var row3 = table.appendTableRow();
+  var cell5 = row3.appendTableCell();
+  var heading5 = cell5.appendParagraph("Skills")
+  var content5p1 = cell5.appendParagraph("skill 1...");
+  var content5p2 = cell5.appendParagraph("skill 2...");
+  
+  //********************** row 3 styling ********************
+  // alignment to the right
+  heading5.setFontFamily("Arial").setFontSize(18).setBold(true).setForegroundColor("#999966").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setItalic(false);
+  content5p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#404040").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setItalic(true);
+  // *****************************************************
+  
+  // image or leave cell6 empty or some other info
+  var cell6 = row3.appendTableCell();
+  
+  
+ 
 }
 
 function insertTemplate3() {
@@ -214,27 +299,21 @@ function insertTemplate3() {
   content1p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
   content1p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
 
-  //var row2 = table.appendTableRow();
-  //var cell2 = row2.appendTableCell();
-  //var content2p1 = cell2.appendParagraph("#header-email | #header-phone | #header-linkedin");
-  //var content2p2 = cell2.appendParagraph("| #header-portfolio |");
-  //content2p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300");
-  //content2p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300");
-
+  var row2 = table.appendTableRow();
   var cell3 = row2.appendTableCell();
   var edu = JSON.parse(getEducation());
   
   var heading3 = cell3.appendParagraph("Education");
-  heading3.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#809fff");
-
+  heading3.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#2d8659").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+ 
   var content3p1 = cell3.appendParagraph("School: " + edu.school);
-  content3p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
+  content3p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
   var content3p2 = cell3.appendParagraph("Department: " + edu.major);
-  content3p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
+  content3p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
   var content3p3 = cell3.appendParagraph("GPA: " + edu.GPA);
-  content3p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
+  content3p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
   var content3p4 = cell3.appendParagraph("Classification: " + edu.affiliation);
-  content3p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080");
+  content3p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
   
   var row4 = table.appendTableRow();
   var cell4 = row4.appendTableCell();
