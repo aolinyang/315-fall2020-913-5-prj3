@@ -79,6 +79,32 @@
       google.script.run.saveEducation(JSON.stringify(json1));
       console.log("finish edu");
     }
+    
+    function editCheckedItems4(jsonString){
+      var json4 = JSON.parse(jsonString);
+      console.log("********************");
+      console.log(json4);
+      var allchecks = document.getElementsByName("editchecks4");
+      for (var i = 0; i < allchecks.length;i++){
+        // console.log(allchecks[i]);
+        console.log("checkbox:"+allchecks[i].checked);
+        if (allchecks[i].checked == true){
+          var curr_check_id = allchecks[i].getAttribute("id");
+          var curr_input_id = curr_check_id.replace("check","replace");
+          var user_enter = document.getElementById(curr_input_id).value;
+          console.log("curr_check_id:"+curr_check_id + " curr_input_id:"+curr_input_id + " user_enter:" + user_enter + "\n");
+          json4[curr_check_id.replace("check","")] = user_enter.trim();
+          
+        }// end if
+
+      }// end for
+      var json4str = JSON.stringify(json4);
+      console.log("---------");
+      console.log(json4str);
+      google.script.run.saveHonor(JSON.stringify(json4));
+      console.log("finish honor");
+    }
+
 
 
     function showEditEdu(jsonEdu){
@@ -98,6 +124,12 @@
        var jhead = JSON.parse(jsonHead1);
        document.getElementById("pH").innerHTML="last name:"+jhead.lname+"<br> first name:"+jhead.fname+"<br> phone:"+jhead.phone+"<br> email:"+jhead.email+"<br>linkedin:"+jhead.lkacc+"<br>profile:"+jhead.porturl+" ";
     }
+    
+    function showEditHonor(jsonHrn){
+       console.log(jsonHrn);
+       var jhrn = JSON.parse(jsonHrn);
+       document.getElementById("pHrn").innerHTML="awardedHonor:"+jhrn.awardedHonor+"<br>awardedBy:"+jhrn.awardedBy+"<br>description:"+jhrn.description+"<br>awardedYear:"+jhrn.awardedYear+"<br>awardedType:"+jhrn.awardedType+" ";
+    }
 
     </script>
 
@@ -105,15 +137,54 @@
   </head>
 
   <body>
+    
+    
+    <h3> current honor </h3>
+    <div>
+    <p id="pHrn"> click here to see the latest info </p>
+    <button onclick="google.script.run.withSuccessHandler(showEditHonor).withUserObject(this).getHonor()"> get latest honor </button>
+    </div>
+    
+    <h2> Edit latest Honor Info </h2>
+    <div>
+      <input type="checkbox" id="awardedHonorcheck" name="editchecks4" value="awardedHonorcheck">
+      <label for="awardedHonorcheck">awardedHonor </label>
+      <input type="text" id="awardedHonorreplace" name="editinputs4" value=" ">
+      <br>
+      <br>
+      
+      <input type="checkbox" id="awardedBycheck" name="editchecks4" value="awardedBycheck">
+      <label for="awardedBycheck"> awardedBy </label>
+      <input type="text" id="awardedByreplace" name="editinputs4" value=" ">
+      <br>
+      <br>
+      
+      <input type="checkbox" id="descriptioncheck" name="editchecks4" value="descriptioncheck">
+      <label for="descriptioncheck"> description </label>
+      <input type="text" id="descriptionreplace" name="editinputs4" value=" ">
+      <br>
+      <br>
+      
+      <input type="checkbox" id="awardedYearcheck" name="editchecks4" value="awardedYearcheck">
+      <label for="awardedYearcheck"> awardedYear </label>
+      <input type="text" id="awardedYearreplace" name="editinputs4" value=" ">
+      <br>
+      <br>
+      
+      <input type="checkbox" id="awardedTypecheck" name="editchecks4" value="awardedTypecheck">
+      <label for="awardedTypecheck"> awardedType </label>
+      <input type="text" id="awardedTypereplace" name="editinputs4" value=" ">
+      <br> 
+      <br>
+    </div>
+ 
+    <button onclick = "google.script.run.withSuccessHandler(editCheckedItems4).withUserObject(this).getHonor()"> submit honor</button>
+    
     <h3> current eduation </h3>
     <div>
     <p id="pschool"> click here to see the latest info </p>
     <button onclick="google.script.run.withSuccessHandler(showEditEdu).withUserObject(this).getEducation()"> get latest edu </button>
     </div>
-    
-    
-    
-    
     
     
     <h2> Edit Lastest Education Info </h2>

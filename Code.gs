@@ -14,6 +14,7 @@ function onOpen(e) {
   props.setProperty("education","{\"school\":\"\",\"major\":\"\",\"GPA\":\"\",\"affiliation\":\"\", \"startm\":\"\", \"endm\":\"\", \"starty\":\"\",\"endy\":\"\"}");
   props.setProperty("honor","{\"awardedHonor\":\"\",\"awardedBy\":\"\",\"description\":\"\",\"awardedYear\":\"\", \"awardedType\":\"\"}");
   props.setProperty("sections","[]");
+  props.setProperty("currTemplate","");
 }
 
 function showSidebar() {
@@ -515,3 +516,15 @@ function saveAllSkills(allSkills) {
   props.setProperty("skills", allSkills);
 }
 
+function getCurrTemplate(){
+  var currTp = props.getProperty("currTemplate");
+  return currTp;
+}
+
+function setCurrTemplate(Tp){
+  if (Tp != "1" || Tp != "2" || Tp != "3" || Tp != ""){
+    DocumentApp.getUi().alert("Template not valid. Set to template 3");
+    props.setProperty("currTemplate", "3");
+  }
+  props.setProperty("currTemplate", Tp);
+}
