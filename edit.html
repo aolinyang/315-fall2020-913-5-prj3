@@ -92,6 +92,12 @@
        var EXP = JSON.parse(jsonExp);
        document.getElementById("pEXP").innerHTML="company:"+EXP.company+"<br> position:"+EXP.position+"<br> department:"+EXP.department+"<br> description:"+EXP.description+"<br>supervisor:"+EXP.supervisor+"<br>supervisor contact:"+EXP.contactEmail+"<br>start date:"+EXP.startDate+"<br>end date:"+EXP.endDate+" ";
     }
+    
+     function showEditHead(jsonHead1){
+       console.log(jsonHead1);
+       var jhead = JSON.parse(jsonHead1);
+       document.getElementById("pH").innerHTML="last name:"+jhead.lname+"<br> first name:"+jhead.fname+"<br> phone:"+jhead.phone+"<br> email:"+jhead.email+"<br>linkedin:"+jhead.lkacc+"<br>profile:"+jhead.porturl+" ";
+    }
 
     </script>
 
@@ -109,6 +115,12 @@
     <div>
     <p id="pEXP"> click here to see the latest info </p>
     <button onclick="google.script.run.withSuccessHandler(showEditEXP).withUserObject(this).getExperience()"> get latest exp </button>
+    </div>
+    
+    <h3> current header </h3>
+    <div>
+    <p id="pH"> click here to see the header info </p>
+    <button onclick="google.script.run.withSuccessHandler(showEditHead).withUserObject(this).getHeader()"> get latest header </button>
     </div>
     
     
