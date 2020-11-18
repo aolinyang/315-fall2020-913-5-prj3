@@ -111,17 +111,9 @@
     <button onclick="google.script.run.withSuccessHandler(showEditEdu).withUserObject(this).getEducation()"> get latest edu </button>
     </div>
     
-    <h3> current experience </h3>
-    <div>
-    <p id="pEXP"> click here to see the latest info </p>
-    <button onclick="google.script.run.withSuccessHandler(showEditEXP).withUserObject(this).getExperience()"> get latest exp </button>
-    </div>
     
-    <h3> current header </h3>
-    <div>
-    <p id="pH"> click here to see the header info </p>
-    <button onclick="google.script.run.withSuccessHandler(showEditHead).withUserObject(this).getHeader()"> get latest header </button>
-    </div>
+    
+    
     
     
     <h2> Edit Lastest Education Info </h2>
@@ -171,6 +163,12 @@
 
     <button onclick = "google.script.run.withSuccessHandler(editCheckedItems1).withUserObject(this).getEducation()"> submit education</button>
 
+    <h3> current header </h3>
+    <div>
+    <p id="pH"> click here to see the header info </p>
+    <button onclick="google.script.run.withSuccessHandler(showEditHead).withUserObject(this).getHeader()"> get latest header </button>
+    </div>
+
     <h2> Edit Header Info </h2>
     <div>
       <input type="checkbox" id="fnamecheck" name="editchecks2" value="fnamecheck">
@@ -206,6 +204,13 @@
     </div>
 
     <button onclick = "google.script.run.withSuccessHandler(editCheckedItems2).withUserObject(this).getHeader()"> submit header</button>
+
+    <h3> current experience </h3>
+    <div>
+    <p id="pEXP"> click here to see the latest info </p>
+    <button onclick="google.script.run.withSuccessHandler(showEditEXP).withUserObject(this).getExperience()"> get latest exp </button>
+    </div>
+
 
     <h2> Edit Lastest Experience Info </h2>
     <div>

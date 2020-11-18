@@ -13,6 +13,7 @@ function onOpen(e) {
   props.setProperty("workExperience","{\"company\":\"\", \"position\":\"\", \"department\":\"\", \"description\":\"\", \"supervisor\":\"\", \"contactEmail\":\"\",\"startDate\":\"\",\"endDate\":\"\" }");
   props.setProperty("education","{\"school\":\"\",\"major\":\"\",\"GPA\":\"\",\"affiliation\":\"\", \"startm\":\"\", \"endm\":\"\", \"starty\":\"\",\"endy\":\"\"}");
   props.setProperty("honor","{\"awardedHonor\":\"\",\"awardedBy\":\"\",\"description\":\"\",\"awardedYear\":\"\", \"awardedType\":\"\"}");
+  props.setProperty("sections","[]");
 }
 
 function showSidebar() {
@@ -375,6 +376,14 @@ function showEducationDialog() {
       .showModalDialog(html, 'education');
 }
 
+function showSectionDialog() {
+  var html = HtmlService.createHtmlOutputFromFile("freeSection")
+      .setWidth(800)
+  .setHeight(600);
+  DocumentApp.getUi()
+      .showModalDialog(html,"section");
+}
+
 function showHonorDialog() {
   var html = HtmlService.createHtmlOutputFromFile('honor')
       .setWidth(800)
@@ -450,12 +459,22 @@ function saveHeader(headerJSON) {
   props.setProperty("header", headerJSON);
 }
 
+function getSections() {
+  var sections = props.getProperty("sections");
+  return sections;
+}
+
+function saveSections(sec){
+  props.setProperty("section", sec);
+}
+
 function getExperience() {
   var exp = props.getProperty("workExperience");
   Logger.log("RETRIEVING: " + exp);
   // console.log("RETRIEVING: " + exp);
   return exp;
 }
+
 
 function saveExperience(experienceJSON){
   Logger.log("SAVING:" + experienceJSON);
@@ -495,3 +514,4 @@ function saveAllSkills(allSkills) {
   Logger.log("SAVING: " + allSkills);
   props.setProperty("skills", allSkills);
 }
+

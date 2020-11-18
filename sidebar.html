@@ -110,6 +110,7 @@
       <input type="button" value="Footer">
     </div>
     <hr>
+    
 
   </body>
 
@@ -118,9 +119,13 @@
     <input type="button" value="Survey" onclick="showSurvey()" style="padding-left:5px;"/> <!-- NEEDS ONLCLICK TO RENDER SURVEY HTML -->
     <input type="button" value="Instructions" onclick="showInstructions()"/>
     <br>
+    <br>
     <input type="button" value="Edit sections" onclick="showEdit()"/>
     <input type="button" value="Delete sections" onclick="showDelete()"/>
     <input type="button" value="Insert Resume" onclick="InsertFrame()"/>
+    <br>
+    <br>
+    <input type="button" value="Add Freetext sections" onclick="showSections()"/>
   </footer>
 
   <!-- ALL JS -->
@@ -190,6 +195,10 @@
 
       function showFooter() {
 
+      }
+      
+      function showSections(){
+         google.script.run.withFailureHandler(onFailure).showSectionDialog();
       }
 
       function showSurvey() {
