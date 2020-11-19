@@ -61,8 +61,8 @@
     
     <div class="image-textbox">
       <label for="image-input"> Image URL: </label> 
-      <input type="text" name="image-input" id="image-input" onclick="this.select()">
-      <button onclick="addImage()"> Add </button>
+      <input type="text" name="image-input" id="image-input" onclick="this.select()"/>
+      <button id="add-button"> Add </button>
       <button onclick="saveImages()"> Save All </button>
     </div>
     
@@ -73,6 +73,27 @@
     <script>
       var imageCount = 0;
       var images = [];
+      
+      document.getElementById("add-button").addEventListener("click", function() {
+        var URL = document.getElementById("image-input").value;
+        var textbox = document.getElementById("image-flex");
+        if (validURL(URL)) {
+          // check if google drive link
+          if (URL.includes("drive.google.com")) { // https://drive.google.com/file/d/0B_pdnlP5BHXWVU5EMDdvMFc3VWc/view
+            var image_id = URL.split("/");
+            image_id = image_id[5];
+            URL = "https://drive.google.com/uc?export=view&id=" + image_id;
+          }
+        
+          imageCount++;
+          var output = "<div class=\"image-inline\" id=\"image-inline" + imageCount + "\"><img class=\"img-preview\" src=\"" + URL + "\"/>"
+            + "<button class=\"delete-button\" onclick=\"removeImage('" + imageCount + "')\"> Remove </button></div>";
+          images.push(URL);
+          textbox.insertAdjacentHTML('beforeend', output);
+        } else {
+          alert("Invalid URL");
+        }
+      });
     
       function addImage() {
         var URL = document.getElementById("image-input").value;
@@ -86,7 +107,7 @@
           }
         
           imageCount++;
-          var output = "<div class=\"image-inline\" id=\"image-inline" + imageCount + "\"><img class=\"img-preview\" src=\"" + URL + "\">"
+          var output = "<div class=\"image-inline\" id=\"image-inline" + imageCount + "\"><img class=\"img-preview\" src=\"" + URL + "\"/>"
             + "<button class=\"delete-button\" onclick=\"removeImage('" + imageCount + "')\"> Remove </button></div>";
           images.push(URL);
           textbox.insertAdjacentHTML('beforeend', output);
@@ -94,11 +115,7 @@
           alert("Invalid URL");
         }
       }
-      
-      function hasClass(element, cls) {
-        return element.querySelector("."+element.className+"."+cls) != null;
-      }
-      
+
       /**
         Removes corresponding image to num parameter
       */
@@ -106,11 +123,12 @@
         var id = "image-inline" + num;
         var elem = document.getElementById(id);
         images.splice(num-1, 1);
+        imageCount--;
         elem.remove();
       }
       
       function saveImages() {
-        // Stringify JSON, send to Code.gs
+        google.script.run.savePortfolio(JSON.stringify(images));
       }
       
       function validURL(str) {
@@ -125,5 +143,6 @@
     </script>
   </body>
 </html>
+
 
 

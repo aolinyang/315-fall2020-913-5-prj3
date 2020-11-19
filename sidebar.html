@@ -1,22 +1,11 @@
 <html>
   <head>
     <style>
-      header {
-        background-color:#40c764;
-        display:flex;
-        flex-direction:column;
-        margin:auto;
-      }
-      
-      .div {
+      font-family:Merriweather;
+
+      div {
         margin: 0px0px0px30px;
       }
-      
-      .button .help-button {
-        background:transparent;
-        border:none;
-      }
-      
       .dropdown {
         margin:0px0px0px30px;
         position:relative;
@@ -56,14 +45,15 @@
         padding: 4px 8px
       }
     </style>
+
+
+
     <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
     <title>Resume Add-on</title>
   </head>
-  
   <body>
-    <header>
-      <h1 style="font-size:50px;margin:auto; padding-bottom:30px; padding-top:10px; color:white;"> ResumAid </h1>
-    </header>
+    <h1 style="margin:30px;"> Resume Generator </h1>
+    <hr>
 
     <label for="resume-template-select">Choosen Template:</label>
     <select id="resume-template-select" name="resume-template-select">
@@ -87,6 +77,8 @@
         <input type="checkbox" class="sectionCheck" name="sections" id="honor" value="honor" checked="true"/>
         <label for="honor">Honor</label>
         <input type="checkbox" class="sectionCheck" name="sections" id="footer" value="footer" checked="true"/>
+        <label for="portfolio">Portfolio</label>
+        <input type="checkbox" class="sectionCheck" name="sections" id="portfolio" value="portfolio" checked="true"/>
         <label for="footer">Footer</label>
         <input type="button" id="sectionSubmit" value="Submit" onclick="onSectionSubmit()"/>
       </div>
@@ -95,24 +87,36 @@
     <!-- HTML sections
       This is where the buttons interact with .gs functions to open pop-ups
     -->
+    <hr>
     <div id="header-section" style="display:block;margin-left:30px;">
       <input type="button" value="Header" onclick="showHeader()">
     </div>
+    <hr>
     <div id="experience-section" style="display:block;margin-left:30px;">
       <input type="button" value="Experience" onclick="showExperience()">
     </div>
+    <hr>
     <div id="skills-section" style="display:block;margin-left:30px;" >
       <input type="button" value="Skills" onclick="showSkills()">
     </div>
+    <hr>
     <div id="education-section" style="display:block;margin-left:30px;">
       <input type="button" value="Education" onclick="showEducation()">
     </div>
+    <hr>
     <div id="honor-section" style="display:block;margin-left:30px;">
       <input type="button" value="Honor / Awards" onclick="showHonor()">
     </div>
-    <div id="footer-section" style="display:block;margin-left:30px;">
-      <input type="button" value="Footer" onclick="showPortfolio()">
+    <hr>
+    <div id="portfolio-section" style="display:block;margin-left:30px;">
+      <input type="button" value="Portfolio" onclick="showPortfolio()">
     </div>
+    <hr>
+    <div id="footer-section" style="display:block;margin-left:30px;">
+      <input type="button" value="Footer">
+    </div>
+    <hr>
+    
 
   </body>
 
@@ -121,8 +125,13 @@
     <input type="button" value="Survey" onclick="showSurvey()" style="padding-left:5px;"/> <!-- NEEDS ONLCLICK TO RENDER SURVEY HTML -->
     <input type="button" value="Instructions" onclick="showInstructions()"/>
     <br>
+    <br>
     <input type="button" value="Edit sections" onclick="showEdit()"/>
+    <input type="button" value="Delete sections" onclick="showDelete()"/>
     <input type="button" value="Insert Resume" onclick="InsertFrame()"/>
+    <br>
+    <br>
+    <input type="button" value="Add Freetext sections" onclick="showSections()"/>
   </footer>
 
   <!-- ALL JS -->
@@ -195,7 +204,11 @@
       }
       
       function showPortfolio() {
-        google.script.run.withFailureHandler(onFailure).showPortfolioDialog();
+        google.script.run.withFailureHandler(onFailuer).showPortfolioDialog();
+      }
+      
+      function showSections(){
+         google.script.run.withFailureHandler(onFailure).showSectionDialog();
       }
 
       function showSurvey() {
@@ -209,6 +222,9 @@
       function showEdit(){
         google.script.run.withFailureHandler(onFailure).showEditDialog();
       }
+      function showDelete(){
+        google.script.run.withFailureHandler(onFailure).showDeleteDialog();
+      }
       function InsertFrame(){
         var template = $("#resume-template-select").val();
         if (template === "Template 1")
@@ -216,7 +232,7 @@
         else if (template === "Template 2")
           google.script.run.withFailureHandler(onFailure).insertTemplate2();
         else
-          google.script.run.withFailureHandler(onFailure).insertTemplate3();
+          google.script.run.withFailureHandler(onFailure).insertTemplate1();
       }
   </script>
 </html>
