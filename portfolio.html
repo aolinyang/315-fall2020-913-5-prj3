@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <base target="_top">
+    <script src="https://unpkg.com/js-logger/src/logger.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+    
+    <style>
+      .title {
+        width:100%;
+        text-align:center;
+      }
+  
+      .input {
+        text-align:center;
+        margin:auto;
+      }
+      
+      .image-flex {
+        width: 100%;
+        margin:auto;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        padding-top:10px;
+      }
+      
+      .image-inline {
+        width:100%;
+        display:flex;
+        flex-direction:row;
+        padding-top:10px;
+        justify-content:center;
+      }
+      
+      .image-textbox {
+        width:100%;
+        display:inline-block;
+        text-align:center;
+      }
+      
+      .img-preview {
+        height:50%;
+        width:50%;
+      }
+      
+      .delete-button {
+        margin-left:5px;
+        margin-top:5px;
+      }
+    </style>
+
+  </head>
+  <body>
+    <div class="title">
+      <h2> Art Portfolio </h2>
+      <p> Add your images from the web or from your Google Drive. </p>
+    </div>
+    
+    <div class="image-textbox">
+      <label for="image-input"> Image URL: </label> 
+      <input type="text" name="image-input" id="image-input" onclick="this.select()"/>
+      <button id="add-button"> Add </button>
+      <button onclick="saveImages()"> Save All </button>
+    </div>
+    
+    <div class="image-flex" id="image-flex">
+      
+    </div>
+    
+    <script>
+      var imageCount = 0;
+      var images = [];
+      
+      document.getElementById("add-button").addEventListener("click", function() {
+        var URL = document.getElementById("image-input").value;
+        var textbox = document.getElementById("image-flex");
+        if (validURL(URL)) {
+          // check if google drive link
+          if (URL.includes("drive.google.com")) { // https://drive.google.com/file/d/0B_pdnlP5BHXWVU5EMDdvMFc3VWc/view
+            var image_id = URL.split("/");
+            image_id = image_id[5];
+            URL = "https://drive.google.com/uc?export=view&id=" + image_id;
+          }
+        
+          imageCount++;
+          var output = "<div class=\"image-inline\" id=\"image-inline" + imageCount + "\"><img class=\"img-preview\" src=\"" + URL + "\"/>"
+            + "<button class=\"delete-button\" onclick=\"removeImage('" + imageCount + "')\"> Remove </button></div>";
+          images.push(URL);
+          textbox.insertAdjacentHTML('beforeend', output);
+        } else {
+          alert("Invalid URL");
+        }
+      });
+    
+      function addImage() {
+        var URL = document.getElementById("image-input").value;
+        var textbox = document.getElementById("image-flex");
+        if (validURL(URL)) {
+          // check if google drive link
+          if (URL.includes("drive.google.com")) { // https://drive.google.com/file/d/0B_pdnlP5BHXWVU5EMDdvMFc3VWc/view
+            var image_id = URL.split("/");
+            image_id = image_id[5];
+            URL = "https://drive.google.com/uc?export=view&id=" + image_id;
+          }
+        
+          imageCount++;
+          var output = "<div class=\"image-inline\" id=\"image-inline" + imageCount + "\"><img class=\"img-preview\" src=\"" + URL + "\"/>"
+            + "<button class=\"delete-button\" onclick=\"removeImage('" + imageCount + "')\"> Remove </button></div>";
+          images.push(URL);
+          textbox.insertAdjacentHTML('beforeend', output);
+        } else {
+          alert("Invalid URL");
+        }
+      }
+
+      /**
+        Removes corresponding image to num parameter
+      */
+      function removeImage(num) {
+        var id = "image-inline" + num;
+        var elem = document.getElementById(id);
+        images.splice(num-1, 1);
+        imageCount--;
+        elem.remove();
+      }
+      
+      function saveImages() {
+        google.script.run.savePortfolio(JSON.stringify(images));
+      }
+      
+      function validURL(str) {
+        var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+          '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+          '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+          '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+          '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+          '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+        return !!pattern.test(str);
+      }
+    </script>
+  </body>
+</html>
+
+
+

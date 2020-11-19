@@ -77,6 +77,8 @@
         <input type="checkbox" class="sectionCheck" name="sections" id="honor" value="honor" checked="true"/>
         <label for="honor">Honor</label>
         <input type="checkbox" class="sectionCheck" name="sections" id="footer" value="footer" checked="true"/>
+        <label for="portfolio">Portfolio</label>
+        <input type="checkbox" class="sectionCheck" name="sections" id="portfolio" value="portfolio" checked="true"/>
         <label for="footer">Footer</label>
         <input type="button" id="sectionSubmit" value="Submit" onclick="onSectionSubmit()"/>
       </div>
@@ -104,6 +106,10 @@
     <hr>
     <div id="honor-section" style="display:block;margin-left:30px;">
       <input type="button" value="Honor / Awards" onclick="showHonor()">
+    </div>
+    <hr>
+    <div id="portfolio-section" style="display:block;margin-left:30px;">
+      <input type="button" value="Portfolio" onclick="showPortfolio()">
     </div>
     <hr>
     <div id="footer-section" style="display:block;margin-left:30px;">
@@ -195,6 +201,10 @@
 
       function showFooter() {
 
+      }
+      
+      function showPortfolio() {
+        google.script.run.withFailureHandler(onFailuer).showPortfolioDialog();
       }
       
       function showSections(){

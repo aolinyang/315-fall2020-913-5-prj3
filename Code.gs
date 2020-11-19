@@ -9,6 +9,7 @@ function onOpen(e) {
       .addItem('Run', 'showSidebar')
       .addToUi();
   props.setProperty("skills", "[]");
+  props.setProperty("portfolio", "[]");
   props.setProperty("header", "{\"fname\":\"\",\"lname\":\"\",\"email\":\"\",\"phone\":\"\",\"lkacc\":\"\",\"porturl\":\"\"}");
   props.setProperty("workExperience","{\"company\":\"\", \"position\":\"\", \"department\":\"\", \"description\":\"\", \"supervisor\":\"\", \"contactEmail\":\"\",\"startDate\":\"\",\"endDate\":\"\" }");
   props.setProperty("education","{\"school\":\"\",\"major\":\"\",\"GPA\":\"\",\"affiliation\":\"\", \"startm\":\"\", \"endm\":\"\", \"starty\":\"\",\"endy\":\"\"}");
@@ -449,6 +450,13 @@ function showSkillSetDialog() {
       .showModalDialog(html, 'Input Skills');
 }
 
+function showPortfolioDialog() {
+  var html = HtmlService.createHtmlOutputFromFile('portfolio') 
+      .setWidth(800)
+      .setHeight(600);
+  DocumentApp.getUi().showModalDialog(html, 'Image Portfolio');
+}
+
 function getHeader() {
   var header = props.getProperty("header");
   Logger.log("RETRIEVING: " + header);
@@ -514,6 +522,11 @@ function getAllSkills() {
 function saveAllSkills(allSkills) {
   Logger.log("SAVING: " + allSkills);
   props.setProperty("skills", allSkills);
+}
+
+function savePortfolio(images) {
+  Logger.log("saving portfolio");
+  props.setProperty("portfolio", images);
 }
 
 function getCurrTemplate(){
