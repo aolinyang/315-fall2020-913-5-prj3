@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <script src="https://unpkg.com/js-logger/src/logger.min.js"></script>
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+
+    <script>
+    function putHonor(){
+
+      if (!document.getElementById("awardedHonor").value||
+          !document.getElementById("awardedBy").value ||
+          !document.getElementById("description").value ||
+          !document.getElementById("awardedYear").value ||
+          !document.getElementById("awardedType").value
+        )
+      {
+        document.getElementById("msg").innerHTML = "All fields are required. You did not enter all the infomation";
+      } else{
+        var awardedHonor_val = document.getElementById("awardedHonor").value;
+        var awardedBy_val = document.getElementById("awardedBy").value;
+        var description_val = document.getElementById("description").value;
+        var awardedYear_val = document.getElementById("awardedYear").value;
+        var awardedType_val = document.getElementById("awardedType").value;
+
+        const honorJson = {
+          awardedHonor: awardedHonor_val,
+          awardedBy : awardedBy_val,
+          description : description_val,
+          awardedYear : awardedYear_val,
+          awardedType : awardedType_val
+        };
+        console.log(honorJson);
+        google.script.run.saveHonor(JSON.stringify(honorJson));
+
+      }
+    }
+
+    </script>
+  </head>
+
+  <body>
+  <center>
+
+    <br>
+    <br>
+    <h4> Honor or Awards </h4>
+    <p> please enter the name of the honor/award, the organization or the person who gave the award, a brief description of the award/honor, the year you got the award/honor, and the type of the award/honor. </p>
+  <!-- <form action = "experience.html" method = "get"> -->
+         awardedHonor:
+            <input type = "text"  id= "awardedHonor" value = " " />
+         <br>
+         <br>
+
+         awardedBy:
+            <input type = "text" id="awardedBy" value = " " />
+         <br>
+         <br>
+         description:
+            <input type = "text" id="description" value = " " />
+         <br>
+         <br>
+         awardedYear:
+         <select id="awardedYear">
+            <option value="awarded before 2015">awarded before 2015</option>
+            <option value="awarded 2015">awarded 2015</option>
+            <option value="awarded 2016">awarded 2016</option>
+            <option value="awarded 2017">awarded 2017</option>
+            <option value="awarded 2018">awarded 2018</option>
+            <option value="awarded 2019">awarded 2018</option>
+            <option value="awarded 2020">awarded 2018</option>
+
+        </select>
+        awardedType:
+        <select id = "awardedType">
+          <option value="teaching awards">teaching awards</option>
+          <option value="university honor">university honor</option>
+          <option value="department honor">department honor</option>
+          <option value="major honor">major honor</option>
+          <option value="research awards">research awards</option>
+        </select>
+        <br>
+        <br>
+
+         <button onclick = "putHonor()"> Submit </button>
+        <br>
+        <br>
+        <p id="msg"> </p>
+
+</center>
+  </body>
+</html>

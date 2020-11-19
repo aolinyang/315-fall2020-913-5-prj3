@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="https://unpkg.com/js-logger/src/logger.min.js"></script> -->
+    <script>
+
+    function editCheckedItems3(jsonString){
+      var json3 = JSON.parse(jsonString);
+      console.log("********************");
+      console.log(json3);
+      var allchecks = document.getElementsByName("editchecks3");
+      for (var i = 0; i < allchecks.length;i++){
+        // console.log(allchecks[i]);
+        console.log("checkbox:"+allchecks[i].checked);
+        if (allchecks[i].checked == true){
+          var curr_check_id = allchecks[i].getAttribute("id");
+          var curr_input_id = curr_check_id.replace("check","replace");
+          var user_enter = document.getElementById(curr_input_id).value;
+          console.log("curr_check_id:"+curr_check_id + " curr_input_id:"+curr_input_id + " user_enter:" + user_enter + "\n");
+          json3[curr_check_id.replace("check","")] = user_enter.trim();
+        }// end if
+
+      }// end for
+      var json3str = JSON.stringify(json3);
+      console.log("---------");
+      console.log(json3str);
+      google.script.run.saveExperience(json3str);
+    }
+
+
+    function editCheckedItems2(jsonString){
+      var json2 = JSON.parse(jsonString);
+      console.log("********************");
+      console.log(json2);
+      var allchecks = document.getElementsByName("editchecks2");
+      for (var i = 0; i < allchecks.length;i++){
+        // console.log(allchecks[i]);
+        console.log("checkbox:"+allchecks[i].checked);
+        if (allchecks[i].checked == true){
+          var curr_check_id = allchecks[i].getAttribute("id");
+          var curr_input_id = curr_check_id.replace("check","replace");
+          var user_enter = document.getElementById(curr_input_id).value;
+          console.log("curr_check_id:"+curr_check_id + " curr_input_id:"+curr_input_id + " user_enter:" + user_enter + "\n");
+          json2[curr_check_id.replace("check","")] = user_enter.trim();
+        }// end if
+
+      }// end for
+      var json2str = JSON.stringify(json2);
+      console.log("---------");
+      console.log(json2str);
+      google.script.run.saveExperience(json2str);
+    }
+
+    function editCheckedItems1(jsonString){
+      var json1 = JSON.parse(jsonString);
+      console.log("********************");
+      console.log(json1);
+      var allchecks = document.getElementsByName("editchecks1");
+      for (var i = 0; i < allchecks.length;i++){
+        // console.log(allchecks[i]);
+        console.log("checkbox:"+allchecks[i].checked);
+        if (allchecks[i].checked == true){
+          var curr_check_id = allchecks[i].getAttribute("id");
+          var curr_input_id = curr_check_id.replace("check","replace");
+          var user_enter = document.getElementById(curr_input_id).value;
+          console.log("curr_check_id:"+curr_check_id + " curr_input_id:"+curr_input_id + " user_enter:" + user_enter + "\n");
+          json1[curr_check_id.replace("check","")] = user_enter.trim();
+        }// end if
+
+      }// end for
+      var json1str = JSON.stringify(json1);
+      console.log("---------");
+      console.log(json1str);
+      google.script.run.saveExperience(json1str);
+    }
+
+
+    </script>
+
+
+  </head>
+
+  <body>
+    <h2> Edit Lastest Education Info </h2>
+    <div>
+      <input type="checkbox" id="schoolcheck" name="editchecks1" value="schoolcheck">
+      <label for="schoolcheck"> education school </label>
+      <input type="text" id="schoolreplace" name="editinputs1" value=" ">
+      <br>
+      <br>
+      <input type="checkbox" id="majorcheck" name="editchecks1" value="majorcheck">
+      <label for="majorcheck"> education major </label>
+      <input type="text" id="majorreplace" name="editinputs1" value=" ">
+      <br>
+      <br>
+      <input type="checkbox" id="gpacheck" name="editchecks1" value="gpacheck">
+      <label for="gpacheck"> education GPA </label>
+      <input type="text" id="gpareplace" name="editinputs1" value=" ">
+      <br>
+      <br>
+      <input type="checkbox" id="afflcheck" name="editchecks1" value="afflcheck">
+      <label for="afflcheck"> education affiliation</label>
+      <input type="text" id="afflreplace" name="editinputs1" value=" ">
+      <br>
+      <br>
+    </div>
+
+    <button onclick = "google.script.run.withSuccessHandler(editCheckedItems1).withUserObject(this).getEducation()"> submit education</button>
+
+    <h2> Edit Header Info </h2>
+    <div>
+      <input type="checkbox" id="fnamecheck" name="editchecks2" value="fnamecheck">
+      <label for="fnamecheck"> header first name </label>
+      <input type="text" id="fnamereplace" name="editinputs2" value=" ">
+      <br>
+      <br>
+      <input type="checkbox" id="lnamecheck" name="editchecks2" value="lnamecheck">
+      <label for="lnamecheck"> header last name </label>
+      <input type="text" id="lnamereplace" name="editinputs2" value=" ">
+      <br>
+      <br>
+      <input type="checkbox" id="emailcheck" name="editchecks2" value="headeremailcheck">
+      <label for="headeremailcheck"> header email </label>
+      <input type="text" id="emailreplace" name="editinputs2" value=" ">
+      <br>
+      <br>
+      <input type="checkbox" id="phonecheck" name="editchecks2" value="headerphonecheck">
+      <label for="headerphonecheck"> header phone </label>
+      <input type="text" id="phonereplace" name="editinputs2" value=" ">
+      <br>
+      <br>
+      <input type="checkbox" id="lkacccheck" name="editchecks2" value="lkacccheck">
+      <label for="lkacccheck"> header linkedin url </label>
+      <input type="text" id="lkaccreplace" name="editinputs2" value=" ">
+      <br>
+      <br>
+      <input type="checkbox" id="porturlcheck" name="editchecks2" value="porturlcheck">
+      <label for="porturlcheck"> header profile url </label>
+      <input type="text" id="porturlreplace" name="editinputs2" value=" ">
+      <br>
+      <br>
+    </div>
+
+    <button onclick = "google.script.run.withSuccessHandler(editCheckedItems2).withUserObject(this).getHeader()"> submit header</button>
+
+    <h2> Edit Lastest Experience Info </h2>
+    <div>
+      <input type="checkbox" id="companycheck" name="editchecks3" value="companycheck">
+      <label for="companycheck"> experience company </label>
+      <input type="text" id="companyreplace" name="editinputs3"  value=" ">
+      <br>
+      <br>
+      <input type="checkbox" id="positioncheck" name="editchecks3" value="positioncheck">
+      <label for="positioncheck"> experience postion </label>
+      <input type="text" id="positionreplace" name="editinputs3" value=" ">
+      <br>
+      <br>
+      <input type="checkbox" id="departmentcheck" name="editchecks3" value="departmentcheck">
+      <label for="departmentcheck"> experience department </label>
+      <input type="text" id="departmentreplace" name="editinputs3" value=" ">
+      <br>
+      <br>
+      <input type="checkbox" id="descriptioncheck" name= "editchecks3" value="descriptioncheck">
+      <label for="descriptioncheck"> experience description </label>
+      <input type="text" id="descriptionreplace" name="editinputs3" value=" ">
+      <br>
+      <br>
+      <input type="checkbox" id="supervisorcheck" name="editchecks3" value="supervisorcheck">
+      <label for="supervisorcheck"> experience supervisor </label>
+      <input type="text" id="supervisorreplace" name="editinputs3" value=" ">
+      <br>
+      <br>
+      <input type="checkbox" id="contactEmailcheck" name="editchecks3" value="contactEmailcheck">
+      <label for="contactEmailcheck"> experience supervisor email </label>
+      <input type="text" id="contactEmailreplace" name="editinputs3" value=" ">
+      <br>
+      <br>
+    </div>
+
+    <button onclick = "google.script.run.withSuccessHandler(editCheckedItems3).withUserObject(this).getExperience()"> submit experience</button>
+
+
+  </body>
+</html>

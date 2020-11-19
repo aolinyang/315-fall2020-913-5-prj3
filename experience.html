@@ -2,35 +2,43 @@
 <html>
   <head>
     <base target="_top">
+    <script src="https://unpkg.com/js-logger/src/logger.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
 
     <script>
     function experienceText(){
-
-      if (!document.getElementById("company").value||
-          !document.getElementById("position").value ||
-          !document.getElementById("department").value ||
-          !document.getElementById("description").value ||
-          !document.getElementById("supervisor").value ||
-          !document.getElementById("contactEmail").value
-        )
-      {
-        document.getElementById("msg").innerHTML = "All fields are required. You did not enter all the entries";
-      } else{
-        var company = document.getElementById("company").value;
-        var position = document.getElementById("position").value;
-        var department = document.getElementById("department").value;
-        var description = document.getElementById("description").value;
-        var supervisor = document.getElementById("supervisor").value;
-        var contactEmail = document.getElementById("contactEmail").value;
-
-        google.script.run.putExperienceInfo(company,position,description,department,supervisor,contactEmail);
-        document.getElementById("msg").innerHTML = "Insert successfully. Please close the windows";
-        window.close();
-      }
-
-
+        const experienceJson = {
+          company : $("#company").val(),
+          position : $("#position").val(),
+          department : $("#department").val(),
+          description : $("#description").val(),
+          supervisor : $("#supervisor").val(),
+          contactEmail : $("#contactEmail").val(),
+          startDate: $("#startDate").val(),
+          endDate: $("#endDate").val(),
+        };
+        google.script.run.saveExperience(JSON.stringify(experienceJson));
+        // google.script.run.putExperienceInfo(company,position,description,department,supervisor,contactEmail);
+        // document.getElementById("msg").innerHTML = "Insert successfully. Please close the windows";
+        // window.close();
     }
+
+    function initialize(stringifiedExp) {
+        var exp = JSON.parse(stringifiedExp);
+        $("#company").val(exp.company);
+        $("#position").val(exp.position);
+        $("#description").val(exp.description);
+        $("#department").val(exp.department);
+        $("#supervisor").val(exp.supervisor);
+        $("#contactEmail").val(exp.contactEmail);
+        $("#startDate").val(exp.startDate);
+        $("#endDate").val(exp.endDate);
+    }
+
+    $(document).ready(function() {
+        google.script.run.withSuccessHandler(initialize).getExperience(); 
+    });
 
     </script>
   </head>
@@ -49,6 +57,12 @@
 
          position:
             <input type = "text" name = "position" id="position" value = "" maxlength = "200" />
+         <br>
+         <br>
+         Start date:
+            <input type = "date" name = "Start date" id="startDate" value = "" />
+         End date:
+            <input type = "date" name = "End date" id="endDate" value = "" />
          <br>
          <br>
          description:

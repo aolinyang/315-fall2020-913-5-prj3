@@ -1,11 +1,22 @@
 <html>
   <head>
     <style>
-      font-family:Merriweather;
-
-      div {
+      header {
+        background-color:#40c764;
+        display:flex;
+        flex-direction:column;
+        margin:auto;
+      }
+      
+      .div {
         margin: 0px0px0px30px;
       }
+      
+      .button .help-button {
+        background:transparent;
+        border:none;
+      }
+      
       .dropdown {
         margin:0px0px0px30px;
         position:relative;
@@ -45,25 +56,21 @@
         padding: 4px 8px
       }
     </style>
-
-
-
     <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
     <title>Resume Add-on</title>
   </head>
+  
   <body>
-    <h1 style="margin:30px;"> Resume Generator </h1>
-    <hr>
+    <header>
+      <h1 style="font-size:50px;margin:auto; padding-bottom:30px; padding-top:10px; color:white;"> ResumAid </h1>
+    </header>
 
-    <!-- TEMPLATE SELECTION -->
-    <div class="dropdown" style="margin:30px">
-      <button class="dropbtn">Templates</button>
-      <div class="dropdown-content">
-        <a href="#">Template 1</a> <!-- THIS WILL NEED TO BE A SCRIPT, NOT HREF -->
-        <a href="#">Template 2</a>
-        <a href="#">Template 3</a>
-      </div>
-    </div>
+    <label for="resume-template-select">Choosen Template:</label>
+    <select id="resume-template-select" name="resume-template-select">
+      <option value="1" selected>Template 1</option>
+      <option value="2">Template 2</option>
+      <option value="3">Template 3</option>
+    </select>
 
     <!-- SECTION SELECTION -->
     <div class="dropdown">
@@ -77,6 +84,8 @@
         <label for="skills">Skills</label>
         <input type="checkbox" class="sectionCheck" name="sections" id="experience" value="experience" checked="true"/>
         <label for="experience">Experience</label>
+        <input type="checkbox" class="sectionCheck" name="sections" id="honor" value="honor" checked="true"/>
+        <label for="honor">Honor</label>
         <input type="checkbox" class="sectionCheck" name="sections" id="footer" value="footer" checked="true"/>
         <label for="footer">Footer</label>
         <input type="button" id="sectionSubmit" value="Submit" onclick="onSectionSubmit()"/>
@@ -86,36 +95,38 @@
     <!-- HTML sections
       This is where the buttons interact with .gs functions to open pop-ups
     -->
-    <hr>
     <div id="header-section" style="display:block;margin-left:30px;">
       <input type="button" value="Header" onclick="showHeader()">
     </div>
-    <hr>
     <div id="experience-section" style="display:block;margin-left:30px;">
       <input type="button" value="Experience" onclick="showExperience()">
     </div>
-    <hr>
-    <div id="skills-section" style="display:block;margin-left:30px;" onclick="showSkills()">
+    <div id="skills-section" style="display:block;margin-left:30px;" >
       <input type="button" value="Skills" onclick="showSkills()">
     </div>
-    <hr>
     <div id="education-section" style="display:block;margin-left:30px;">
       <input type="button" value="Education" onclick="showEducation()">
     </div>
-    <hr>
-    <div id="footer-section" style="display:block;margin-left:30px;">
-      <input type="button" value="Footer">
+    <div id="honor-section" style="display:block;margin-left:30px;">
+      <input type="button" value="Honor / Awards" onclick="showHonor()">
     </div>
-    <hr>
+    <div id="footer-section" style="display:block;margin-left:30px;">
+      <input type="button" value="Footer" onclick="showPortfolio()">
+    </div>
+
   </body>
 
   <footer style="margin:30px;">
     <input type="button" value="Close" onclick="google.script.host.close()" />
-    <input type="button" value="Survey" onclick="showSurvey()" style="padding-left:5px;"/> 
+    <input type="button" value="Survey" onclick="showSurvey()" style="padding-left:5px;"/> <!-- NEEDS ONLCLICK TO RENDER SURVEY HTML -->
     <input type="button" value="Instructions" onclick="showInstructions()"/>
+    <br>
+    <input type="button" value="Edit sections" onclick="showEdit()"/>
+    <input type="button" value="Insert Resume" onclick="InsertFrame()"/>
   </footer>
 
   <!-- ALL JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
       /** GLOBAL VARIABLES **/
       var template_id;
@@ -173,11 +184,18 @@
       }
 
       function showEducation() {
-        google.script.run.withFailureHandler(onFailure).showEducationInputDialog();
+        google.script.run.withFailureHandler(onFailure).showEducationDialog();
+      }
+      function showHonor(){
+        google.script.run.withFailureHandler(onFailure).showHonorDialog();
       }
 
       function showFooter() {
 
+      }
+      
+      function showPortfolio() {
+        google.script.run.withFailureHandler(onFailure).showPortfolioDialog();
       }
 
       function showSurvey() {
@@ -186,6 +204,19 @@
 
       function showInstructions() {
         google.script.run.withFailureHandler(onFailure).showInstructionsDialog();
+      }
+
+      function showEdit(){
+        google.script.run.withFailureHandler(onFailure).showEditDialog();
+      }
+      function InsertFrame(){
+        var template = $("#resume-template-select").val();
+        if (template === "Template 1")
+          google.script.run.withFailureHandler(onFailure).insertTemplate1();
+        else if (template === "Template 2")
+          google.script.run.withFailureHandler(onFailure).insertTemplate2();
+        else
+          google.script.run.withFailureHandler(onFailure).insertTemplate3();
       }
   </script>
 </html>
