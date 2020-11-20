@@ -138,6 +138,7 @@ function insertTemplate1(){
   
     var content5p6 = cell5.appendParagraph(exp.description);
     content5p6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+    cell5.appendParagraph("");
   }
  
 
@@ -324,21 +325,27 @@ function insertTemplate3() {
   
   var row4 = table.appendTableRow();
   var cell4 = row4.appendTableCell();
-  var exper = JSON.parse(getExperience());
-  var heading4 = cell4.appendParagraph("Experience");
-  heading4.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#2d8659").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
-  var content4p1 = cell4.appendParagraph(exper.company);
-  content4p1.setFontFamily("Consolas").setFontSize(16).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
-  var content4p2 = cell4.appendParagraph("Position: " + exper.position);
-  content4p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
-  var content4p3 = cell4.appendParagraph("Department: "+ exper.department);
-  content4p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
-  var content4p4 = cell4.appendParagraph("Supervisor: " + exper.supervisor);
-  content4p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
-  var content4p5 = cell4.appendParagraph("Contact Supervisor: " + exper.contactEmail);
-  content4p5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
-  var content4p6 = cell4.appendParagraph("Overview: " + exper.description);
-  content4p6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+
+  var expList = JSON.parse(getExperience());
+  for (var i = 0; i < expList.length; i++) {
+    var exper = expList[i];
+    var heading4 = cell4.appendParagraph("Experience");
+    heading4.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#2d8659").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+    var content4p1 = cell4.appendParagraph(exper.company);
+    content4p1.setFontFamily("Consolas").setFontSize(16).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+    var content4p2 = cell4.appendParagraph("Position: " + exper.position);
+    content4p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+    var content4p3 = cell4.appendParagraph("Department: "+ exper.department);
+    content4p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+    var content4p4 = cell4.appendParagraph("Supervisor: " + exper.supervisor);
+    content4p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+    var content4p5 = cell4.appendParagraph("Contact Supervisor: " + exper.contactEmail);
+    content4p5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+    var content4p6 = cell4.appendParagraph("Overview: " + exper.description);
+    content4p6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+    cell4.appendParagraph("");
+  }
+  
 
 
 
