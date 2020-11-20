@@ -117,25 +117,29 @@ function insertTemplate1(){
   var row3 = table.appendTableRow();
 
   // cell 5
-  var exp = JSON.parse(getExperience());
+  var expList = JSON.parse(getExperience());
   var cell5 = row3.appendTableCell();
   var heading5 = cell5.appendParagraph("Experience");
   heading5.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#809fff").setLineSpacing(0);
 
-  var content5p1 = cell5.appendParagraph(exp.company);
-  content5p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-  var content5p2 = cell5.appendParagraph("Position: " + exp.position);
-  content5p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-  var content5p3 = cell5.appendParagraph("Department: " + exp.department);
-  content5p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-  var content5p4 = cell5.appendParagraph("Supervisor: " + exp.supervisor);
-  content5p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-
-  var content5p5 = cell5.appendParagraph("Contact Supervisor: " + exp.contactEmail);
-  content5p5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-
-  var content5p6 = cell5.appendParagraph(exp.description);
-  content5p6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+  for (var i = 0; i < expList.length; i++) {
+    var exp = expList[i];
+    var content5p1 = cell5.appendParagraph(exp.company);
+    content5p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+    var content5p2 = cell5.appendParagraph("Position: " + exp.position);
+    content5p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+    var content5p3 = cell5.appendParagraph("Department: " + exp.department);
+    content5p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+    var content5p4 = cell5.appendParagraph("Supervisor: " + exp.supervisor);
+    content5p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+  
+    var content5p5 = cell5.appendParagraph("Contact Supervisor: " + exp.contactEmail);
+    content5p5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+  
+    var content5p6 = cell5.appendParagraph(exp.description);
+    content5p6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+  }
+ 
 
   // cell 6
   var cell6 = row3.appendTableCell();
