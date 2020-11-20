@@ -81,11 +81,7 @@
             };
             expArr.push(expObj);
         }
-        
         google.script.run.saveExperience(JSON.stringify(expArr));
-        // google.script.run.putExperienceInfo(company,position,description,department,supervisor,contactEmail);
-        // document.getElementById("msg").innerHTML = "Insert successfully. Please close the windows";
-        // window.close();
     }
 
     function initialize(stringifiedExp) {
