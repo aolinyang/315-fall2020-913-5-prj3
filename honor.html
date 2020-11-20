@@ -10,8 +10,6 @@
     function getInput(num, honorObj) {
       var input = "<br>\
     <br>\
-    <h4> Honor or Awards </h4>\
-    <p> please enter the name of the honor/award, the organization or the person who gave the award, a brief description of the award/honor, the year you got the award/honor, and the type of the award/honor. </p>\
          awardedHonor:\
             <input type = \"text\"  id= \"awardedHonor-" + num + "\" value=\"" + honorObj.awardedHonor + "\" />\
          <br>\
@@ -91,6 +89,9 @@
 
     </script>
 
-<center id="honors-form"></center>
+<center id="honors-form">
+  <h4> Honor or Awards </h4>
+  <p> please enter the name of the honor/award, the organization or the person who gave the award, a brief description of the award/honor, the year you got the award/honor, and the type of the award/honor. </p>
+</center>
 <button onclick="addHonor()">Add Honor</button>
 <button onclick="saveHonors()">Submit</button>
