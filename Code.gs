@@ -12,7 +12,7 @@ function onOpen(e) {
   props.setProperty("portfolio", "[]");
   props.setProperty("header", "{\"fname\":\"\",\"lname\":\"\",\"email\":\"\",\"phone\":\"\",\"lkacc\":\"\",\"porturl\":\"\"}");
   props.setProperty("workExperience","[]");
-  props.setProperty("education","{\"school\":\"\",\"major\":\"\",\"GPA\":\"\",\"affiliation\":\"\", \"startm\":\"\", \"endm\":\"\", \"starty\":\"\",\"endy\":\"\"}");
+  props.setProperty("education","[]");
   props.setProperty("honor","{\"awardedHonor\":\"\",\"awardedBy\":\"\",\"description\":\"\",\"awardedYear\":\"\", \"awardedType\":\"\"}");
   props.setProperty("sections","[]");
   props.setProperty("currTemplate","");
@@ -93,24 +93,29 @@ function insertTemplate1(){
   
   //cell 3
   var cell3 = row2.appendTableCell();
-  var edu = JSON.parse(getEducation());
+  var eduList = JSON.parse(getEducation());
   
   var heading3 = cell3.appendParagraph("Education");
   heading3.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#809fff").setLineSpacing(0);
 
-  var content3p1 = cell3.appendParagraph("School: " + edu.school);
-  content3p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-  var content3p2 = cell3.appendParagraph("Department: " + edu.major);
-  content3p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-  var content3p3 = cell3.appendParagraph("GPA: " + edu.GPA);
-  content3p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-  var content3p4 = cell3.appendParagraph("Classification: " + edu.affiliation);
-  content3p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+  for (var i = 0; i < eduList.length; i++) {
+    var edu = eduList[i];
+    var content3p1 = cell3.appendParagraph("School: " + edu.school);
+    content3p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+    var content3p2 = cell3.appendParagraph("Department: " + edu.major);
+    content3p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+    var content3p3 = cell3.appendParagraph("GPA: " + edu.GPA);
+    content3p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+    var content3p4 = cell3.appendParagraph("Classification: " + edu.affiliation);
+    content3p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+    cell3.appendParagraph("");
+
+    // cell 4
+    var cell4 = row2.appendTableCell();
+    var content4 = cell4.appendParagraph(edu.startm + " - " + edu.starty + " - " + edu.endm + " - " + edu.endy);
+    content4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+  }
   
-  // cell 4
-  var cell4 = row2.appendTableCell();
-  var content4 = cell4.appendParagraph(edu.startm + " - " + edu.starty + " - " + edu.endm + " - " + edu.endy);
-  content4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
 
 
   // row 3
