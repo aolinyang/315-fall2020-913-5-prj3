@@ -69,7 +69,7 @@
           var user_enter = document.getElementById(curr_input_id).value;
           console.log("curr_check_id:"+curr_check_id + " curr_input_id:"+curr_input_id + " user_enter:" + user_enter + "\n");
           json1[curr_check_id.replace("check","")] = user_enter.trim();
-          
+
         }// end if
 
       }// end for
@@ -79,7 +79,7 @@
       google.script.run.saveEducation(JSON.stringify(json1));
       console.log("finish edu");
     }
-    
+
     function editCheckedItems4(jsonString){
       var json4 = JSON.parse(jsonString);
       console.log("********************");
@@ -94,7 +94,7 @@
           var user_enter = document.getElementById(curr_input_id).value;
           console.log("curr_check_id:"+curr_check_id + " curr_input_id:"+curr_input_id + " user_enter:" + user_enter + "\n");
           json4[curr_check_id.replace("check","")] = user_enter.trim();
-          
+
         }// end if
 
       }// end for
@@ -112,23 +112,36 @@
        var edu = JSON.parse(jsonEdu);
        document.getElementById("pschool").innerHTML="school:"+edu.school+"<br> major:"+edu.major+"<br> GPA:"+edu.GPA+"<br> class:"+edu.affiliation+"<br>start month:"+edu.startm+"<br>start year:"+edu.starty+"<br>end month:"+edu.endm+"<br>end year:"+edu.endy+" ";
     }
-    
+
      function showEditEXP(jsonExp){
        console.log(jsonExp);
        var EXP = JSON.parse(jsonExp);
        document.getElementById("pEXP").innerHTML="company:"+EXP.company+"<br> position:"+EXP.position+"<br> department:"+EXP.department+"<br> description:"+EXP.description+"<br>supervisor:"+EXP.supervisor+"<br>supervisor contact:"+EXP.contactEmail+"<br>start date:"+EXP.startDate+"<br>end date:"+EXP.endDate+" ";
     }
-    
+
      function showEditHead(jsonHead1){
        console.log(jsonHead1);
        var jhead = JSON.parse(jsonHead1);
        document.getElementById("pH").innerHTML="last name:"+jhead.lname+"<br> first name:"+jhead.fname+"<br> phone:"+jhead.phone+"<br> email:"+jhead.email+"<br>linkedin:"+jhead.lkacc+"<br>profile:"+jhead.porturl+" ";
     }
-    
+
     function showEditHonor(jsonHrn){
        console.log(jsonHrn);
        var jhrn = JSON.parse(jsonHrn);
        document.getElementById("pHrn").innerHTML="awardedHonor:"+jhrn.awardedHonor+"<br>awardedBy:"+jhrn.awardedBy+"<br>description:"+jhrn.description+"<br>awardedYear:"+jhrn.awardedYear+"<br>awardedType:"+jhrn.awardedType+" ";
+    }
+
+    function showEditSec(seclist){
+      console.log(seclist);
+      var lsec = JSON.parse(seclist);
+      var it = parseInt(document.getElementById(sectext).value) - 1;
+      if (lsec.length >= 0){
+        var sec1 = lsec[it];
+        document.getElementById("psec").innerHTML="section name:"+sec1.name+"<br> section content:"+sec1.content+" ";
+      }
+      else {
+        document.getElementById("psec").innerHTML="currently section list is empty. Please add section."
+      }
     }
 
     </script>
@@ -137,14 +150,15 @@
   </head>
 
   <body>
-    
-    
+
+
     <h3> current honor </h3>
     <div>
     <p id="pHrn"> click here to see the latest info </p>
+    <input type="text" id="honortext" value="1">
     <button onclick="google.script.run.withSuccessHandler(showEditHonor).withUserObject(this).getHonor()"> get latest honor </button>
     </div>
-    
+
     <h2> Edit latest Honor Info </h2>
     <div>
       <input type="checkbox" id="awardedHonorcheck" name="editchecks4" value="awardedHonorcheck">
@@ -152,41 +166,41 @@
       <input type="text" id="awardedHonorreplace" name="editinputs4" value=" ">
       <br>
       <br>
-      
+
       <input type="checkbox" id="awardedBycheck" name="editchecks4" value="awardedBycheck">
       <label for="awardedBycheck"> awardedBy </label>
       <input type="text" id="awardedByreplace" name="editinputs4" value=" ">
       <br>
       <br>
-      
+
       <input type="checkbox" id="descriptioncheck" name="editchecks4" value="descriptioncheck">
       <label for="descriptioncheck"> description </label>
       <input type="text" id="descriptionreplace" name="editinputs4" value=" ">
       <br>
       <br>
-      
+
       <input type="checkbox" id="awardedYearcheck" name="editchecks4" value="awardedYearcheck">
       <label for="awardedYearcheck"> awardedYear </label>
       <input type="text" id="awardedYearreplace" name="editinputs4" value=" ">
       <br>
       <br>
-      
+
       <input type="checkbox" id="awardedTypecheck" name="editchecks4" value="awardedTypecheck">
       <label for="awardedTypecheck"> awardedType </label>
       <input type="text" id="awardedTypereplace" name="editinputs4" value=" ">
-      <br> 
+      <br>
       <br>
     </div>
- 
+
     <button onclick = "google.script.run.withSuccessHandler(editCheckedItems4).withUserObject(this).getHonor()"> submit honor</button>
-    
+
     <h3> current eduation </h3>
     <div>
     <p id="pschool"> click here to see the latest info </p>
     <button onclick="google.script.run.withSuccessHandler(showEditEdu).withUserObject(this).getEducation()"> get latest edu </button>
     </div>
-    
-    
+
+
     <h2> Edit Lastest Education Info </h2>
     <div>
       <input type="checkbox" id="schoolcheck" name="editchecks1" value="schoolcheck">
@@ -229,7 +243,7 @@
       <input type="text" id="endyreplace" name="editinputs1" value=" ">
       <br>
       <br>
-      
+
     </div>
 
     <button onclick = "google.script.run.withSuccessHandler(editCheckedItems1).withUserObject(this).getEducation()"> submit education</button>
@@ -279,6 +293,7 @@
     <h3> current experience </h3>
     <div>
     <p id="pEXP"> click here to see the latest info </p>
+
     <button onclick="google.script.run.withSuccessHandler(showEditEXP).withUserObject(this).getExperience()"> get latest exp </button>
     </div>
 
@@ -325,10 +340,22 @@
        <input type = "date" id = "endDatereplace" name="editinputs3" value = "" />
       <br>
       <br>
-      
+
     </div>
 
     <button onclick = "google.script.run.withSuccessHandler(editCheckedItems3).withUserObject(this).getExperience()"> submit experience</button>
+
+    <h3> current section</h3>
+    <div>
+    <p id="psec"> click here to see the latest info </p>
+    <input type="text" id="sectext" value="1">
+    <button onclick="google.script.run.withSuccessHandler(showEditSec).withUserObject(this).getSections()"> get latest section </button>
+    </div>
+
+
+
+
+
 
 
   </body>
