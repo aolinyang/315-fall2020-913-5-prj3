@@ -64,11 +64,11 @@
         var honorsArr = [];
         for (var i = 0; i < numHonors; i++) {
           const honorObj = {
-            awardedHonor: $("awardedHonor-" + i).val(),
-            awardedBy : $("awardedBy-" + i).val(),
-            description : $("description-" + i).val(),
-            awardedYear : $("awardedYear-" + i).val(),
-            awardedType : $("awardedType-" + i).val(),
+            awardedHonor: $("#awardedHonor-" + i).val(),
+            awardedBy : $("#awardedBy-" + i).val(),
+            description : $("#description-" + i).val(),
+            awardedYear : $("#awardedYear-" + i).val(),
+            awardedType : $("#awardedType-" + i).val(),
           };
         }
         google.script.run.saveHonor(JSON.stringify(honorsArr));
