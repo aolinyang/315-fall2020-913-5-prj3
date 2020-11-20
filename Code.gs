@@ -98,6 +98,9 @@ function insertTemplate1(){
   var heading3 = cell3.appendParagraph("Education");
   heading3.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#809fff").setLineSpacing(0);
 
+  // cell 4
+  var cell4 = row2.appendTableCell();
+
   for (var i = 0; i < eduList.length; i++) {
     var edu = eduList[i];
     var content3p1 = cell3.appendParagraph("School: " + edu.school);
@@ -110,10 +113,10 @@ function insertTemplate1(){
     content3p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
     cell3.appendParagraph("");
 
-    // cell 4
-    var cell4 = row2.appendTableCell();
     var content4 = cell4.appendParagraph(edu.startm + " - " + edu.starty + " - " + edu.endm + " - " + edu.endy);
     content4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+    for (var j = 0; j < 5; j++)
+      cell4.appendParagraph("");
   }
   
 

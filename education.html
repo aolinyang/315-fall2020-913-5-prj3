@@ -72,14 +72,14 @@
       var eduArr = [];
       for (var i = 0; i < numEducations; i++) {
         const eduObj = {
-          school : $("#school").val(),
-          major : $("#major").val(),
-          GPA : $("#GPA").val(),
-          affiliation : $("#affiliation").val(),
-          startm : $("#startm").val(),
-          endm : $("#endm").val(),
-          starty : $("#starty").val(),
-          endy : $("#endy").val()          
+          school : $("#school-" + i).val(),
+          major : $("#major-" + i).val(),
+          GPA : $("#GPA-" + i).val(),
+          affiliation : $("#affiliation-" + i).val(),
+          startm : $("#startm-" + i).val(),
+          endm : $("#endm-" + i).val(),
+          starty : $("#starty-" + i).val(),
+          endy : $("#endy-" + i).val()          
         };
         eduArr.push(eduObj);
       }
