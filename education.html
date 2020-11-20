@@ -88,7 +88,7 @@
     }
 
     function initialize(stringifiedEdu) {
-        var eduList = JSON.parse(stringifiedExp);
+        var eduList = JSON.parse(stringifiedEdu);
         numEducations = eduList.length;
         eduList.forEach(function(edu, counter) {
           const input = getInput(counter, edu);

@@ -115,7 +115,7 @@ function insertTemplate1(){
 
     var content4 = cell4.appendParagraph(edu.startm + " - " + edu.starty + " - " + edu.endm + " - " + edu.endy);
     content4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-    for (var j = 0; j < 5; j++)
+    for (var j = 0; j < 4; j++)
       cell4.appendParagraph("");
   }
   
