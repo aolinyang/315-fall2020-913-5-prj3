@@ -134,7 +134,7 @@ function insertTemplate1(){
   heading5.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#809fff").setLineSpacing(0);
 
   var cell6 = row3.appendTableCell();
-  cell6.appendParagraph();
+  cell6.appendParagraph("");
 
   for (var i = 0; i < expList.length; i++) {
     var exp = expList[i];
