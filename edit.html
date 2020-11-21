@@ -211,47 +211,7 @@
   <body>
 
 
-    <h3> current honor </h3>
-    <div>
-    <p id="pHrn"> enter a number starting from 1 to view nth honor you entered  </p>
-    <input type="text" id="text-hon-view" value="">
-    <button onclick="google.script.run.withSuccessHandler(showEditHonor).withUserObject(this).getHonor()"> get-one-honor </button>
-    </div>
 
-    <h2> Edit latest Honor Info </h2>
-    <div>
-      <input type="checkbox" id="awardedHonorcheck" name="editchecks4" value="awardedHonorcheck">
-      <label for="awardedHonorcheck">awardedHonor </label>
-      <input type="text" id="awardedHonorreplace" name="editinputs4" value=" ">
-      <br>
-      <br>
-
-      <input type="checkbox" id="awardedBycheck" name="editchecks4" value="awardedBycheck">
-      <label for="awardedBycheck"> awardedBy </label>
-      <input type="text" id="awardedByreplace" name="editinputs4" value=" ">
-      <br>
-      <br>
-
-      <input type="checkbox" id="descriptioncheck" name="editchecks4" value="descriptioncheck">
-      <label for="descriptioncheck"> description </label>
-      <input type="text" id="descriptionreplace" name="editinputs4" value=" ">
-      <br>
-      <br>
-
-      <input type="checkbox" id="awardedYearcheck" name="editchecks4" value="awardedYearcheck">
-      <label for="awardedYearcheck"> awardedYear </label>
-      <input type="text" id="awardedYearreplace" name="editinputs4" value=" ">
-      <br>
-      <br>
-
-      <input type="checkbox" id="awardedTypecheck" name="editchecks4" value="awardedTypecheck">
-      <label for="awardedTypecheck"> awardedType </label>
-      <input type="text" id="awardedTypereplace" name="editinputs4" value=" ">
-      <br>
-      <br>
-    </div>
-
-    <button onclick = "google.script.run.withSuccessHandler(editCheckedItems4).withUserObject(this).getHonor()"> submit honor</button>
 
     <h3> current eduation </h3>
     <div>
@@ -406,12 +366,44 @@
 
     <button onclick = "google.script.run.withSuccessHandler(editCheckedItems3).withUserObject(this).getExperience()"> submit experience</button>
 
-    <h3> current section</h3>
+   
+    <h3> current honor </h3>
     <div>
-    <p id="psec"> click here to see the latest info </p>
-    <input type="text" id="sectext" value="1">
-    <button onclick="google.script.run.withSuccessHandler(showEditSec).withUserObject(this).getSections()"> get latest section </button>
+    <p id="pHrn"> enter a number starting from 1 to view nth honor you entered  </p>
+    <input type="text" id="text-hon-view" value="">
+    <button onclick="google.script.run.withSuccessHandler(showEditHonor).withUserObject(this).getHonor()"> get-one-honor </button>
     </div>
+
+    <h2> Edit latest Honor Info </h2>
+    <div>
+      <input type="checkbox" id="awardedHonorcheck" name="editchecks4" value="awardedHonorcheck">
+      <label for="awardedHonorcheck">awardedHonor </label>
+      <input type="text" id="awardedHonorreplace" name="editinputs4" value=" ">
+      <br>
+      <br>
+
+      <input type="checkbox" id="awardedBycheck" name="editchecks4" value="awardedBycheck">
+      <label for="awardedBycheck"> awardedBy </label>
+      <input type="text" id="awardedByreplace" name="editinputs4" value=" ">
+      <br>
+      <br>
+
+      <input type="checkbox" id="awardedYearcheck" name="editchecks4" value="awardedYearcheck">
+      <label for="awardedYearcheck"> awardedYear </label>
+      <input type="text" id="awardedYearreplace" name="editinputs4" value=" ">
+      <br>
+      <br>
+
+      <input type="checkbox" id="awardedTypecheck" name="editchecks4" value="awardedTypecheck">
+      <label for="awardedTypecheck"> awardedType </label>
+      <input type="text" id="awardedTypereplace" name="editinputs4" value=" ">
+      <br>
+      <br>
+    </div>
+
+    <button onclick = "google.script.run.withSuccessHandler(editCheckedItems4).withUserObject(this).getHonor()"> submit honor</button>
+
+
 
 
 
