@@ -71,8 +71,8 @@ function insertTemplate1(){
   var cell1 = row1.appendTableCell();
   var heading1 = cell1.appendParagraph(header.fname+" "+ header.lname);
   heading1.setFontFamily("Arial").setFontSize(32).setBold(true).setForegroundColor("#ccccff").setLineSpacing(0);
-  var content1 = cell1.appendParagraph("");
-  content1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+  //var content1 = cell1.appendParagraph("");
+  //content1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
 
   // cell 2
 
