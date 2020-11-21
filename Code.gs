@@ -231,6 +231,19 @@ function insertTemplate1(){
       cell10.appendParagraph("");
     }
   }
+  
+  
+  var row6 = table.appendTableRow();
+  var cell11 = row6.appendTableCell();
+  var sectionList = JSON.parse(getSections());
+  for (var i = 0; i < sectionList.length; i++){
+    var sectionInfo = sectionList[i];
+    var heading11 = cell11.appendParagraph(sectionInfo.name);
+    var content11p1 = cell11.appendParagraph(sectionInfo.content);
+    heading11.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#809fff").setLineSpacing(0);
+    content11p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+    cell11.appendParagraph("");
+  }
 
 
 
