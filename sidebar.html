@@ -126,13 +126,17 @@
 
   <footer style="margin:30px;">
     <input type="button" value="Close" onclick="google.script.host.close()" />
-    <input type="button" value="Survey" onclick="showSurvey()" style="padding-left:5px;"/> <!-- NEEDS ONLCLICK TO RENDER SURVEY HTML -->
-    <input type="button" value="Instructions" onclick="showInstructions()"/>
+    <input type="button" value="Evaluation(plots)" onclick="showSurvey()" style="padding-left:5px;"/> <!-- NEEDS ONLCLICK TO RENDER SURVEY HTML -->
     <br>
     <br>
     <input type="button" value="Edit sections" onclick="showEdit()"/>
+    <input type="button" value="clear doc" onclick="DeleteAll()"/>
+    <br>
+    <br>
     <input type="button" value="Delete sections" onclick="showDelete()"/>
     <input type="button" value="Insert Resume" onclick="InsertFrame()"/>
+    <br><br>
+    <input type="button" value="Instructions" onclick="showInstructions()"/>
     <br>
     <br>
   </footer>
@@ -236,6 +240,9 @@
           google.script.run.withFailureHandler(onFailure).insertTemplate2();
         else
           google.script.run.withFailureHandler(onFailure).insertTemplate3();
+      }
+      function DeleteAll(){
+        google.script.run.withFailureHandler(onFailure).removeAll();
       }
   </script>
 </html>

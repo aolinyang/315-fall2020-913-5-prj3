@@ -24,6 +24,12 @@ function showSidebar() {
   DocumentApp.getUi().showSidebar(ui);
 }
 
+function removeAll(){
+  var doc = DocumentApp.getActiveDocument();
+  var body = doc.getBody();
+  body.setText("");
+}
+
 // function putExperienceInfo(comp,pos,desc,dept,supvr,cntemail) {
 //   var doc = DocumentApp.getActiveDocument();
 //   var docBody = doc.getBody();
