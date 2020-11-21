@@ -134,8 +134,8 @@
     function showEditSec(seclist){
       console.log(seclist);
       var lsec = JSON.parse(seclist);
-      var it = parseInt(document.getElementById(sectext).value) - 1;
-      if (lsec.length >= 0){
+      if (lsec.length > 0){
+        var it = parseInt(document.getElementById(sectext).value) - 1;
         var sec1 = lsec[it];
         document.getElementById("psec").innerHTML="section name:"+sec1.name+"<br> section content:"+sec1.content+" ";
       }
