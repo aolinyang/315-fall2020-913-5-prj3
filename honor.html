@@ -73,6 +73,7 @@
           honorsArr.push(honorObj);
         }
         google.script.run.saveHonor(JSON.stringify(honorsArr));
+        document.getElementById("hhr").innerHTML = "Your honor info has been saved. You may close the window";
     }
 
     function initialize(stringifiedHonor) {
@@ -96,3 +97,4 @@
 </center>
 <button onclick="addHonor()">Add Honor</button>
 <button onclick="saveHonors()">Submit</button>
+<p id="hhr"></p>

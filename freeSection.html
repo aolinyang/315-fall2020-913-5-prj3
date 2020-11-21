@@ -1,6 +1,7 @@
 <div id="section-form"></div>
 <button onclick="addSections()">Add section</button>
 <button onclick="saveSections()">Save</button>
+<p id="sss"></p>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
   var numSections = 0;
@@ -35,6 +36,7 @@
     console.log(sectionArr);
     google.script.run.saveSections(JSON.stringify(sectionArr));
     console.log("finish saving");
+    document.getElementById("sss").innerHTML = "Your section info has been saved. You may close the window";
   }
 
   function initialize(stringifiedArr) {

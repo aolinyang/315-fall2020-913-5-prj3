@@ -1,5 +1,5 @@
 <div id="resume-header"></div>
-
+<link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     function initialize(stringifiedObj) {
@@ -44,9 +44,12 @@
             porturl: $("#porturl").val(),
         };
         google.script.run.saveHeader(JSON.stringify(headerObj));
+        
+        document.getElementById("hdd").innerHTML = "Your header info has been saved.You may close the window";
     }
 
     $(document).ready(function() {
         google.script.run.withSuccessHandler(initialize).withFailureHandler(printFail).getHeader(); 
     });
 </script>
+<p id="hdd"> </p>

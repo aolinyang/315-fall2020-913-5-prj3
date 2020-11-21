@@ -84,6 +84,8 @@
         eduArr.push(eduObj);
       }
       google.script.run.saveEducation(JSON.stringify(eduArr));
+      
+      document.getElementById("ped").innerHTML = "Your education info has been saved.You may close the window";
     }
 
     function initialize(stringifiedEdu) {
@@ -104,3 +106,4 @@
 <center id="edu-form"></center>
 <button onclick="addEducation()">Add Education</button>
 <button onclick="saveEducation()">Submit</button>
+<p id="ped"> </p>
