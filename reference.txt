@@ -20,3 +20,16 @@ https://stackoverflow.com/questions/9565831/how-to-get-id-of-an-element-whose-na
 
 https://pietschsoft.com/post/2015/09/05/javascript-basics-how-to-create-a-dictionary-with-keyvalue-pairs
 https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_document_getelementbyid
+https://stackoverflow.com/questions/11590434/erase-content-in-google-apps-script-document-service
+https://developers.google.com/apps-script/reference/document/text#settexttext
+https://stackoverflow.com/questions/47291817/deleting-all-content-down-from-the-second-horizontal-line-in-a-document
+https://stackoverflow.com/questions/17141273/google-apps-script-is-it-possible-to-get-the-cursor-position-or-get-the-selec
+https://stackoverflow.com/questions/56116732/how-to-delete-a-page-from-a-google-doc-using-app-script
+https://developers.google.com/apps-script/reference/document/body#getChild(Integer)
+https://stackoverflow.com/questions/39542457/google-sheet-script-null-error-during-loop
+https://www.tutorialrepublic.com/faq/how-to-find-the-sum-of-an-array-of-numbers-in-javascript.php
+https://plotly.com/javascript/bar-charts/
+https://plotly.com/javascript/bar-charts/
+https://developers.google.com/chart/interactive/docs/gallery/columnchart
+https://developers.google.com/apps-script/reference/charts
+https://www.w3schools.com/tags/tag_select.asp
