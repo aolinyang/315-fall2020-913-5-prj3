@@ -157,7 +157,7 @@ function insertTemplate1(){
     // cell 6
     var content6 = cell6.appendParagraph(exp.startDate + " - " + exp.endDate);
     content6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-    for (var j = 0; j < 6; j++) {
+    for (var j = 0; j < 5; j++) {
       cell6.appendParagraph("");
     }
   }
@@ -195,7 +195,6 @@ function insertTemplate1(){
 
   // cell 10
   var cell10 = row5.appendTableCell();
-  cell10.appendParagraph("");
 
   var honorsList = JSON.parse(getHonor());
   for (var i = 0; i < honorsList.length; i++) {
@@ -219,7 +218,7 @@ function insertTemplate1(){
 
     var content10 = cell10.appendParagraph(honorInfo.awardedYear);
     content10.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-    for (var j = 0; j < 6; j++) {
+    for (var j = 0; j < 4; j++) {
       cell10.appendParagraph("");
     }
   }
