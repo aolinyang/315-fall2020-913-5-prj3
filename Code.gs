@@ -159,18 +159,18 @@ function insertTemplate1(){
       cell6.appendParagraph("");
     }
   }
-<<<<<<< HEAD
+// <<<<<<< HEAD
+//
+//
+//   // cell 6
+//   var cell6 = row3.appendTableCell();
+//   var content6 = cell6.appendParagraph(exp.startDate + " - " + exp.endDate);
+//   content6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+//
+//
+// =======
 
-
-  // cell 6
-  var cell6 = row3.appendTableCell();
-  var content6 = cell6.appendParagraph(exp.startDate + " - " + exp.endDate);
-  content6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-
-
-=======
- 
->>>>>>> main
+// >>>>>>> main
   // row 4
   var row4 = table.appendTableRow();
 
@@ -218,15 +218,15 @@ function insertTemplate1(){
 
     var content9p3 = cell9.appendParagraph("Overview: " + honorInfo.description);
     content9p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-<<<<<<< HEAD
+// <<<<<<< HEAD
+//
+//     var content9p5 = cell9.appendParagraph(honorInfo.awardedType+"  |  "+ honorInfo.awardedYear);
+//
+// =======
 
-    var content9p5 = cell9.appendParagraph(honorInfo.awardedType+"  |  "+ honorInfo.awardedYear);
-
-=======
-  
     var content9p5 = cell9.appendParagraph(honorInfo.awardedType);
-  
->>>>>>> main
+
+// >>>>>>> main
     content9p5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
 
     cell9.appendParagraph("");
