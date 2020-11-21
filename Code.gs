@@ -132,6 +132,8 @@ function insertTemplate1(){
   var heading5 = cell5.appendParagraph("Experience");
   heading5.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#809fff").setLineSpacing(0);
 
+  var cell6 = row3.appendTableCell();
+
   for (var i = 0; i < expList.length; i++) {
     var exp = expList[i];
     var content5p1 = cell5.appendParagraph(exp.company);
@@ -149,7 +151,15 @@ function insertTemplate1(){
     var content5p6 = cell5.appendParagraph(exp.description);
     content5p6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
     cell5.appendParagraph("");
+
+    // cell 6
+    var content6 = cell6.appendParagraph(exp.startDate + " - " + exp.endDate);
+    content6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+    for (var j = 0; j < 5; j++) {
+      cell6.appendParagraph("");
+    }
   }
+<<<<<<< HEAD
 
 
   // cell 6
@@ -158,6 +168,9 @@ function insertTemplate1(){
   content6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
 
 
+=======
+ 
+>>>>>>> main
   // row 4
   var row4 = table.appendTableRow();
 
@@ -188,6 +201,10 @@ function insertTemplate1(){
   var cell9 = row5.appendTableCell();
   var heading9 = cell9.appendParagraph("Honors");
   heading9.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#809fff").setLineSpacing(0);
+
+  // cell 10
+  var cell10 = row5.appendTableCell();
+
   var honorsList = JSON.parse(getHonor());
   for (var i = 0; i < honorsList.length; i++) {
     var honorInfo = honorsList[i];
@@ -201,18 +218,26 @@ function insertTemplate1(){
 
     var content9p3 = cell9.appendParagraph("Overview: " + honorInfo.description);
     content9p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+<<<<<<< HEAD
 
     var content9p5 = cell9.appendParagraph(honorInfo.awardedType+"  |  "+ honorInfo.awardedYear);
 
+=======
+  
+    var content9p5 = cell9.appendParagraph(honorInfo.awardedType);
+  
+>>>>>>> main
     content9p5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
 
     cell9.appendParagraph("");
+
+    var content10 = cell10.appendParagraph(honorInfo.awardedYear);
+    content10.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+    for (var j = 0; j < 4; j++) {
+      cell10.appendParagraph("");
+    }
   }
 
-  // cell 10
-  var cell10 = row5.appendTableCell();
-  var content10 = cell10.appendParagraph(honorInfo.awardedYear);
-  content10.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
 
 
 }

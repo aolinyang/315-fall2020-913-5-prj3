@@ -70,6 +70,7 @@
             awardedYear : $("#awardedYear-" + i).val(),
             awardedType : $("#awardedType-" + i).val(),
           };
+          honorsArr.push(honorObj);
         }
         google.script.run.saveHonor(JSON.stringify(honorsArr));
     }
