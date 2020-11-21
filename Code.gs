@@ -149,15 +149,16 @@ function insertTemplate1(){
     var content5p6 = cell5.appendParagraph(exp.description);
     content5p6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
     cell5.appendParagraph("");
+
+    // cell 6
+    var cell6 = row3.appendTableCell();
+    var content6 = cell6.appendParagraph(exp.startDate + " - " + exp.endDate);
+    content6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+    for (var j = 0; j < 6; j++) {
+      cell6.appendParagraph("");
+    }
   }
  
-
-  // cell 6
-  var cell6 = row3.appendTableCell();
-  var content6 = cell6.appendParagraph(exp.startDate + " - " + exp.endDate);
-  content6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-
-
   // row 4
   var row4 = table.appendTableRow();
 
