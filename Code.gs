@@ -218,15 +218,9 @@ function insertTemplate1(){
 
     var content9p3 = cell9.appendParagraph("Overview: " + honorInfo.description);
     content9p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-// <<<<<<< HEAD
-//
-//     var content9p5 = cell9.appendParagraph(honorInfo.awardedType+"  |  "+ honorInfo.awardedYear);
-//
-// =======
 
     var content9p5 = cell9.appendParagraph(honorInfo.awardedType);
 
-// >>>>>>> main
     content9p5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
 
     cell9.appendParagraph("");
@@ -332,6 +326,7 @@ function insertTemplate2() {
 }
 
 function insertTemplate3() {
+  
   var doc = DocumentApp.getActiveDocument();
   var body = doc.getBody();
   var table = body.appendTable();
@@ -434,6 +429,19 @@ function insertTemplate3() {
     content6p5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
     cell6.appendParagraph("");
   }
+  
+  var row7 = table.appendTableRow();
+  var cell7 = row7.appendTableCell();
+  var sectionList = JSON.parse(getSections());
+  for (var i = 0; i < sectionList.length; i++){
+    var sectionInfo = sectionList[i];
+    var heading7 = cell7.appendParagraph(sectionInfo.name);
+    var content7p1 = cell7.appendParagraph(sectionInfo.content);
+    heading7.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#2d8659").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+    content7p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+    cell7.appendParagraph("");
+  }
+  
 }
 
 function showEducationDialog() {
@@ -540,6 +548,8 @@ function getSections() {
 }
 
 function saveSections(sec){
+  console.info("saveing sections..");
+  console.info(sec);
   props.setProperty("sections", sec);
 }
 
