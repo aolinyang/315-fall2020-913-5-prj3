@@ -11,7 +11,7 @@
         <label for=\"sectionName\">Section title: </label>\
         <input type=\"text\" id=\"section-name-" + id + "\" name=\"sectionName\" value=\"" + sectionName + "\">\
         <br><br><label for=\"sectionContent\">Content: </label>\
-        <textarea cols=\"50\" id=\"section-content-"+id +"\" name=\"sectionContent\" value=\" \"> </textarea>"+ 
+        <textarea cols=\"50\" id=\"section-content-"+id +"\" name=\"sectionContent\" value=\" \"> </textarea>"+
         "</div><br><br>";
     return input;  // style=\"line-height:60px;\"
   }
@@ -42,7 +42,7 @@
     numSections = sections.length;
     var counter = 0;
     sections.forEach(function(section) {
-      const input = getInputField(section.name, section.level, counter);
+      const input = getInputField(section.name, section.content, counter);
       $(input).appendTo("#section-form");
     });
   }
@@ -52,6 +52,6 @@
   }
 
   $(document).ready(function() {
-    google.script.run.withSuccessHandler(initialize).withFailureHandler(printFail).getSections(); 
+    google.script.run.withSuccessHandler(initialize).withFailureHandler(printFail).getSections();
   });
 </script>

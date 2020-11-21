@@ -515,7 +515,7 @@ function getSections() {
 }
 
 function saveSections(sec){
-  props.setProperty("section", sec);
+  props.setProperty("sections", sec);
 }
 
 function getExperience() {
