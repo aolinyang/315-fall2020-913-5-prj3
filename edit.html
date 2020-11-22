@@ -156,6 +156,35 @@
 
 // --------------------- free text ----------------------------
 
+    function editCheckedItems6(jsonString){
+    
+      var json6list = JSON.parse(jsonString);
+      var SKvNum = document.getElementById("text-ft-view").value -1;
+      if (SKvNum < json6list.length && SKvNum >=0){
+        var json6 = json6list[SKvNum];
+        console.log("********************");
+        console.log(json6);
+        var allchecks = document.getElementsByName("editchecks6");
+        for (var i = 0; i < allchecks.length;i++){
+          console.log("checkbox:"+allchecks[i].checked);
+          if (allchecks[i].checked == true){
+            var curr_check_id = allchecks[i].getAttribute("id");
+            var curr_input_id = curr_check_id.replace("check","replace");
+            var user_enter = document.getElementById(curr_input_id).value;
+            console.log("curr_check_id:"+curr_check_id + " curr_input_id:"+curr_input_id + " user_enter:" + user_enter + "\n");
+            json6[curr_check_id.replace("check","").replace("section","")] = user_enter.trim();
+          }// end if
+        }// end for
+        json6list[SKvNum] = json6;
+        console.log("---------");
+        console.log(json6list);
+        google.script.run.saveSections(JSON.stringify(json6list));
+      }
+      else{
+        alert("Please enter a valid number");
+      }
+      
+    }
 
 
  // ---------------- education -------------------------------
@@ -302,16 +331,18 @@
     
     <h2> Edit free text info</h2>
     <div>
-    <input type="checkbox" id="sectionnamecheck" name="editchecks5" value="sectionnamecheck">
+    <input type="checkbox" id="sectionnamecheck" name="editchecks6" value="sectionnamecheck">
       <label for="sectionnamecheck"> section name</label>
-      <input type="text" id="sectionnamereplace" name="editinputs5" value=" ">
+      <input type="text" id="sectionnamereplace" name="editinputs6" value=" ">
       <br>
       <br>
-   <input type="checkbox" id="sectioncontentcheck" name="editchecks5" value="sectioncontentcheck">
+   <input type="checkbox" id="sectioncontentcheck" name="editchecks6" value="sectioncontentcheck">
       <label for="sectioncontentcheck"> section content</label>
-      <input type="text" id="sectioncontentreplace" name="editinputs5" value=" ">
+      <input type="text" id="sectioncontentreplace" name="editinputs6" value=" ">
       <br>
       <br>
+      <button onclick="google.script.run.withSuccessHandler(editCheckedItems6).withUserObject(this).getSections()"> Submit section </button>
+    
     </div>
 
 
