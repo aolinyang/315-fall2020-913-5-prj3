@@ -121,6 +121,40 @@
     }
 
 
+
+    // ------------------  Skill -------------------------------
+    
+    function editCheckedItems5(jsonString){
+    
+      var json5list = JSON.parse(jsonString);
+      var SKvNum = document.getElementById("text-skl-view").value -1;
+      if (SKvNum < json5list.length && SKvNum >=0){
+        var json5 = json5list[SKvNum];
+        console.log("********************");
+        console.log(json5);
+        var allchecks = document.getElementsByName("editchecks5");
+        for (var i = 0; i < allchecks.length;i++){
+          console.log("checkbox:"+allchecks[i].checked);
+          if (allchecks[i].checked == true){
+            var curr_check_id = allchecks[i].getAttribute("id");
+            var curr_input_id = curr_check_id.replace("check","replace");
+            var user_enter = document.getElementById(curr_input_id).value;
+            console.log("curr_check_id:"+curr_check_id + " curr_input_id:"+curr_input_id + " user_enter:" + user_enter + "\n");
+            json5[curr_check_id.replace("check","").replace("skill","")] = user_enter.trim();
+          }// end if
+        }// end for
+        json5list[SKvNum] = json5;
+        console.log("---------");
+        console.log(json5list);
+        google.script.run.saveAllSkills(JSON.stringify(json5list));
+      }
+      else{
+        alert("Please enter a valid number");
+      }
+      
+    }
+
+
  // ---------------- education -------------------------------
      function showEditEdu(listEdu){
        
@@ -201,7 +235,28 @@
        }// end outer else
     }
 
-   
+   // ----------------------- skills ------------------------------
+   function showEditSkills(listSK){
+       
+       console.log(listSK);
+       var SK0 = JSON.parse(listSK);
+       if (SK0.length <= 0){
+         document.getElementById("pSK").innerHTML = "you haven't entered any SKILLS yet. list is empty.";
+       }
+       else {
+         var viewSKnum = document.getElementById("text-skl-view").value -1;
+         console.log(viewSKnum);
+         
+         if (viewSKnum >= SK0.length || viewSKnum < 0){
+           document.getElementById("pSK").innerHTML = "does not exist this index";
+         }
+         else {
+           var jSK = SK0[viewSKnum];
+           console.log(jSK);
+           document.getElementById("pSK").innerHTML= "skill name:"+jSK.name+"<br>skill level:"+jSK.level+"<br>";
+         }
+       }// end outer else
+    }
 
     </script>
 
@@ -210,7 +265,40 @@
 
   <body>
 
-
+    <h3> current skill </h3>
+    <div>
+    <p id="pSK"> enter a number starting from 1 to view nth skill you entered  </p>
+    <input type="text" id="text-skl-view" value="">
+    <button onclick="google.script.run.withSuccessHandler(showEditSkills).withUserObject(this).getAllSkills()"> get-one-skill </button>
+    </div>
+    
+    <h2> Edit skill set info </h2>
+    <div>
+     <input type="checkbox" id="skillnamecheck" name="editchecks5" value="skillnamecheck">
+      <label for="skillnamecheck"> skill name</label>
+      <input type="text" id="skillnamereplace" name="editinputs5" value=" ">
+      <br>
+      <br>
+      <input type="checkbox" id="skilllevelcheck" name="editchecks5" value="skilllevelcheck">
+      <label for="skilllevelcheck">skill level </label>
+      <!--input type="text" id="skilllevelreplace" name="editinputs5" value=" "-->
+      <select  id="skilllevelreplace" name="editinputs5">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      </select>
+      <br>
+      <br>
+      <br>
+      <button onclick = "google.script.run.withSuccessHandler(editCheckedItems5).withUserObject(this).getAllSkills()"> submit skills</button>
+    </div>
 
 
     <h3> current eduation </h3>
