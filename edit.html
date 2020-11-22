@@ -154,6 +154,9 @@
       
     }
 
+// --------------------- free text ----------------------------
+
+
 
  // ---------------- education -------------------------------
      function showEditEdu(listEdu){
@@ -258,12 +261,59 @@
        }// end outer else
     }
 
+
+// --------------------- section -----------------------------
+  function showEditSections(listSc){
+       
+       console.log(listSc);
+       var Sc0 = JSON.parse(listSc);
+       if (Sc0.length <= 0){
+         document.getElementById("pft").innerHTML = "you haven't entered any section yet. list is empty.";
+       }
+       else {
+         var viewScnum = document.getElementById("text-ft-view").value -1;
+         console.log(viewScnum);
+         
+         if (viewScnum >= Sc0.length || viewScnum < 0){
+           document.getElementById("pft").innerHTML = "does not exist this index";
+         }
+         else {
+           var jSc = Sc0[viewScnum];
+           console.log(jSc);
+           document.getElementById("pft").innerHTML= "section name:"+jSc.name+"<br>setion content:"+jSc.content+"<br>";
+         }
+       }// end outer else
+    }
+
+
     </script>
 
 
   </head>
 
   <body>
+    
+    <h3> current free text </h3>
+    <div> 
+     <p id="pft"> enter a number starting from 1 to view nth free text section you entered  </p>
+    <input type="text" id="text-ft-view" value="">
+    <button onclick="google.script.run.withSuccessHandler(showEditSections).withUserObject(this).getSections()"> get-one-freetext </button>
+    </div>
+    
+    <h2> Edit free text info</h2>
+    <div>
+    <input type="checkbox" id="sectionnamecheck" name="editchecks5" value="sectionnamecheck">
+      <label for="sectionnamecheck"> section name</label>
+      <input type="text" id="sectionnamereplace" name="editinputs5" value=" ">
+      <br>
+      <br>
+   <input type="checkbox" id="sectioncontentcheck" name="editchecks5" value="sectioncontentcheck">
+      <label for="sectioncontentcheck"> section content</label>
+      <input type="text" id="sectioncontentreplace" name="editinputs5" value=" ">
+      <br>
+      <br>
+    </div>
+
 
     <h3> current skill </h3>
     <div>
