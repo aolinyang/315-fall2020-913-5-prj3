@@ -1,31 +1,58 @@
+<style>
+
+  .information {
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  
+  .information-row {
+    margin:auto;
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+  }
+  
+  .info-label {
+    font-style:bold;
+    font-size:14px;
+    padding-right:5px;
+    padding-top:5px;
+  }
+</style>
+
 <div id="resume-header"></div>
 <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     function initialize(stringifiedObj) {
         var header = JSON.parse(stringifiedObj);
-        const content = "<label for=\"fname\">First name: </label>\
-            <input type=\"text\" id=\"fname\" name=\"fname\" value=\"" + header.fname + "\">\
-            <br>\
-            <label for=\"lname\">Last name: </label>\
-            <input type=\"text\" id=\"lname\" name=\"lname\" value=\"" + header.lname + "\">\
+        const content = "<div class=\"information\"><div class=\"information-row\"><label class=\"info-label\" for=\"fname\">First name: </label>\
+            <input type=\"text\" id=\"fname\" name=\"fname\" value=\"" + header.fname + "\"></div>\
             <br>\
             \
-            <label for=\"email\">Email: </label>\
-            <input type=\"email\" id=\"email\" name=\"email\" value=\"" + header.email + "\">\
-            <br>\
-            <label for=\"phone\">Phone: </label>\
-            <input type=\"tel\" id=\"phone\" name=\"phone\" value=\"" + header.phone + "\">\
+            <div class=\"information-row\"><label class=\"info-label\" for=\"lname\">Last name: </label>\
+            <input type=\"text\" id=\"lname\" name=\"lname\" value=\"" + header.lname + "\"></div>\
             <br>\
             \
-            <label for=\"lkacc\">LinkedIn Account URL: </label>\
-            <input type=\"url\" id=\"lkacc\" name=\"lkacc\" value=\"" + header.lkacc + "\">\
-            <br>\
-            <label for=\"porturl\">Portfolio URL: </label>\
-            <input type=\"url\" id=\"porturl\" name=\"porturl\" value=\"" + header.porturl + "\">\
+            <div class=\"information-row\"><label class=\"info-label\" for=\"email\">Email: </label>\
+            <input type=\"email\" id=\"email\" name=\"email\" value=\"" + header.email + "\"></div>\
             <br>\
             \
-            <input type=\"button\" value=\"Save\" onclick=\"saveHeader()\" />";
+            <div class=\"information-row\"><label class=\"info-label\" for=\"phone\">Phone: </label>\
+            <input type=\"tel\" id=\"phone\" name=\"phone\" value=\"" + header.phone + "\"></div>\
+            <br>\
+            \
+            <div class=\"information-row\"><label class=\"info-label\" for=\"lkacc\">LinkedIn Account URL: </label>\
+            <input type=\"url\" id=\"lkacc\" name=\"lkacc\" value=\"" + header.lkacc + "\"></div>\
+            <br>\
+            \
+            <div class=\"information-row\"><label class=\"info-label\" for=\"porturl\">Portfolio URL: </label>\
+            <input type=\"url\" id=\"porturl\" name=\"porturl\" value=\"" + header.porturl + "\"></div>\
+            <br>\
+            \
+            <div class=\"information-row\"><input type=\"button\" value=\"Save\" onclick=\"saveHeader()\" /></div></div>";
 
         $("#resume-header").replaceWith(content);
     }
@@ -52,4 +79,6 @@
         google.script.run.withSuccessHandler(initialize).withFailureHandler(printFail).getHeader(); 
     });
 </script>
+<div class="information-row">
 <p id="hdd"> </p>
+</div>
