@@ -29,9 +29,14 @@
       var json2 = JSON.parse(jsonString);
       console.log("********************");
       console.log(json2);
-      json2.splice(0,1);
+      json2["fname"] = " ";
+      json2["lname"] = " ";
+      json2["email"] = " ";
+      json2["phone"] = " ";
+      json2["lkacc"] = " ";
+      json2["porturl"] = " ";
+      
       console.log("---------");
-      console.log(json2str);
       google.script.run.saveHeader(JSON.stringify(json2));
       document.getElementById("headerMessage").innerHTML = "the header was deleted.";
       console.log("save header");
