@@ -342,8 +342,6 @@ function insertTemplate2() {
   
 }
 
-}
-
 // template 3
 function insertTemplate3() {
   
@@ -502,7 +500,6 @@ function addImagesToDoc() {
       cursor = doc.getCursor();
     }
   }
-}
 }
 
 //---------------------------------- Popup Display code ------------------------------------
