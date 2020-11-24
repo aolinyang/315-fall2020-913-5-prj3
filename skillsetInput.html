@@ -12,7 +12,7 @@
   var numSkills = 0;
 
   // either get new skills input, or get one prefilled
-  function getInputField(num, skill) {
+  function getInput(num, skill) {
     var input = "\
       <div class=\"skill-inline\">\
         <label for=\"skillName\">Skill: </label>\
@@ -32,7 +32,7 @@
 
   // add blank skill
   function addSkill() {
-    const input = getInputField(numSkills, {name: "", level: 1});
+    const input = getInput(numSkills, {name: "", level: 1});
     $(input).appendTo("#skills-form");
     numSkills++;
   }
@@ -57,7 +57,7 @@
     var skills = JSON.parse(stringifiedArr);
     numSkills = skills.length;
     skills.forEach(function(skill, counter) {
-      const input = getInputField(counter, skill);
+      const input = getInput(counter, skill);
       $(input).appendTo("#skills-form");
     });
   }
