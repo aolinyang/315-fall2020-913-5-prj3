@@ -4,6 +4,7 @@ function onInstall(e) {
   onOpen(e);
 }
 
+// initialize global objects
 function onOpen(e) {
   DocumentApp.getUi().createAddonMenu()
       .addItem('Run', 'showSidebar')
@@ -18,6 +19,7 @@ function onOpen(e) {
   props.setProperty("currTemplate","");
 }
 
+// display sidebar
 function showSidebar() {
   var ui = HtmlService.createHtmlOutputFromFile('sidebar')
       .setTitle('Resume Builder');
