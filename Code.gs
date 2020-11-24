@@ -11,9 +11,9 @@ function onOpen(e) {
   props.setProperty("skills", "[]");
   props.setProperty("portfolio", "[]");
   props.setProperty("header", "{\"fname\":\"\",\"lname\":\"\",\"email\":\"\",\"phone\":\"\",\"lkacc\":\"\",\"porturl\":\"\"}");
-  props.setProperty("workExperience","{\"company\":\"\", \"position\":\"\", \"department\":\"\", \"description\":\"\", \"supervisor\":\"\", \"contactEmail\":\"\",\"startDate\":\"\",\"endDate\":\"\" }");
-  props.setProperty("education","{\"school\":\"\",\"major\":\"\",\"GPA\":\"\",\"affiliation\":\"\", \"startm\":\"\", \"endm\":\"\", \"starty\":\"\",\"endy\":\"\"}");
-  props.setProperty("honor","{\"awardedHonor\":\"\",\"awardedBy\":\"\",\"description\":\"\",\"awardedYear\":\"\", \"awardedType\":\"\"}");
+  props.setProperty("workExperience","[]");
+  props.setProperty("education","[]");
+  props.setProperty("honor","[]");
   props.setProperty("sections","[]");
   props.setProperty("currTemplate","");
 }
@@ -24,31 +24,31 @@ function showSidebar() {
   DocumentApp.getUi().showSidebar(ui);
 }
 
-function putExperienceInfo(comp,pos,desc,dept,supvr,cntemail) {
-  var doc = DocumentApp.getActiveDocument();
-  var docBody = doc.getBody();
-  var displayText1 = "";
-
-  displayText1 = "Most Recent Experience\n\n";
-  displayText1 = displayText1 + "company: " + comp + "\n";
-  displayText1 = displayText1 + "position: " + pos + "\n";
-  displayText1 = displayText1 + "description: " + desc + "\n";
-  displayText1 = displayText1 + "department: " + dept + "\n";
-  displayText1 = displayText1 + "supervisor: " + supvr + "\n";
-  displayText1 = displayText1 + "contactEmail: " + cntemail + "\n\n";
-  Logger.log("displayed:"+displayText1);
-
-
-  var cells = [
-  [displayText1,""],
-  ["",""],
-  ["",""]
-  ];
-
-  // Build a table from the array.
-  docBody.appendTable(cells);
-  // doc.saveAndClose();
-}
+// function putExperienceInfo(comp,pos,desc,dept,supvr,cntemail) {
+//   var doc = DocumentApp.getActiveDocument();
+//   var docBody = doc.getBody();
+//   var displayText1 = "";
+//
+//   displayText1 = "Most Recent Experience\n\n";
+//   displayText1 = displayText1 + "company: " + comp + "\n";
+//   displayText1 = displayText1 + "position: " + pos + "\n";
+//   displayText1 = displayText1 + "description: " + desc + "\n";
+//   displayText1 = displayText1 + "department: " + dept + "\n";
+//   displayText1 = displayText1 + "supervisor: " + supvr + "\n";
+//   displayText1 = displayText1 + "contactEmail: " + cntemail + "\n\n";
+//   Logger.log("displayed:"+displayText1);
+//
+//
+//   var cells = [
+//   [displayText1,""],
+//   ["",""],
+//   ["",""]
+//   ];
+//
+//   // Build a table from the array.
+//   docBody.appendTable(cells);
+//   // doc.saveAndClose();
+// }
 
 // template 1 format
 function insertTemplate1(){
@@ -64,21 +64,21 @@ function insertTemplate1(){
   table.setBorderColor("#ffffff");
   // row 1
   var row1 = table.appendTableRow();
-  
+
 // cell 1
 
   var header = JSON.parse(getHeader());
   var cell1 = row1.appendTableCell();
   var heading1 = cell1.appendParagraph(header.fname+" "+ header.lname);
   heading1.setFontFamily("Arial").setFontSize(32).setBold(true).setForegroundColor("#ccccff").setLineSpacing(0);
-  var content1 = cell1.appendParagraph("");
-  content1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+  //var content1 = cell1.appendParagraph("");
+  //content1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
 
   // cell 2
 
   var cell2 = row1.appendTableCell();
 
- 
+
   var content2p1 = cell2.appendParagraph("email:" + header.email );
   content2p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
   var content2p2 = cell2.appendParagraph("phone:" + header.phone);
@@ -90,61 +90,91 @@ function insertTemplate1(){
 
   // row2
   var row2 = table.appendTableRow();
-  
+
+  // ------------------------------- education -----------------------------
+
   //cell 3
   var cell3 = row2.appendTableCell();
-  var edu = JSON.parse(getEducation());
-  
+  var eduList = JSON.parse(getEducation());
+
   var heading3 = cell3.appendParagraph("Education");
   heading3.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#809fff").setLineSpacing(0);
 
-  var content3p1 = cell3.appendParagraph("School: " + edu.school);
-  content3p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-  var content3p2 = cell3.appendParagraph("Department: " + edu.major);
-  content3p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-  var content3p3 = cell3.appendParagraph("GPA: " + edu.GPA);
-  content3p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-  var content3p4 = cell3.appendParagraph("Classification: " + edu.affiliation);
-  content3p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-  
   // cell 4
   var cell4 = row2.appendTableCell();
-  var content4 = cell4.appendParagraph(edu.startm + " - " + edu.starty + " - " + edu.endm + " - " + edu.endy);
-  content4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
 
+  for (var i = 0; i < eduList.length; i++) {
+    var edu = eduList[i];
+    var content3p1 = cell3.appendParagraph("School: " + edu.school);
+    content3p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+    var content3p2 = cell3.appendParagraph("Department: " + edu.major);
+    content3p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+    var content3p3 = cell3.appendParagraph("GPA: " + edu.GPA);
+    content3p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+    var content3p4 = cell3.appendParagraph("Classification: " + edu.affiliation);
+    content3p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+    cell3.appendParagraph("");
+
+    var content4 = cell4.appendParagraph(edu.startm + " - " + edu.starty + " - " + edu.endm + " - " + edu.endy);
+    content4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+    for (var j = 0; j < 4; j++)
+      cell4.appendParagraph("");
+  }
 
   // row 3
   var row3 = table.appendTableRow();
 
+  // ------------------------- experience ----------------------------
+
   // cell 5
-  var exp = JSON.parse(getExperience());
+  var expList = JSON.parse(getExperience());
   var cell5 = row3.appendTableCell();
   var heading5 = cell5.appendParagraph("Experience");
   heading5.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#809fff").setLineSpacing(0);
 
-  var content5p1 = cell5.appendParagraph(exp.company);
-  content5p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-  var content5p2 = cell5.appendParagraph("Position: " + exp.position);
-  content5p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-  var content5p3 = cell5.appendParagraph("Department: " + exp.department);
-  content5p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-  var content5p4 = cell5.appendParagraph("Supervisor: " + exp.supervisor);
-  content5p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-
-  var content5p5 = cell5.appendParagraph("Contact Supervisor: " + exp.contactEmail);
-  content5p5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-
-  var content5p6 = cell5.appendParagraph(exp.description);
-  content5p6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-
-  // cell 6
   var cell6 = row3.appendTableCell();
-  var content6 = cell6.appendParagraph(exp.startDate + " - " + exp.endDate);
-  content6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
 
+  for (var i = 0; i < expList.length; i++) {
+    var exp = expList[i];
+    var content5p1 = cell5.appendParagraph(exp.company);
+    content5p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+    var content5p2 = cell5.appendParagraph("Position: " + exp.position);
+    content5p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+    var content5p3 = cell5.appendParagraph("Department: " + exp.department);
+    content5p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+    var content5p4 = cell5.appendParagraph("Supervisor: " + exp.supervisor);
+    content5p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
 
+    var content5p5 = cell5.appendParagraph("Contact Supervisor: " + exp.contactEmail);
+    content5p5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+
+    var content5p6 = cell5.appendParagraph(exp.description);
+    content5p6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+    cell5.appendParagraph("");
+
+    // cell 6
+    var content6 = cell6.appendParagraph(exp.startDate + " - " + exp.endDate);
+    content6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+    for (var j = 0; j < 5; j++) {
+      cell6.appendParagraph("");
+    }
+  }
+// <<<<<<< HEAD
+//
+//
+//   // cell 6
+//   var cell6 = row3.appendTableCell();
+//   var content6 = cell6.appendParagraph(exp.startDate + " - " + exp.endDate);
+//   content6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+//
+//
+// =======
+
+// >>>>>>> main
   // row 4
   var row4 = table.appendTableRow();
+
+  // -------------------------- skills -----------------------
 
   // cell 7
   var skills = JSON.parse(getAllSkills());
@@ -165,124 +195,190 @@ function insertTemplate1(){
   // row 5
   var row5 = table.appendTableRow();
 
+  // ---------------------- honors ---------------------
+
   // cell 9
   var cell9 = row5.appendTableCell();
-  var heading9 = cell9.appendParagraph("Honor");
-  var honorInfo = JSON.parse(getHonor());
+  var heading9 = cell9.appendParagraph("Honors");
   heading9.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#809fff").setLineSpacing(0);
-
-  var content9p1 = cell9.appendParagraph("Honor: "+ honorInfo.awardedHonor);
-  content9p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-
-  var content9p2 = cell9.appendParagraph("Awarded Institution: " + honorInfo.awardedBy);
-
-  content9p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-
-  var content9p3 = cell9.appendParagraph("Overview: " + honorInfo.description);
-  content9p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-
-  var content9p5 = cell9.appendParagraph(honorInfo.awardedType+"  |  "+ honorInfo.awardedYear);
-
-  content9p5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
 
   // cell 10
   var cell10 = row5.appendTableCell();
-  var content10 = cell10.appendParagraph(honorInfo.awardedYear);
-  content10.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
 
+  var honorsList = JSON.parse(getHonor());
+  for (var i = 0; i < honorsList.length; i++) {
+    var honorInfo = honorsList[i];
+
+    var content9p1 = cell9.appendParagraph("Honor: "+ honorInfo.awardedHonor);
+    content9p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+
+    var content9p2 = cell9.appendParagraph("Awarded Institution: " + honorInfo.awardedBy);
+
+    content9p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+
+    var content9p3 = cell9.appendParagraph("Overview: " + honorInfo.description);
+    content9p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+
+    var content9p5 = cell9.appendParagraph(honorInfo.awardedType);
+
+    content9p5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+
+    cell9.appendParagraph("");
+
+    var content10 = cell10.appendParagraph(honorInfo.awardedYear);
+    content10.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+    for (var j = 0; j < 4; j++) {
+      cell10.appendParagraph("");
+    }
+  }
+  
+  
+  var row6 = table.appendTableRow();
+  var cell11 = row6.appendTableCell();
+  var sectionList = JSON.parse(getSections());
+  for (var i = 0; i < sectionList.length; i++){
+    var sectionInfo = sectionList[i];
+    var heading11 = cell11.appendParagraph(sectionInfo.name);
+    var content11p1 = cell11.appendParagraph(sectionInfo.content);
+    heading11.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#809fff").setLineSpacing(0);
+    content11p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
+    cell11.appendParagraph("");
+  }
+
+  addImagesToDoc();
 
 }
 
 function insertTemplate2() {
-  //*************** table setting, please use this table setting otherwise it 's corresponding with the styling of other templates *********
-  // the table format & style is already set
+  
   var doc = DocumentApp.getActiveDocument();
   var body = doc.getBody();
   var table = body.appendTable();
   table.setBorderColor("#ffffff");
-  // ***********************************************************************************************************
-  
-  // row 1, already set up the color and text
+
+  // row 1
   var row1 = table.appendTableRow();
   var cell1 = row1.appendTableCell();
-  var heading1 = cell1.appendParagraph("Education");
-  // replace this line below with education info
-  var content1p1 = cell1.appendParagraph("(education contents, replace this line)...");
-  // add more content1pN ...
-  //  var content1p2, var content1p3 ...etc
-  
-  // row 1, cell2(same row)
-  var cell2 = row1.appendTableCell();
-  var heading2 = cell2.appendParagraph("Honor & Awards");
-  // replace this line below with honor info
-  var content2p1 = cell2.appendParagraph("honor content...");
-  // add more centent2pN
-  // var content2p2, var content2p3 ...etc
-  
-  //**************************New row 1 styling *********************
-  //styling for regular heading & content on the left column
-  // alignment to the right, color set
-  heading1.setFontFamily("Arial").setFontSize(18).setBold(true).setForegroundColor("#999966").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setItalic(false).setLineSpacing(0);
-  content1p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#404040").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setItalic(true).setLineSpacing(0);
-  
-  
-  // styling for regular heading & content on the right column
-  // alignment to the left, color set,
-  heading2.setFontFamily("Arial").setFontSize(18).setBold(true).setForegroundColor("#2F4F4F").setAlignment(DocumentApp.HorizontalAlignment.LEFT).setItalic(false).setLineSpacing(0);
-  content2p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#404040").setAlignment(DocumentApp.HorizontalAlignment.LEFT).setItalic(true).setLineSpacing(0);
-  
-  // *****************************************************************
-  
-  // row 2, cell3
+  var headerInfo = JSON.parse(getHeader());
+
+  var heading1 = cell1.appendParagraph(headerInfo.fname + " " + headerInfo.lname);
+
+  //var content1p1 = cell1.appendParagraph("");
+  var content1p1 = cell1.appendParagraph(headerInfo.email + " | " + headerInfo.phone + " | " + headerInfo.lkacc); //("#header-email | #header-phone | #header-linkedin");
+  var content1p2 = cell1.appendParagraph("| "+headerInfo.porturl+" |");
+  heading1.setFontFamily("Arial").setFontSize(32).setBold(true).setForegroundColor("#5c5c8a").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+  content1p1.setFontFamily("Consolas").setFontSize(10).setBold(false).setForegroundColor("#888888").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+  content1p2.setFontFamily("Consolas").setFontSize(8).setBold(false).setForegroundColor("#888888").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+
+  // ------------- education --------------------
+
   var row2 = table.appendTableRow();
   var cell3 = row2.appendTableCell();
-  var heading3 = cell3.appendParagraph("Experience");
-  var content3p1 = cell3.appendParagraph("experience content1..");
-  // add more content
-  // var content3p2, var content3p3 ...etc
+  var eduList = JSON.parse(getEducation());
+
+  var heading3 = cell3.appendParagraph("Education");
+  heading3.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#999966").setAlignment(DocumentApp.HorizontalAlignment.LEFT).setLineSpacing(0);
+
+  for (var i = 0; i < eduList.length; i++) {
+    var edu = eduList[i];
+    var content3p1 = cell3.appendParagraph("School: " + edu.school);
+    content3p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#888888").setAlignment(DocumentApp.HorizontalAlignment.LEFT).setLineSpacing(0);
+    var content3p2 = cell3.appendParagraph("Department: " + edu.major);
+    content3p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#888888").setAlignment(DocumentApp.HorizontalAlignment.LEFT).setLineSpacing(0);
+    var content3p3 = cell3.appendParagraph("GPA: " + edu.GPA);
+    content3p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#888888").setAlignment(DocumentApp.HorizontalAlignment.LEFT).setLineSpacing(0);
+    var content3p4 = cell3.appendParagraph("Classification: " + edu.affiliation);
+    content3p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#888888").setAlignment(DocumentApp.HorizontalAlignment.LEFT).setLineSpacing(0);
+    //cell3.appendParagraph("");
+  }
+
+
+  var row4 = table.appendTableRow();
+  var cell4 = row4.appendTableCell();
+
+  // -------------- experience ---------------------
+
+  var expList = JSON.parse(getExperience());
+  for (var i = 0; i < expList.length; i++) {
+    var exper = expList[i];
+    var heading4 = cell4.appendParagraph("Experience");
+    heading4.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#999966").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setLineSpacing(0);
+    var content4p1 = cell4.appendParagraph(exper.company);
+    content4p1.setFontFamily("Consolas").setFontSize(16).setBold(false).setForegroundColor("#888888").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setLineSpacing(0);
+    var content4p2 = cell4.appendParagraph("Position: " + exper.position);
+    content4p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#888888").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setLineSpacing(0);
+    var content4p3 = cell4.appendParagraph("Department: "+ exper.department);
+    content4p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#888888").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setLineSpacing(0);
+    var content4p4 = cell4.appendParagraph("Supervisor: " + exper.supervisor);
+    content4p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#888888").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setLineSpacing(0);
+    var content4p5 = cell4.appendParagraph("Contact Supervisor: " + exper.contactEmail);
+    content4p5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#888888").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setLineSpacing(0);
+    var content4p6 = cell4.appendParagraph("Overview: " + exper.description);
+    content4p6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#888888").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setLineSpacing(0);
+    //cell4.appendParagraph("");
+  }
+
+  // ----------------- skills
+
+  var row5 = table.appendTableRow();
+  var cell5 = row5.appendTableCell();
+  var skills = JSON.parse(getAllSkills());
+  var heading5 = cell5.appendParagraph("Skills");
+  heading5.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#999966").setAlignment(DocumentApp.HorizontalAlignment.LEFT).setLineSpacing(0);
+  // modify to what ever that fits later
+  for (var i = 0; i < skills.length; i++) {
+    var content5 = cell5.appendParagraph(skills[i].name + ", proficiency: " + skills[i].level);
+    content5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#888888").setAlignment(DocumentApp.HorizontalAlignment.LEFT).setLineSpacing(0);
+  }
+
+  // var content5 = cell5.appendParagrap("#skill-type" + ", proficiency: " + "#skill proficiency");
+  // content5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+
+  // ----------------------------- honors ----------------------------
+
+  var row6 = table.appendTableRow();
+  var cell6 = row6.appendTableCell();
+  var honorList = JSON.parse(getHonor());
+  var heading6 = cell6.appendParagraph("Honor & Awards");
+  heading6.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#999966").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setLineSpacing(0);
+  for (var i = 0; i < honorList.length; i++) {
+    var honorInfo = honorList[i];
+    var content6p1 = cell6.appendParagraph("Honor Title: " + honorInfo.awardedHonor);
+    content6p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#888888").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setLineSpacing(0);
+    var content6p2 = cell6.appendParagraph("Institution: " + honorInfo.awardedBy);
+    content6p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#888888").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setLineSpacing(0);
+    var content6p3 = cell6.appendParagraph("Overview: " + honorInfo.description);
+    content6p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#888888").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setLineSpacing(0);
+    var content6p5 = cell6.appendParagraph(honorInfo.awardedType + "  |  " + honorInfo.awardedYear);
+    content6p5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#888888").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setLineSpacing(0);
+    //cell6.appendParagraph("");
+  }
   
-  // row 2, cell 4, Name(main heading)
-  var cell4 = row2.appendTableCell();
-  var heading4 = cell4.appendParagraph("#Firstname #Lastname");
-  var content4p1 = cell4.appendParagraph("header content1...");
-  // add more content..
-  // var content4p2, var content4p3... etc
+  var row7 = table.appendTableRow();
+  var cell7 = row7.appendTableCell();
+  var sectionList = JSON.parse(getSections());
+  for (var i = 0; i < sectionList.length; i++){
+    var sectionInfo = sectionList[i];
+    var heading7 = cell7.appendParagraph(sectionInfo.name);
+    var content7p1 = cell7.appendParagraph(sectionInfo.content);
+    if (i % 2 == 0){
+      heading7.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#999966").setAlignment(DocumentApp.HorizontalAlignment.LEFT).setLineSpacing(0);
+      content7p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#888888").setAlignment(DocumentApp.HorizontalAlignment.LEFT).setLineSpacing(0);
+    }
+    else{
+      heading7.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#999966").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setLineSpacing(0);
+      content7p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#888888").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setLineSpacing(0);
+      //cell7.appendParagraph("");
+    }
+    
+  }
   
-  //**************************New row 2 styling *********************
-  //styling for regular heading & content on the left column
-  // alignment to the right, color set
-  heading3.setFontFamily("Arial").setFontSize(18).setBold(true).setForegroundColor("#2F4F4F").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setItalic(false).setLineSpacing(0);
-  content3p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#404040").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setItalic(true).setLineSpacing(0);
+  addImagesToDoc();
   
-  
-  // styling for FIRST NAME LAST NAME & header
-  // alignment to the left, color set,
-  heading4.setFontFamily("Arial").setFontSize(32).setBold(true).setForegroundColor("#669999").setAlignment(DocumentApp.HorizontalAlignment.LEFT).setItalic(false).setLineSpacing(0);
-  content4p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#404040").setAlignment(DocumentApp.HorizontalAlignment.LEFT).setItalic(true).setLineSpacing(0);
-  
-  // *****************************************************************
-  
-  // row 3
-  var row3 = table.appendTableRow();
-  var cell5 = row3.appendTableCell();
-  var heading5 = cell5.appendParagraph("Skills")
-  var content5p1 = cell5.appendParagraph("skill 1...");
-  var content5p2 = cell5.appendParagraph("skill 2...");
-  
-  //********************** row 3 styling ********************
-  // alignment to the right
-  heading5.setFontFamily("Arial").setFontSize(18).setBold(true).setForegroundColor("#999966").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setItalic(false).setLineSpacing(0);
-  content5p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#404040").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setItalic(true).setLineSpacing(0);
-  // *****************************************************
-  
-  // image or leave cell6 empty or some other info
-  var cell6 = row3.appendTableCell();
-  
-  
- 
 }
 
 function insertTemplate3() {
+  
   var doc = DocumentApp.getActiveDocument();
   var body = doc.getBody();
   var table = body.appendTable();
@@ -302,41 +398,55 @@ function insertTemplate3() {
   content1p1.setFontFamily("Consolas").setFontSize(10).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
   content1p2.setFontFamily("Consolas").setFontSize(8).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
 
+  // ------------- education --------------------
+
   var row2 = table.appendTableRow();
   var cell3 = row2.appendTableCell();
-  var edu = JSON.parse(getEducation());
-  
+  var eduList = JSON.parse(getEducation());
+
   var heading3 = cell3.appendParagraph("Education");
   heading3.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#2d8659").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
- 
-  var content3p1 = cell3.appendParagraph("School: " + edu.school);
-  content3p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
-  var content3p2 = cell3.appendParagraph("Department: " + edu.major);
-  content3p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
-  var content3p3 = cell3.appendParagraph("GPA: " + edu.GPA);
-  content3p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
-  var content3p4 = cell3.appendParagraph("Classification: " + edu.affiliation);
-  content3p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
-  
+
+  for (var i = 0; i < eduList.length; i++) {
+    var edu = eduList[i];
+    var content3p1 = cell3.appendParagraph("School: " + edu.school);
+    content3p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+    var content3p2 = cell3.appendParagraph("Department: " + edu.major);
+    content3p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+    var content3p3 = cell3.appendParagraph("GPA: " + edu.GPA);
+    content3p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+    var content3p4 = cell3.appendParagraph("Classification: " + edu.affiliation);
+    content3p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+    cell3.appendParagraph("");
+  }
+
+
   var row4 = table.appendTableRow();
   var cell4 = row4.appendTableCell();
-  var exper = JSON.parse(getExperience());
-  var heading4 = cell4.appendParagraph("Experience");
-  heading4.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#2d8659").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
-  var content4p1 = cell4.appendParagraph(exper.company);
-  content4p1.setFontFamily("Consolas").setFontSize(16).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
-  var content4p2 = cell4.appendParagraph("Position: " + exper.position);
-  content4p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
-  var content4p3 = cell4.appendParagraph("Department: "+ exper.department);
-  content4p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
-  var content4p4 = cell4.appendParagraph("Supervisor: " + exper.supervisor);
-  content4p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
-  var content4p5 = cell4.appendParagraph("Contact Supervisor: " + exper.contactEmail);
-  content4p5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
-  var content4p6 = cell4.appendParagraph("Overview: " + exper.description);
-  content4p6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
 
+  // -------------- experience ---------------------
 
+  var expList = JSON.parse(getExperience());
+  for (var i = 0; i < expList.length; i++) {
+    var exper = expList[i];
+    var heading4 = cell4.appendParagraph("Experience");
+    heading4.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#2d8659").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+    var content4p1 = cell4.appendParagraph(exper.company);
+    content4p1.setFontFamily("Consolas").setFontSize(16).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+    var content4p2 = cell4.appendParagraph("Position: " + exper.position);
+    content4p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+    var content4p3 = cell4.appendParagraph("Department: "+ exper.department);
+    content4p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+    var content4p4 = cell4.appendParagraph("Supervisor: " + exper.supervisor);
+    content4p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+    var content4p5 = cell4.appendParagraph("Contact Supervisor: " + exper.contactEmail);
+    content4p5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+    var content4p6 = cell4.appendParagraph("Overview: " + exper.description);
+    content4p6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+    cell4.appendParagraph("");
+  }
+
+  // ----------------- skills
 
   var row5 = table.appendTableRow();
   var cell5 = row5.appendTableCell();
@@ -352,22 +462,76 @@ function insertTemplate3() {
   // var content5 = cell5.appendParagrap("#skill-type" + ", proficiency: " + "#skill proficiency");
   // content5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
 
+  // ----------------------------- honors ----------------------------
 
   var row6 = table.appendTableRow();
   var cell6 = row6.appendTableCell();
-  var honorInfo = JSON.parse(getHonor());
+  var honorList = JSON.parse(getHonor());
   var heading6 = cell6.appendParagraph("Honor & Awards");
   heading6.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#2d8659").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+  for (var i = 0; i < honorList.length; i++) {
+    var honorInfo = honorList[i];
+    var content6p1 = cell6.appendParagraph("Honor Title: " + honorInfo.awardedHonor);
+    content6p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+    var content6p2 = cell6.appendParagraph("Institution: " + honorInfo.awardedBy);
+    content6p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+    var content6p3 = cell6.appendParagraph("Overview: " + honorInfo.description);
+    content6p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+    var content6p5 = cell6.appendParagraph(honorInfo.awardedType + "  |  " + honorInfo.awardedYear);
+    content6p5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+    cell6.appendParagraph("");
+  }
+  
+  var row7 = table.appendTableRow();
+  var cell7 = row7.appendTableCell();
+  var sectionList = JSON.parse(getSections());
+  for (var i = 0; i < sectionList.length; i++){
+    var sectionInfo = sectionList[i];
+    var heading7 = cell7.appendParagraph(sectionInfo.name);
+    var content7p1 = cell7.appendParagraph(sectionInfo.content);
+    heading7.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#2d8659").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+    content7p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+    cell7.appendParagraph("");
+  }
+  
+  addImagesToDoc();
+}
 
-  var content6p1 = cell6.appendParagraph("Honor Title: " + honorInfo.awardedHonor);
-  content6p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
-  var content6p2 = cell6.appendParagraph("Institution: " + honorInfo.awardedBy);
-  content6p2.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
-  var content6p3 = cell6.appendParagraph("Overview: " + honorInfo.description);
-  content6p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
-  var content6p5 = cell6.appendParagraph(honorInfo.awardedType + "  |  " + honorInfo.awardedYear);
-  content6p5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
-
+function addImagesToDoc() {
+  var images = JSON.parse(getPortfolio());
+  Logger.log(images);
+  
+  if (images.length > 0) {
+    var doc = DocumentApp.getActiveDocument(); 
+    var paragraph = doc.getBody().appendParagraph('');
+    var position = doc.newPosition(paragraph, 0);
+    doc.setCursor(position);
+    
+    var blobs = []; 
+    for (var i = 0; i < images.length; i++) {
+      blobs.push(UrlFetchApp.fetch(images[i]).getBlob()); 
+    }
+    
+    var cursor = doc.getCursor(); 
+    for (var i = 0; i < images.length; i++) {
+      var image = cursor.insertInlineImage(blobs[i]); 
+      var largestWidth = 6.5 * 96; 
+      var largestHeight = 9 * 96;
+      var aspect = image.getWidth() / image.getHeight(); 
+      if (image.getWidth() > largestWidth) {
+        image.setWidth(largestWidth);
+        image.setHeight(image.getWidth() / aspect);
+      } else if (image.getHeight() > largestHeight) {
+        image.setHeight(largestHeight);
+        image.setWidth(aspect * image.getHeight());
+      }
+      
+      paragraph = doc.getBody().appendParagraph('');
+      position = doc.newPosition(paragraph, 0);
+      doc.setCursor(position);
+      cursor = doc.getCursor();
+    }
+  }
 }
 
 function showEducationDialog() {
@@ -451,7 +615,7 @@ function showSkillSetDialog() {
 }
 
 function showPortfolioDialog() {
-  var html = HtmlService.createHtmlOutputFromFile('portfolio') 
+  var html = HtmlService.createHtmlOutputFromFile('portfolio')
       .setWidth(800)
       .setHeight(600);
   DocumentApp.getUi().showModalDialog(html, 'Image Portfolio');
@@ -474,7 +638,9 @@ function getSections() {
 }
 
 function saveSections(sec){
-  props.setProperty("section", sec);
+  console.info("saveing sections..");
+  console.info(sec);
+  props.setProperty("sections", sec);
 }
 
 function getExperience() {
@@ -482,6 +648,11 @@ function getExperience() {
   Logger.log("RETRIEVING: " + exp);
   // console.log("RETRIEVING: " + exp);
   return exp;
+}
+
+function getPortfolio() {
+  var images = props.getProperty("portfolio");
+  return images;
 }
 
 
@@ -500,7 +671,7 @@ function getEducation(){
 function saveEducation(educationJSON){
   Logger.log("SAVING:" + educationJSON);
   props.setProperty("education",educationJSON);
-  
+
 }
 
 function getHonor(){

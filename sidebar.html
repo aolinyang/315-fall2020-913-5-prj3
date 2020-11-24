@@ -1,31 +1,149 @@
 <html>
   <head>
     <style>
-      font-family:Merriweather;
-
-      div {
-        margin: 0px0px0px30px;
+      body {
+        background-color:#40c764;
       }
-      .dropdown {
-        margin:0px0px0px30px;
-        position:relative;
-        display:inline-block;
+    
+      header {
+        background-color:#40c764;
+        display:flex;
+        flex-direction:column;
+        margin:auto;
+        border-left:5px solid #36a353; 
       }
-      .dropbtn {
-        background-color: #4CAF50;
-        color:black;
+      
+      footer {
+        background-color:#40c764 !important;
+        display:flex;
+        flex-direction:column;
+        height:100%;
+        width:100%;
+        margin:0;
+      }
+      
+      .create-resume {
+        width:100%;
+      }
+      
+      .footer-div {
+        background:#40c764;
+        color:white;
+        border-left:5px solid #36a353;
+        border-bottom:2px solid #36a353;
+      }
+      
+      .footer-button {
+        background:transparent;
+        border:none;
+        width:100%;
+        height:40px;
+        font-size:14px;
+        color:white;
+      }
+      
+      .footer-button:hover {
+        background:#36a353;
+        border:none;
+        color:white;
+      }
+      
+      .button .help-button {
+        background:transparent;
+        border:none;
+      }
+      
+      <!-- BODY -->
+      div.resume-section {
+        width:100%;
+        background:white;
+        border-left:5px solid #b3b3b3; 
+        border-bottom:1px solid #b3b3b3;
+      }
+      div.resume-section2 {
+        width:100%;
+        height:50px;
+        background:white;
+        border-left:5px solid #b3b3b3; 
+        border-bottom:2px solid #b3b3b3;
+      }
+      
+      .section-button {
+        background:transparent;
+        border:none;
+        width:100%;
+        height:100%;
+        font-size:14px;
+        text-align:left;
+      }
+      
+      .section-button:hover {
+        color:#40c764;
+        background:transparent;
+        border:none;
+      }
+      
+      <!-- NAVBAR --> 
+      .navbar {
+        display:flex;
+        flex-direction:row;
+        width:100%;
+        margin:0;
+        padding:0;
+        background-color:#40c764;
+      }
+      
+      .navbar-select {
+        background:#40c764;
+        border: 1px #40c764;
+        color:white;
+        height:30px;
         font-size:14px;
       }
+      
+      .navbar-select:hover {
+        background:#36a353;
+        color:white;
+      } 
+      
+      .navbar-option {
+        background-color:white;
+        color:black;
+      }
+ 
+      .dropdown {
+        background:#40c764;
+        color:white;
+        border-left:5px solid #36a353;
+        border-bottom:2px solid #36a353;
+      }
+      
+      .dropdown:hover {
+        color:white;
+        background:#36a353;
+      }
+      
+      .dropbtn {
+        background: #40c764;
+        color:white;
+        height:30px;
+        font-size:14px;
+        background:transparent;
+        border:none;
+      }
+      
       .dropdown-content {
         display:none;
         position:absolute;
-        background-color:#f1f1f1;
+        color:white;
+        background-color:#40c764;
         min-width:100px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index:1;
       }
       .dropdown-content a {
-        color:black;
+        color:white;
+        background:#40c764;
         padding:12px 16px;
         text-decoration:none;
         display:block;
@@ -34,9 +152,10 @@
         background-color:#ddd;
         text-decoration:none;
       }
-      .dropdown:hover .dropdown-content {display:block;}
-      .dropdown:hover .dropbtn {background-color:#3e8e41;}
-
+      .dropdown:hover .dropdown-content {display:flex;flex-direction:column;}
+      .dropdown:hover .dropbtn {background-color:#36a353; color:white;}
+      .dropdown:hover .navbar-select {background-color:#36a353;}
+      
       input[type='checkbox'] {
         color:black;
         text-decoration:none;
@@ -45,26 +164,28 @@
         padding: 4px 8px
       }
     </style>
-
-
-
     <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
     <title>Resume Add-on</title>
   </head>
+  
   <body>
-    <h1 style="margin:30px;"> Resume Generator </h1>
-    <hr>
+    <header>
+      <h1 style="font-size:50px;margin:auto; padding-bottom:30px; padding-top:30px; color:white;"> ResumAid </h1>
+    </header>
 
-    <label for="resume-template-select">Choosen Template:</label>
-    <select id="resume-template-select" name="resume-template-select">
-      <option value="1" selected>Template 1</option>
-      <option value="2">Template 2</option>
-      <option value="3">Template 3</option>
-    </select>
+    <div class="navbar">
+      <div class="dropdown">
+        <select class="navbar-select" id="resume-template-select" name="resume-template-select" style="background:transparent; border:none;">
+          <option class="navbar-option" value="1" selected>Template 1</option>
+          <option class="navbar-option" value="2">Template 2</option>
+          <option class="navbar-option" value="3">Template 3</option>
+        </select>
+      </div>
+    
 
     <!-- SECTION SELECTION -->
     <div class="dropdown">
-      <button class="dropbtn">Sections</button>
+      <button class="dropbtn" style="background:transparent;border:none;">Sections</button>
       <div class="dropdown-content">
         <input type="checkbox" class="sectionCheck" name="sections" id="header" value="header" checked="true"/>
         <label for="header">Header</label>
@@ -80,58 +201,51 @@
         <label for="portfolio">Portfolio</label>
         <input type="checkbox" class="sectionCheck" name="sections" id="portfolio" value="portfolio" checked="true"/>
         <label for="footer">Footer</label>
-        <input type="button" id="sectionSubmit" value="Submit" onclick="onSectionSubmit()"/>
+        <input type="button" id="sectionSubmit" value="Submit" onclick="onSectionSubmit()" style="background:transparent;border:none;"/>
       </div>
+    </div>
+
     </div>
 
     <!-- HTML sections
       This is where the buttons interact with .gs functions to open pop-ups
     -->
-    <hr>
-    <div id="header-section" style="display:block;margin-left:30px;">
-      <input type="button" value="Header" onclick="showHeader()">
+    <div class="resume-section2" id="header-section">
+      <button class="section-button" onclick="showHeader()"> Header Information </button>
     </div>
-    <hr>
-    <div id="experience-section" style="display:block;margin-left:30px;">
-      <input type="button" value="Experience" onclick="showExperience()">
+    <div class="resume-section2" id="experience-section">
+      <button class="section-button" onclick="showExperience()"> Experience Information </button>
     </div>
-    <hr>
-    <div id="skills-section" style="display:block;margin-left:30px;" >
-      <input type="button" value="Skills" onclick="showSkills()">
+    <div class="resume-section2" id="skills-section">
+      <button class="section-button" onclick="showSkills()"> Skills </button>
     </div>
-    <hr>
-    <div id="education-section" style="display:block;margin-left:30px;">
-      <input type="button" value="Education" onclick="showEducation()">
+    <div class="resume-section2" id="education-section">
+      <button class="section-button" onclick="showEducation()"> Education History </button>
     </div>
-    <hr>
-    <div id="honor-section" style="display:block;margin-left:30px;">
-      <input type="button" value="Honor / Awards" onclick="showHonor()">
+    <div class="resume-section2" id="honor-section">
+      <button class="section-button" onclick="showHonor()"> Honors and Awards </button>
     </div>
-    <hr>
-    <div id="portfolio-section" style="display:block;margin-left:30px;">
-      <input type="button" value="Portfolio" onclick="showPortfolio()">
+    <div class="resume-section2" id="portfolio-section" >
+      <button class="section-button" onclick="showPortfolio()"> Art Portfolio </button>
     </div>
-    <hr>
-    <div id="footer-section" style="display:block;margin-left:30px;">
-      <input type="button" value="Footer">
+    <div class="resume-section2" id="freesec-section"> 
+      <button class="section-button" onclick="show()"> Free Text </button>
     </div>
-    <hr>
+    <div class="resume-section2" id="footer-section">
+      <button class="section-button"> Footer Information </button>
+    </div>
     
 
   </body>
 
-  <footer style="margin:30px;">
-    <input type="button" value="Close" onclick="google.script.host.close()" />
-    <input type="button" value="Survey" onclick="showSurvey()" style="padding-left:5px;"/> <!-- NEEDS ONLCLICK TO RENDER SURVEY HTML -->
-    <input type="button" value="Instructions" onclick="showInstructions()"/>
-    <br>
-    <br>
-    <input type="button" value="Edit sections" onclick="showEdit()"/>
-    <input type="button" value="Delete sections" onclick="showDelete()"/>
-    <input type="button" value="Insert Resume" onclick="InsertFrame()"/>
-    <br>
-    <br>
-    <input type="button" value="Add Freetext sections" onclick="showSections()"/>
+  <footer>
+    <div class="footer-div"><button class="footer-button" onclick="InsertFrame()"> Create Resume! </button></div>
+    <div class="footer-div"><button class="footer-button" onclick="google.script.host.close()"> Close </button></div>
+    <div class="footer-div"><button class="footer-button" onclick="showSurvey()"> How did we do? </button></div>
+    <div class="footer-div"><button class="footer-button" onclick="showInstructions()"> Help </button></div>
+    <div class="footer-div"><button class="footer-button" onclick="showEdit()"> Edit Sections </button></div>
+    <div class="footer-div"><button class="footer-button" onclick="showDelete()"> Delete Sections </button></div>
+    
   </footer>
 
   <!-- ALL JS -->
@@ -202,13 +316,12 @@
       function showFooter() {
 
       }
-      
-      function showPortfolio() {
-        google.script.run.withFailureHandler(onFailuer).showPortfolioDialog();
-      }
-      
       function showSections(){
          google.script.run.withFailureHandler(onFailure).showSectionDialog();
+      }
+      
+      function showPortfolio() {
+        google.script.run.withFailureHandler(onFailure).showPortfolioDialog();
       }
 
       function showSurvey() {
@@ -227,12 +340,12 @@
       }
       function InsertFrame(){
         var template = $("#resume-template-select").val();
-        if (template === "Template 1")
+        if (template === "1")
           google.script.run.withFailureHandler(onFailure).insertTemplate1();
-        else if (template === "Template 2")
+        else if (template === "2")
           google.script.run.withFailureHandler(onFailure).insertTemplate2();
         else
-          google.script.run.withFailureHandler(onFailure).insertTemplate1();
+          google.script.run.withFailureHandler(onFailure).insertTemplate3();
       }
   </script>
 </html>

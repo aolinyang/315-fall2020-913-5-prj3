@@ -1,6 +1,11 @@
+<head>
+  <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+</head>
+
 <div id="skills-form"></div>
 <button onclick="addSkill()">Add Skill</button>
 <button onclick="saveSkills()">Save</button>
+<p id="psk"> </p> 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
@@ -40,13 +45,14 @@
       skillArr.push(skillObj);
     }
     google.script.run.saveAllSkills(JSON.stringify(skillArr));
+    
+    document.getElementById("psk").innerHTML = "Your skills have been saved.You may close the window";
   }
 
   function initialize(stringifiedArr) {
     var skills = JSON.parse(stringifiedArr);
     numSkills = skills.length;
-    var counter = 0;
-    skills.forEach(function(skill) {
+    skills.forEach(function(skill, counter) {
       const input = getInputField(skill.name, skill.level, counter);
       $(input).appendTo("#skills-form");
     });
