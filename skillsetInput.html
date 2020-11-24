@@ -32,7 +32,7 @@
 
   // add blank skill
   function addSkill() {
-    const input = getInputField("", -1, numSkills);
+    const input = getInputField(numSkills, {name: "", level: 1});
     $(input).appendTo("#skills-form");
     numSkills++;
   }
