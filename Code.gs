@@ -26,47 +26,17 @@ function showSidebar() {
   DocumentApp.getUi().showSidebar(ui);
 }
 
+// delete entire document
 function removeAll(){
   var doc = DocumentApp.getActiveDocument();
   var body = doc.getBody();
   body.setText("");
 }
 
-// function putExperienceInfo(comp,pos,desc,dept,supvr,cntemail) {
-//   var doc = DocumentApp.getActiveDocument();
-//   var docBody = doc.getBody();
-//   var displayText1 = "";
-//
-//   displayText1 = "Most Recent Experience\n\n";
-//   displayText1 = displayText1 + "company: " + comp + "\n";
-//   displayText1 = displayText1 + "position: " + pos + "\n";
-//   displayText1 = displayText1 + "description: " + desc + "\n";
-//   displayText1 = displayText1 + "department: " + dept + "\n";
-//   displayText1 = displayText1 + "supervisor: " + supvr + "\n";
-//   displayText1 = displayText1 + "contactEmail: " + cntemail + "\n\n";
-//   Logger.log("displayed:"+displayText1);
-//
-//
-//   var cells = [
-//   [displayText1,""],
-//   ["",""],
-//   ["",""]
-//   ];
-//
-//   // Build a table from the array.
-//   docBody.appendTable(cells);
-//   // doc.saveAndClose();
-// }
-
 // template 1 format
 function insertTemplate1(){
   var doc = DocumentApp.getActiveDocument();
   var body = doc.getBody();
-  // http://www.googleappsscript.org/home/create-table-in-google-document-using-apps-script
-  // var table_style = {}
-  // var table_cell = {}
-  // var heading_style = {}
-  // table_style[DocumentApp.Attribute.BORDER_COLOR] = "#34ebd5";
 
   var table = body.appendTable();
   table.setBorderColor("#ffffff");
@@ -86,7 +56,7 @@ function insertTemplate1(){
 
   var cell2 = row1.appendTableCell();
 
-
+  // display all of header
   var content2p1 = cell2.appendParagraph("email:" + header.email );
   content2p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
   var content2p2 = cell2.appendParagraph("phone:" + header.phone);
@@ -111,6 +81,7 @@ function insertTemplate1(){
   // cell 4
   var cell4 = row2.appendTableCell();
 
+  // display each education
   for (var i = 0; i < eduList.length; i++) {
     var edu = eduList[i];
     var content3p1 = cell3.appendParagraph("School: " + edu.school);
@@ -142,6 +113,7 @@ function insertTemplate1(){
 
   var cell6 = row3.appendTableCell();
 
+  // display all experiences
   for (var i = 0; i < expList.length; i++) {
     var exp = expList[i];
     var content5p1 = cell5.appendParagraph(exp.company);
@@ -167,24 +139,13 @@ function insertTemplate1(){
       cell6.appendParagraph("");
     }
   }
-// <<<<<<< HEAD
-//
-//
-//   // cell 6
-//   var cell6 = row3.appendTableCell();
-//   var content6 = cell6.appendParagraph(exp.startDate + " - " + exp.endDate);
-//   content6.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
-//
-//
-// =======
-
-// >>>>>>> main
-  // row 4
-  var row4 = table.appendTableRow();
 
   // -------------------------- skills -----------------------
 
-  // cell 7
+  // row 4
+  var row4 = table.appendTableRow();
+
+  // display all skills
   var skills = JSON.parse(getAllSkills());
   var cell7 = row4.appendTableCell();
   var heading7 = cell7.appendParagraph("Skills");
@@ -213,6 +174,7 @@ function insertTemplate1(){
   // cell 10
   var cell10 = row5.appendTableCell();
 
+  // display all honors
   var honorsList = JSON.parse(getHonor());
   for (var i = 0; i < honorsList.length; i++) {
     var honorInfo = honorsList[i];
@@ -252,13 +214,9 @@ function insertTemplate1(){
     content11p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
     cell11.appendParagraph("");
   }
-
-
-
 }
 
 function insertTemplate2() {
-  
   var doc = DocumentApp.getActiveDocument();
   var body = doc.getBody();
   var table = body.appendTable();
@@ -271,7 +229,7 @@ function insertTemplate2() {
 
   var heading1 = cell1.appendParagraph(headerInfo.fname + " " + headerInfo.lname);
 
-  //var content1p1 = cell1.appendParagraph("");
+  // display header
   var content1p1 = cell1.appendParagraph(headerInfo.email + " | " + headerInfo.phone + " | " + headerInfo.lkacc); //("#header-email | #header-phone | #header-linkedin");
   var content1p2 = cell1.appendParagraph("| "+headerInfo.porturl+" |");
   heading1.setFontFamily("Arial").setFontSize(32).setBold(true).setForegroundColor("#5c5c8a").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
@@ -287,6 +245,7 @@ function insertTemplate2() {
   var heading3 = cell3.appendParagraph("Education");
   heading3.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#999966").setAlignment(DocumentApp.HorizontalAlignment.LEFT).setLineSpacing(0);
 
+  // display all education
   for (var i = 0; i < eduList.length; i++) {
     var edu = eduList[i];
     var content3p1 = cell3.appendParagraph("School: " + edu.school);
@@ -297,7 +256,6 @@ function insertTemplate2() {
     content3p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#888888").setAlignment(DocumentApp.HorizontalAlignment.LEFT).setLineSpacing(0);
     var content3p4 = cell3.appendParagraph("Classification: " + edu.affiliation);
     content3p4.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#888888").setAlignment(DocumentApp.HorizontalAlignment.LEFT).setLineSpacing(0);
-    //cell3.appendParagraph("");
   }
 
 
@@ -306,6 +264,7 @@ function insertTemplate2() {
 
   // -------------- experience ---------------------
 
+  // display all experience
   var expList = JSON.parse(getExperience());
   for (var i = 0; i < expList.length; i++) {
     var exper = expList[i];
@@ -333,14 +292,12 @@ function insertTemplate2() {
   var skills = JSON.parse(getAllSkills());
   var heading5 = cell5.appendParagraph("Skills");
   heading5.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#999966").setAlignment(DocumentApp.HorizontalAlignment.LEFT).setLineSpacing(0);
-  // modify to what ever that fits later
+ 
+  // display all skills
   for (var i = 0; i < skills.length; i++) {
     var content5 = cell5.appendParagraph(skills[i].name + ", proficiency: " + skills[i].level);
     content5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#888888").setAlignment(DocumentApp.HorizontalAlignment.LEFT).setLineSpacing(0);
   }
-
-  // var content5 = cell5.appendParagrap("#skill-type" + ", proficiency: " + "#skill proficiency");
-  // content5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
 
   // ----------------------------- honors ----------------------------
 
@@ -349,6 +306,8 @@ function insertTemplate2() {
   var honorList = JSON.parse(getHonor());
   var heading6 = cell6.appendParagraph("Honor & Awards");
   heading6.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#999966").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setLineSpacing(0);
+  
+  // display all honors
   for (var i = 0; i < honorList.length; i++) {
     var honorInfo = honorList[i];
     var content6p1 = cell6.appendParagraph("Honor Title: " + honorInfo.awardedHonor);
@@ -359,7 +318,6 @@ function insertTemplate2() {
     content6p3.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#888888").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setLineSpacing(0);
     var content6p5 = cell6.appendParagraph(honorInfo.awardedType + "  |  " + honorInfo.awardedYear);
     content6p5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#888888").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setLineSpacing(0);
-    //cell6.appendParagraph("");
   }
   
   var row7 = table.appendTableRow();
@@ -376,13 +334,13 @@ function insertTemplate2() {
     else{
       heading7.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#999966").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setLineSpacing(0);
       content7p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#888888").setAlignment(DocumentApp.HorizontalAlignment.RIGHT).setLineSpacing(0);
-      //cell7.appendParagraph("");
     }
     
   }
   
 }
 
+// template 3
 function insertTemplate3() {
   
   var doc = DocumentApp.getActiveDocument();
@@ -413,6 +371,7 @@ function insertTemplate3() {
   var heading3 = cell3.appendParagraph("Education");
   heading3.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#2d8659").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
 
+  // display all education
   for (var i = 0; i < eduList.length; i++) {
     var edu = eduList[i];
     var content3p1 = cell3.appendParagraph("School: " + edu.school);
@@ -432,6 +391,7 @@ function insertTemplate3() {
 
   // -------------- experience ---------------------
 
+  // display all experience
   var expList = JSON.parse(getExperience());
   for (var i = 0; i < expList.length; i++) {
     var exper = expList[i];
@@ -459,14 +419,12 @@ function insertTemplate3() {
   var skills = JSON.parse(getAllSkills());
   var heading5 = cell5.appendParagraph("Skills");
   heading5.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#2d8659").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
-  // modify to what ever that fits later
+ 
+  // display all skills
   for (var i = 0; i < skills.length; i++) {
     var content5 = cell5.appendParagraph(skills[i].name + ", proficiency: " + skills[i].level);
     content5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
   }
-
-  // var content5 = cell5.appendParagrap("#skill-type" + ", proficiency: " + "#skill proficiency");
-  // content5.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#003300").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
 
   // ----------------------------- honors ----------------------------
 
@@ -475,6 +433,8 @@ function insertTemplate3() {
   var honorList = JSON.parse(getHonor());
   var heading6 = cell6.appendParagraph("Honor & Awards");
   heading6.setFontFamily("Arial").setFontSize(20).setBold(true).setForegroundColor("#2d8659").setAlignment(DocumentApp.HorizontalAlignment.CENTER).setLineSpacing(0);
+  
+  // display all honors
   for (var i = 0; i < honorList.length; i++) {
     var honorInfo = honorList[i];
     var content6p1 = cell6.appendParagraph("Honor Title: " + honorInfo.awardedHonor);
@@ -501,6 +461,8 @@ function insertTemplate3() {
   }
   
 }
+
+//---------------------------------- Popup Display code ------------------------------------
 
 function showEducationDialog() {
   var html = HtmlService.createHtmlOutputFromFile('education')
@@ -588,6 +550,8 @@ function showPortfolioDialog() {
       .setHeight(600);
   DocumentApp.getUi().showModalDialog(html, 'Image Portfolio');
 }
+
+// ------------------------------------------- setters and getters for global variables ----------------------
 
 function getHeader() {
   var header = props.getProperty("header");

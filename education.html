@@ -7,6 +7,7 @@
     <script>
     var numEducations = 0;
 
+    // either get new education, or get prefilled education
     function getInput(num, eduObj) {
       var input = "<br>\
    <label for=\"school-" + num + "\">School: </label>\
@@ -52,6 +53,7 @@
   return input;
     }
 
+    // add blank education
     function addEducation() {
       const emptyObj = {
         school: "",
@@ -68,6 +70,7 @@
       numEducations++;
     }
 
+    // save education to global variable
     function saveEducation() {
       var eduArr = [];
       for (var i = 0; i < numEducations; i++) {
@@ -88,6 +91,7 @@
       document.getElementById("ped").innerHTML = "Your education info has been saved.You may close the window";
     }
 
+    // called upon startup, initializes prefilled form to global variable
     function initialize(stringifiedEdu) {
         var eduList = JSON.parse(stringifiedEdu);
         numEducations = eduList.length;
