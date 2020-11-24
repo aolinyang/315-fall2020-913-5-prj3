@@ -82,6 +82,7 @@
             expArr.push(expObj);
         }
         google.script.run.saveExperience(JSON.stringify(expArr));
+        document.getElementById("xpxp").innerHTML = "Your experience info has been saved. You may close the window";
     }
 
     function initialize(stringifiedExp) {
@@ -102,3 +103,4 @@
   <center id="exp-form"></center>
   <button onclick="addExperience()">Add Experience</button>
   <button onclick="saveExperiences()">Submit</button>
+  <p id="xpxp"> </p>

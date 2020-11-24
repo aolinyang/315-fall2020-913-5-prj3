@@ -3,107 +3,244 @@
   <head>
     <base target="_top">
     <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
-  </head>
-  <body>
-
-    <h3> Feedback </h3>
-    <p> Thank you for participate in our survey </p>
-
-    <p> Please give an overall score to your experience,(1 is worst, 5 is the best):</p>
-    <input type="radio"name="1" value="1">
-    <label for="1">1</label><br>
-    <input type="radio"name="2" value="2">
-    <label for="2">2</label><br>
-    <input type="radio"name="3" value="3">
-    <label for="3">3</label><br>
-    <input type="radio"name="4" value="4">
-    <label for="4">4</label><br>
-    <input type="radio"name="5" value="5">
-    <label for="5">5</label><br>
-
-    <p> How do you rate your resume among all candidates: </p>
-    <input type="radio"name="1" value="1">
-    <label for="1">1</label><br>
-    <input type="radio"name="2" value="2">
-    <label for="2">2</label><br>
-    <input type="radio"name="3" value="3">
-    <label for="3">3</label><br>
-    <input type="radio"name="4" value="4">
-    <label for="4">4</label><br>
-    <input type="radio"name="5" value="5">
-    <label for="5">5</label><br>
-
-    <p> How do you rate your education level among all the candidates:</p>
-    <input type="radio"name="1" value="1">
-    <label for="1">1</label><br>
-    <input type="radio"name="2" value="2">
-    <label for="2">2</label><br>
-    <input type="radio"name="3" value="3">
-    <label for="3">3</label><br>
-    <input type="radio"name="4" value="4">
-    <label for="4">4</label><br>
-    <input type="radio"name="5" value="5">
-    <label for="5">5</label><br>
-
-
-    <p> How do you rate your work experience among all the candidates:</p>
-    <input type="radio"name="1" value="1">
-    <label for="1">1</label><br>
-    <input type="radio"name="2" value="2">
-    <label for="2">2</label><br>
-    <input type="radio"name="3" value="3">
-    <label for="3">3</label><br>
-    <input type="radio"name="4" value="4">
-    <label for="4">4</label><br>
-    <input type="radio"name="5" value="5">
-    <label for="5">5</label><br>
-
-
-    <p>Are you a quiet person or an outgoing person? (1 means super quiet, 5 means super outgoing) </p>
-    <input type="radio"name="1" value="1">
-    <label for="1">1</label><br>
-    <input type="radio"name="2" value="2">
-    <label for="2">2</label><br>
-    <input type="radio"name="3" value="3">
-    <label for="3">3</label><br>
-    <input type="radio"name="4" value="4">
-    <label for="4">4</label><br>
-    <input type="radio"name="5" value="5">
-    <label for="5">5</label><br>
-
-    <p> Do you want to be at a more technical position or at a business side position? (1 means very technical, 5 means very business function) </p>
-    <input type="radio"name="1" value="1">
-    <label for="1">1</label><br>
-    <input type="radio"name="2" value="2">
-    <label for="2">2</label><br>
-    <input type="radio"name="3" value="3">
-    <label for="3">3</label><br>
-    <input type="radio"name="4" value="4">
-    <label for="4">4</label><br>
-    <input type="radio"name="5" value="5">
-    <label for="5">5</label><br>
-
-    <p> Do you enjoy doing your own project or do you enjoy group work more? (5 means 100% own project, 5 means 100% team project) </p>
-    <input type="radio"name="1" value="1">
-    <label for="1">1</label><br>
-    <input type="radio"name="2" value="2">
-    <label for="2">2</label><br>
-    <input type="radio"name="3" value="3">
-    <label for="3">3</label><br>
-    <input type="radio"name="4" value="4">
-    <label for="4">4</label><br>
-    <input type="radio"name="5" value="5">
-    <label for="5">5</label><br>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <div id="tester" ></div> <!--style="width:600px;height:250px;"-->
+    <h3 id="evl"></h3>
+  </head>
+  
+  <script>  
+    function generatePlot(){
+    counterarr = [0,0,0,0,0,0,0,0,0,0];
+    
+    for (var i = 0; i < counterarr.length; i++){
+      var curr = $("#q"+(i+1)+"-select").val()-1 ;
+      console.log("curr:"+curr);
+      var temp = counterarr[curr];
+      temp = temp + 1;
+      counterarr[curr] = temp;
+      console.log(counterarr);
+    }
+    var format = "bar";
+    
+    var plotdata = [
+    {
+       x: ["score1","score2","score3","score4","score5","score6","score7","score8","score9","score10"],
+       y: counterarr,
+       type:"bar",
+       marker: {
+       color: 'grey'
+       }
+    }
+    ];
+    
+    Plotly.newPlot('tester', plotdata,
+    {
+    xaxis: {
+         title: 'scores',
+         dtick: 1
+    },
+    yaxis: {
+         title: 'counts'
+    },
+    title: "Evaluation"
+    }
+    );
+    document.getElementById("msgp").innerHTML = "A plot is generated above on the top";
+    var sum = 0;
+    for (var j = 0; j < counterarr.length; j++){
+      sum = sum + counterarr[j] *j;
+    }
+    var avg = sum / 10;
+    console.log("sum:"+sum);
+    console.log("avg"+avg);
+    if(avg <= 5){
+      document.getElementById("evl").innerHTML = "Message from employer:<em> Based on the survey data, you are not a good fit for the position.<em>";
+    }
+    else if (avg > 5 && avg < 8){
+      document.getElementById("evl").innerHTML = "Message from employer: <em>We encourage you to apply!<em>";
+    } 
+    else{
+      document.getElementById("evl").innerHTML = "Message from employer: <em>You are one of the top candidates!<em>";
+    }
+    
+    }
+  
+  </script>
+  
+  
+  
+  
+  <body>
+    <h3> Self Evaluation </h3>
+    <p> Answer the questions below to help companies to know more about you (data analysis and plots) </p>
+
+    <div>
+    <p> Are you passionate about the major you are in now? (1 means not passionate at all, 10 means very passionate):</p>
+    <select name="question1" id="q1-select">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+    </select>
+    </div>
+
+    <div>
+    <p> How do you rate your resume among all candidates: </p>
+    <select name="question2" id="q2-select">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+    </select>
+    </div>
+    
+    <div>
+    <p> How often do you submit a report without reading through it/ doing grammar check?(1 means never, 10 means very often,every time):</p>
+    <select name="question3" id="q3-select">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+    </select>
+    </div>
+    
+    
+    <div>
+    <p> Do the experiences you have related to the position you want to apply? (1 means not related at all, 10 means very related, the same position):</p>
+    <select name="question4" id="q4-select">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+    </select>
+    </div>
+
+    <div>
+    <p>Are you a quiet person or an outgoing person? (1 means super quiet, 10 means super outgoing) </p>
+    <select name="question5" id="q5-select">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+    </select>
+    </div>
+
+    <div>
+    <p> Do you want to be at a more technical position or at a more business side position? (1 means very technical, 10 means very business function) </p>
+    <select name="question6" id="q6-select">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+    </select>
+    </div>
 
 
+    <div>
+    <p> Do you prefer doing an individual project or a group project more? (1 means 100% individual project, 10 means 100% team project) </p>
+    <select name="question7" id="q7-select">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+    </select>
+    </div>
 
-
-
-
-
-
-
-
+    <div>
+    <p> Do you often help others with their projects/tutoring? (1 means rarely, 10 means every time) </p>
+    <select name="question8" id="q8-select">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+    </select>
+    </div>
+    
+    <div>
+    <p> Do you have experience working on backend? Or more front end? (1 means only front end, 10 means only backend) </p>
+    <select name="question9" id="q9-select">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+    </select>
+    </div>
+    
+    
+    <div>
+    <p> Do you like building software (1 means not at all, 10 means very interested) </p>
+    <select name="question10" id="q10-select">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+    </select>
+    </div>
+    <br>
+    <p id="msgp"></p>
+    <br>
+    <button id="submitSurvey" onclick="generatePlot()"> Visualize </button>
   </body>
 </html>
