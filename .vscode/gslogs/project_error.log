@@ -1,42 +1,34 @@
-Tue Oct 27 21:42:54 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(1): error C1999: syntax error.
+Wed Nov 11 09:51:38 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(3): error C1999: syntax error.
 [2;37;0m
-Tue Oct 27 21:42:54 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(7): error C1999: Invalid function prototype, missing return type.
+Wed Nov 11 09:51:38 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(9): error C1999: Invalid function prototype, missing return type.
 [2;37;0m
-Tue Oct 27 21:42:54 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(8): error C1999: Bad function body, expected "{ ... }".
+Wed Nov 11 09:51:38 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(10): error C1999: Bad function body, expected "{ ... }".
 [2;37;0m
-Tue Oct 27 21:42:54 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(8): error C1999: Illegal statement.
+Wed Nov 11 09:51:38 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(10): error C1999: Illegal statement.
 [2;37;0m
-Tue Oct 27 21:42:54 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(13): error C1999: syntax error.
+Wed Nov 11 09:51:38 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(20): error C1999: syntax error.
 [2;37;0m
-Tue Oct 27 21:42:54 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(13): error C1999: Illegal statement.
+Wed Nov 11 09:51:38 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(20): error C1999: Illegal statement.
 [2;37;0m
-Tue Oct 27 21:42:54 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(19): error C1999: syntax error.
+Wed Nov 11 09:51:38 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(24): error C1999: syntax error.
 [2;37;0m
-Tue Oct 27 21:42:54 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(19): error C1999: Illegal statement.
+Wed Nov 11 09:51:38 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(24): error C1999: Bad argument.
 [2;37;0m
-Tue Oct 27 21:42:54 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(20): error C1999: syntax error.
+Wed Nov 11 09:51:38 2020  At /Code.gs
+Wed Nov 11 09:51:38 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(3): error C1999: syntax error.
 [2;37;0m
-Tue Oct 27 21:42:54 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(20): error C1999: Illegal statement.
+Wed Nov 11 09:51:38 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(9): error C1999: Invalid function prototype, missing return type.
 [2;37;0m
-Tue Oct 27 21:42:54 2020  At /Code.gs
-Tue Oct 27 21:42:54 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(1): error C1999: syntax error.
+Wed Nov 11 09:51:38 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(10): error C1999: Bad function body, expected "{ ... }".
 [2;37;0m
-Tue Oct 27 21:42:54 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(7): error C1999: Invalid function prototype, missing return type.
+Wed Nov 11 09:51:38 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(10): error C1999: Illegal statement.
 [2;37;0m
-Tue Oct 27 21:42:54 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(8): error C1999: Bad function body, expected "{ ... }".
+Wed Nov 11 09:51:38 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(20): error C1999: syntax error.
 [2;37;0m
-Tue Oct 27 21:42:54 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(8): error C1999: Illegal statement.
+Wed Nov 11 09:51:38 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(20): error C1999: Illegal statement.
 [2;37;0m
-Tue Oct 27 21:42:54 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(13): error C1999: syntax error.
+Wed Nov 11 09:51:38 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(24): error C1999: syntax error.
 [2;37;0m
-Tue Oct 27 21:42:54 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(13): error C1999: Illegal statement.
+Wed Nov 11 09:51:38 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(24): error C1999: Bad argument.
 [2;37;0m
-Tue Oct 27 21:42:54 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(19): error C1999: syntax error.
-[2;37;0m
-Tue Oct 27 21:42:54 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(19): error C1999: Illegal statement.
-[2;37;0m
-Tue Oct 27 21:42:54 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(20): error C1999: syntax error.
-[2;37;0m
-Tue Oct 27 21:42:54 2020 [1;31mc:/Users/allen/csce315projects/315-fall2020-913-5-prj3/Code.gs(20): error C1999: Illegal statement.
-[2;37;0m
-Tue Oct 27 21:42:54 2020  At /Code.gs
+Wed Nov 11 09:51:38 2020  At /Code.gs

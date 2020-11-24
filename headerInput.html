@@ -62,17 +62,33 @@
     }
 
     function saveHeader() {
-        const headerObj = {
+      if (emailValidation($("#email").val())) {
+         const headerObj = {
             fname: $("#fname").val(),
             lname: $("#lname").val(),
             email: $("#email").val(),
             phone: $("#phone").val(),
             lkacc: $("#lkacc").val(),
             porturl: $("#porturl").val(),
-        };
-        google.script.run.saveHeader(JSON.stringify(headerObj));
+         };
+          google.script.run.saveHeader(JSON.stringify(headerObj));
         
-        document.getElementById("hdd").innerHTML = "Your header info has been saved.You may close the window";
+          document.getElementById("hdd").innerHTML = "Your header info has been saved.You may close the window";
+        } 
+        else {
+          document.getElementById("hdd").innerHTML = "Your header was not saved.";
+        }
+    }
+
+// checks if email is valid
+    function emailValidation(email) {
+      const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (re.test(email) || (email == "")) {
+        return true;
+      } else {
+        alert("invalid email address");
+        return false;
+      }
     }
 
     $(document).ready(function() {

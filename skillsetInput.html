@@ -11,16 +11,17 @@
 <script>
   var numSkills = 0;
 
-  function getInputField(skillName, skillLevel, id) {
+  // either get new skills input, or get one prefilled
+  function getInput(num, skill) {
     var input = "\
       <div class=\"skill-inline\">\
         <label for=\"skillName\">Skill: </label>\
-        <input type=\"text\" id=\"skill-name-" + id + "\" name=\"skillName\" value=\"" + skillName + "\">\
+        <input type=\"text\" id=\"skill-name-" + num + "\" name=\"skillName\" value=\"" + skill.name + "\">\
         <label for=\"skillLevel\">Proficiency: </label>\
-        <select id=\"skill-level-" + id + "\" name=\"skillLevel\">";
+        <select id=\"skill-level-" + num + "\" name=\"skillLevel\">";
     for (var i = 1; i <= 10; i++) {
       input += "<option value=\"" + i + "\"";
-      if (i == skillLevel) {
+      if (i == skill.level) {
         input += " selected";
       }
       input += ">" + i + "</option>";
@@ -29,12 +30,14 @@
     return input;
   }
 
+  // add blank skill
   function addSkill() {
-    const input = getInputField("", -1, numSkills);
+    const input = getInput(numSkills, {name: "", level: 1});
     $(input).appendTo("#skills-form");
     numSkills++;
   }
 
+  // save skills to global object
   function saveSkills() {
     var skillArr = [];
     for (var i = 0; i < numSkills; i++) {
@@ -49,11 +52,12 @@
     document.getElementById("psk").innerHTML = "Your skills have been saved.You may close the window";
   }
 
+  // loads prefilled form with saved global object
   function initialize(stringifiedArr) {
     var skills = JSON.parse(stringifiedArr);
     numSkills = skills.length;
     skills.forEach(function(skill, counter) {
-      const input = getInputField(skill.name, skill.level, counter);
+      const input = getInput(counter, skill);
       $(input).appendTo("#skills-form");
     });
   }

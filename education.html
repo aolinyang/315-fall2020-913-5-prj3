@@ -7,6 +7,7 @@
     <script>
     var numEducations = 0;
 
+    // either get new education, or get prefilled education
     function getInput(num, eduObj) {
       var input = "<br>\
    <label for=\"school-" + num + "\">School: </label>\
@@ -52,6 +53,7 @@
   return input;
     }
 
+    // add blank education
     function addEducation() {
       const emptyObj = {
         school: "",
@@ -68,26 +70,85 @@
       numEducations++;
     }
 
+    // save education to global variable
     function saveEducation() {
       var eduArr = [];
+      var saveEdu = true;
+      var text = /^[0-9]+$/;
       for (var i = 0; i < numEducations; i++) {
-        const eduObj = {
-          school : $("#school-" + i).val(),
-          major : $("#major-" + i).val(),
-          GPA : $("#GPA-" + i).val(),
-          affiliation : $("#affiliation-" + i).val(),
-          startm : $("#startm-" + i).val(),
-          endm : $("#endm-" + i).val(),
-          starty : $("#starty-" + i).val(),
-          endy : $("#endy-" + i).val()          
-        };
-        eduArr.push(eduObj);
+         if (gpaValidation($("#GPA-" + i).val()) && yearValidation($("#starty-" + i).val(), $("#endy-" + i).val())){
+                const eduObj = {
+                school : $("#school-" + i).val(),
+                major : $("#major-" + i).val(),
+                GPA : $("#GPA-" + i).val(),
+                affiliation : $("#affiliation-" + i).val(),
+                startm : $("#startm-" + i).val(),
+                endm : $("#endm-" + i).val(),
+                starty : $("#starty-" + i).val(),
+                endy : $("#endy-" + i).val()          
+                };
+               eduArr.push(eduObj);
+       } else {
+           saveEdu = false;
+           document.getElementById("ped").innerHTML = "Your info was not saved. Please include starting and ending year.";
+          }
       }
-      google.script.run.saveEducation(JSON.stringify(eduArr));
+      if (saveEdu) {
+        google.script.run.saveEducation(JSON.stringify(eduArr));
       
-      document.getElementById("ped").innerHTML = "Your education info has been saved.You may close the window";
+        document.getElementById("ped").innerHTML = "Your education info has been saved.You may close the window";
+      }
+      saveEdu = true;
+    }
+    
+// checks if GPA is numeric
+   function gpaValidation(gpa) {
+      if (isNaN(gpa)) {
+         alert("Please Enter Numeric Values Only for GPA");
+         return false;
+       }
+      return true;
+   }
+
+// checks if years are numeric and start year <= end year
+   function yearValidation(year1, year2) {
+     if (yearNumeric(year1) && yearNumeric(year2)){
+        if (year1<=year2) {
+          return true;
+      } else {
+           alert("Ending Year must be later than Starting Year");
+        }
+      } else {
+         return false;
+       }
+      return false;
+   }
+
+// checks if year is numeric, 4 characters,and is current
+    function yearNumeric(year) {
+    //var text = /^[0-9]+$/;
+    if (year != 0) {
+        if (isNaN(year)) {
+
+            alert("Please Enter Numeric Values Only for the Year");
+            return false;
+        }
+
+        if (year.length != 4) {
+            alert("Year is not proper. Please check");
+            return false;
+        }
+        var current_year=new Date().getFullYear();
+        if((year < 1920) || (year > (current_year+10))) {
+            var year = current_year+10;
+            alert("Year should be in range 1920 to " + year );
+            return false;
+        }
+        return true;
+      }
     }
 
+    // called upon startup, initializes prefilled form to global variable
     function initialize(stringifiedEdu) {
         var eduList = JSON.parse(stringifiedEdu);
         numEducations = eduList.length;

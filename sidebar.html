@@ -4,15 +4,15 @@
       body {
         background-color:#40c764;
       }
-    
+
       header {
         background-color:#40c764;
         display:flex;
         flex-direction:column;
         margin:auto;
-        border-left:5px solid #36a353; 
+        border-left:5px solid #36a353;
       }
-      
+
       footer {
         background-color:#40c764 !important;
         display:flex;
@@ -21,18 +21,18 @@
         width:100%;
         margin:0;
       }
-      
+
       .create-resume {
         width:100%;
       }
-      
+
       .footer-div {
         background:#40c764;
         color:white;
         border-left:5px solid #36a353;
         border-bottom:2px solid #36a353;
       }
-      
+
       .footer-button {
         background:transparent;
         border:none;
@@ -41,33 +41,33 @@
         font-size:14px;
         color:white;
       }
-      
+
       .footer-button:hover {
         background:#36a353;
         border:none;
         color:white;
       }
-      
+
       .button .help-button {
         background:transparent;
         border:none;
       }
-      
+
       <!-- BODY -->
       div.resume-section {
         width:100%;
         background:white;
-        border-left:5px solid #b3b3b3; 
+        border-left:5px solid #b3b3b3;
         border-bottom:1px solid #b3b3b3;
       }
       div.resume-section2 {
         width:100%;
         height:50px;
         background:white;
-        border-left:5px solid #b3b3b3; 
+        border-left:5px solid #b3b3b3;
         border-bottom:2px solid #b3b3b3;
       }
-      
+
       .section-button {
         background:transparent;
         border:none;
@@ -76,14 +76,14 @@
         font-size:14px;
         text-align:left;
       }
-      
+
       .section-button:hover {
         color:#40c764;
         background:transparent;
         border:none;
       }
-      
-      <!-- NAVBAR --> 
+
+      <!-- NAVBAR -->
       .navbar {
         display:flex;
         flex-direction:row;
@@ -92,7 +92,7 @@
         padding:0;
         background-color:#40c764;
       }
-      
+
       .navbar-select {
         background:#40c764;
         border: 1px #40c764;
@@ -110,19 +110,16 @@
         background-color:white;
         color:black;
       }
- 
       .dropdown {
         background:#40c764;
         color:white;
         border-left:5px solid #36a353;
         border-bottom:2px solid #36a353;
       }
-      
       .dropdown:hover {
         color:white;
         background:#36a353;
       }
-      
       .dropbtn {
         background: #40c764;
         color:white;
@@ -131,7 +128,6 @@
         background:transparent;
         border:none;
       }
-      
       .dropdown-content {
         display:none;
         position:absolute;
@@ -155,7 +151,6 @@
       .dropdown:hover .dropdown-content {display:flex;flex-direction:column;}
       .dropdown:hover .dropbtn {background-color:#36a353; color:white;}
       .dropdown:hover .navbar-select {background-color:#36a353;}
-      
       input[type='checkbox'] {
         color:black;
         text-decoration:none;
@@ -167,7 +162,6 @@
     <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
     <title>Resume Add-on</title>
   </head>
-  
   <body>
     <header>
       <h1 style="font-size:50px;margin:auto; padding-bottom:30px; padding-top:30px; color:white;"> ResumAid </h1>
@@ -181,10 +175,10 @@
           <option class="navbar-option" value="3">Template 3</option>
         </select>
       </div>
-    
+
 
     <!-- SECTION SELECTION -->
-    <div class="dropdown">
+    <!--div class="dropdown">
       <button class="dropbtn" style="background:transparent;border:none;">Sections</button>
       <div class="dropdown-content">
         <input type="checkbox" class="sectionCheck" name="sections" id="header" value="header" checked="true"/>
@@ -203,6 +197,8 @@
         <label for="footer">Footer</label>
         <input type="button" id="sectionSubmit" value="Submit" onclick="onSectionSubmit()" style="background:transparent;border:none;"/>
       </div>
+    </div-->
+
     </div>
 
     </div>
@@ -228,24 +224,25 @@
     <div class="resume-section2" id="portfolio-section" >
       <button class="section-button" onclick="showPortfolio()"> Art Portfolio </button>
     </div>
-    <div class="resume-section2" id="freesec-section"> 
-      <button class="section-button" onclick="show()"> Free Text </button>
+    <div class="resume-section2" id="freesec-section">
+      <button class="section-button" onclick="showSections()"> Free Text </button>
     </div>
-    <div class="resume-section2" id="footer-section">
+    <!--div class="resume-section2" id="footer-section">
       <button class="section-button"> Footer Information </button>
-    </div>
-    
+    </div-->
+
 
   </body>
 
   <footer>
     <div class="footer-div"><button class="footer-button" onclick="InsertFrame()"> Create Resume! </button></div>
     <div class="footer-div"><button class="footer-button" onclick="google.script.host.close()"> Close </button></div>
-    <div class="footer-div"><button class="footer-button" onclick="showSurvey()"> How did we do? </button></div>
+    <div class="footer-div"><button class="footer-button" onclick="showSurvey()"> Evaluation </button></div>
     <div class="footer-div"><button class="footer-button" onclick="showInstructions()"> Help </button></div>
     <div class="footer-div"><button class="footer-button" onclick="showEdit()"> Edit Sections </button></div>
+    <div class="footer-div"><button class="footer-button" onclick="DeleteAll()"> Clear Doc </button></div>
     <div class="footer-div"><button class="footer-button" onclick="showDelete()"> Delete Sections </button></div>
-    
+
   </footer>
 
   <!-- ALL JS -->
@@ -319,7 +316,6 @@
       function showSections(){
          google.script.run.withFailureHandler(onFailure).showSectionDialog();
       }
-      
       function showPortfolio() {
         google.script.run.withFailureHandler(onFailure).showPortfolioDialog();
       }
@@ -346,6 +342,9 @@
           google.script.run.withFailureHandler(onFailure).insertTemplate2();
         else
           google.script.run.withFailureHandler(onFailure).insertTemplate3();
+      }
+      function DeleteAll(){
+        google.script.run.withFailureHandler(onFailure).removeAll();
       }
   </script>
 </html>
