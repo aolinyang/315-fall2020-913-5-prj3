@@ -71,7 +71,9 @@
     // save experiences to global variable
     function saveExperiences(){
         var expArr = [];
+        var saveExp = true;
         for (var i = 0; i < numCompanies; i++) {
+          if (dateValidation($("#startDate-" + i).val(), $("#endDate-" + i).val()), emailValidation($("#contactEmail-" + i).val())) {
             const expObj = {
               company : $("#company-" + i).val(),
               position : $("#position-" + i).val(),
@@ -83,10 +85,37 @@
               endDate: $("#endDate-" + i).val(),
             };
             expArr.push(expObj);
+          }
+         else {
+           document.getElementById("xpxp").innerHTML = "Your experience was not saved.";
+           saveExp = false;
+         }
         }
-        google.script.run.saveExperience(JSON.stringify(expArr));
-        document.getElementById("xpxp").innerHTML = "Your experience info has been saved. You may close the window";
+        if (saveExp) {
+          google.script.run.saveExperience(JSON.stringify(expArr));
+          document.getElementById("xpxp").innerHTML = "Your experience info has been saved. You may close the window";
+        }
     }
+    
+    function emailValidation(email) {
+      const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (re.test(email) || (email == "")) {
+        return true;
+      } else {
+        alert("invalid email address");
+        return false;
+      }
+    }
+    
+    function dateValidation(date1, date2) {
+      if (date1<=date2) {
+          return true;
+    } else {
+           alert("Ending Date must be later than Starting Date");
+      }
+
+      return false;
+   }
 
     // called upon startup, initializes form from global variable.
     function initialize(stringifiedExp) {
