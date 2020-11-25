@@ -57,6 +57,7 @@
     <div class="title">
       <h2> Art Portfolio </h2>
       <p> Add your images from the web or from your Google Drive. </p>
+      <p id="saved"></p>
     </div>
     
     <div class="image-textbox">
@@ -71,6 +72,7 @@
     </div>
     
     <script>
+    
       var imageCount = 0;
       var images = [];
       
@@ -96,6 +98,7 @@
       });
     
       function addImage() {
+        document.getElementByID("saved").innerHTML = "";
         var URL = document.getElementById("image-input").value;
         var textbox = document.getElementById("image-flex");
         if (validURL(URL)) {
@@ -115,6 +118,15 @@
           alert("Invalid URL");
         }
       }
+      
+      function addImageFromURL(url, imageNum) {
+        var URL = url;
+        var textbox = document.getElementById("image-flex");
+        var output = "<div class=\"image-inline\" id=\"image-inline" + imageNum + "\"><img class=\"img-preview\" src=\"" + URL + "\"/>"
+        + "<button class=\"delete-button\" onclick=\"removeImage('" + imageNum + "')\"> Remove </button></div>";
+        images.push(url);
+        textbox.insertAdjacentHTML('beforeend', output);
+      }
 
       /**
         Removes corresponding image to num parameter
@@ -128,7 +140,22 @@
       }
       
       function saveImages() {
+        document.getElementByID("saved").innerHTML = "Images Saved.";
         google.script.run.savePortfolio(JSON.stringify(images));
+      }
+      
+      function showAddedImages(portfolio) {
+        Logger.log("adding added images");
+        var addedImages = JSON.parse(portfolio);
+        Logger.log(addedImages);
+        if (addedImages !== undefined) {
+          if (addedImages.length > 0) {
+            for (var i = 0; i < addedImages.length; i++) {
+              Logger.log(addedImages[i]);
+              addImageFromURL(addedImages[i], i+1);
+            }
+          }
+        }
       }
       
       function validURL(str) {
@@ -140,6 +167,14 @@
           '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
         return !!pattern.test(str);
       }
+      
+      function printFail() {
+        Logger.log("fail");
+      }
+      
+      $(document).ready(function() {
+        google.script.run.withSuccessHandler(showAddedImages).withFailureHandler(printFail).getPortfolio(); 
+      });
     </script>
   </body>
 </html>

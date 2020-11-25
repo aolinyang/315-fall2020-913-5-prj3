@@ -338,6 +338,8 @@ function insertTemplate2() {
     
   }
   
+  addImagesToDoc();
+  
 }
 
 // template 3
@@ -460,6 +462,44 @@ function insertTemplate3() {
     cell7.appendParagraph("");
   }
   
+  addImagesToDoc();
+}
+
+function addImagesToDoc() {
+  var images = JSON.parse(getPortfolio());
+  Logger.log(images);
+  
+  if (images.length > 0) {
+    var doc = DocumentApp.getActiveDocument(); 
+    var paragraph = doc.getBody().appendParagraph('');
+    var position = doc.newPosition(paragraph, 0);
+    doc.setCursor(position);
+    
+    var blobs = []; 
+    for (var i = 0; i < images.length; i++) {
+      blobs.push(UrlFetchApp.fetch(images[i]).getBlob()); 
+    }
+    
+    var cursor = doc.getCursor(); 
+    for (var i = 0; i < images.length; i++) {
+      var image = cursor.insertInlineImage(blobs[i]); 
+      var largestWidth = 6.5 * 96; 
+      var largestHeight = 9 * 96;
+      var aspect = image.getWidth() / image.getHeight(); 
+      if (image.getWidth() > largestWidth) {
+        image.setWidth(largestWidth);
+        image.setHeight(image.getWidth() / aspect);
+      } else if (image.getHeight() > largestHeight) {
+        image.setHeight(largestHeight);
+        image.setWidth(aspect * image.getHeight());
+      }
+      
+      paragraph = doc.getBody().appendParagraph('');
+      position = doc.newPosition(paragraph, 0);
+      doc.setCursor(position);
+      cursor = doc.getCursor();
+    }
+  }
 }
 
 //---------------------------------- Popup Display code ------------------------------------
@@ -580,6 +620,11 @@ function getExperience() {
   Logger.log("RETRIEVING: " + exp);
   // console.log("RETRIEVING: " + exp);
   return exp;
+}
+
+function getPortfolio() {
+  var images = props.getProperty("portfolio");
+  return images;
 }
 
 

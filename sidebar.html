@@ -100,29 +100,26 @@
         height:30px;
         font-size:14px;
       }
-
+      
       .navbar-select:hover {
         background:#36a353;
         color:white;
-      }
-
+      } 
+      
       .navbar-option {
         background-color:white;
         color:black;
       }
-
       .dropdown {
         background:#40c764;
         color:white;
         border-left:5px solid #36a353;
         border-bottom:2px solid #36a353;
       }
-
       .dropdown:hover {
         color:white;
         background:#36a353;
       }
-
       .dropbtn {
         background: #40c764;
         color:white;
@@ -131,7 +128,6 @@
         background:transparent;
         border:none;
       }
-
       .dropdown-content {
         display:none;
         position:absolute;
@@ -155,7 +151,6 @@
       .dropdown:hover .dropdown-content {display:flex;flex-direction:column;}
       .dropdown:hover .dropbtn {background-color:#36a353; color:white;}
       .dropdown:hover .navbar-select {background-color:#36a353;}
-
       input[type='checkbox'] {
         color:black;
         text-decoration:none;
@@ -167,7 +162,6 @@
     <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
     <title>Resume Add-on</title>
   </head>
-
   <body>
     <header>
       <h1 style="font-size:50px;margin:auto; padding-bottom:30px; padding-top:30px; color:white;"> ResumAid </h1>
@@ -204,6 +198,8 @@
         <input type="button" id="sectionSubmit" value="Submit" onclick="onSectionSubmit()" style="background:transparent;border:none;"/>
       </div>
     </div-->
+
+    </div>
 
     </div>
 
@@ -320,7 +316,6 @@
       function showSections(){
          google.script.run.withFailureHandler(onFailure).showSectionDialog();
       }
-
       function showPortfolio() {
         google.script.run.withFailureHandler(onFailure).showPortfolioDialog();
       }
