@@ -98,7 +98,7 @@
       });
     
       function addImage() {
-        document.getElementByID("saved").innerHTML = "";
+        document.getElementById("saved").innerHTML = "";
         var URL = document.getElementById("image-input").value;
         var textbox = document.getElementById("image-flex");
         if (validURL(URL)) {
@@ -140,7 +140,7 @@
       }
       
       function saveImages() {
-        document.getElementByID("saved").innerHTML = "Images Saved.";
+        document.getElementById("saved").innerHTML = "Images Saved.";
         google.script.run.savePortfolio(JSON.stringify(images));
       }
       
