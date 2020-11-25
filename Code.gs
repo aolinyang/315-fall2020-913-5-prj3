@@ -214,6 +214,8 @@ function insertTemplate1(){
     content11p1.setFontFamily("Consolas").setFontSize(12).setBold(false).setForegroundColor("#000080").setLineSpacing(0);
     cell11.appendParagraph("");
   }
+  
+  addImagesToDoc();
 }
 
 function insertTemplate2() {
