@@ -7,7 +7,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- <script src="https://unpkg.com/js-logger/src/logger.min.js"></script> -->
     <script>
-
+    
+// edit experience
     function editCheckedItems3(jsonString){
       var json3list = JSON.parse(jsonString);
       var expvNum = document.getElementById("text-exp-view").value -1;
@@ -24,7 +25,21 @@
             var curr_input_id = curr_check_id.replace("check","replace");
             var user_enter = document.getElementById(curr_input_id).value;
             console.log("curr_check_id:"+curr_check_id + " curr_input_id:"+curr_input_id + " user_enter:" + user_enter + "\n");
-            json3[curr_check_id.replace("check","")] = user_enter.trim();
+            if (curr_check_id.replace("check","") == "contactEmail") {
+              if (emailValidation(user_enter.trim())){
+                json3[curr_check_id.replace("check","")] = user_enter.trim();
+              }
+            } else if (curr_check_id.replace("check","") == "startDate"){
+              if (dateOrderValidation(user_enter.trim(), json3["endDate"])){
+                json3[curr_check_id.replace("check","")] = user_enter.trim();
+              }
+            } else if (curr_check_id.replace("check","") == "endDate"){
+              if (dateOrderValidation(json3["startDate"], user_enter.trim())){
+                json3[curr_check_id.replace("check","")] = user_enter.trim();
+              }
+            } else {
+              json3[curr_check_id.replace("check","")] = user_enter.trim();
+            }
           }// end if
         }// end for
         json3list[expvNum] = json3;
@@ -37,7 +52,7 @@
       }
     }
 
-
+// edit header
     function editCheckedItems2(jsonString){
       var json2 = JSON.parse(jsonString);
       console.log("********************");
@@ -50,7 +65,13 @@
           var curr_input_id = curr_check_id.replace("check","replace");
           var user_enter = document.getElementById(curr_input_id).value;
           console.log("curr_check_id:"+curr_check_id + " curr_input_id:"+curr_input_id + " user_enter:" + user_enter + "\n");
-          json2[curr_check_id.replace("check","")] = user_enter.trim();
+          if (curr_check_id.replace("check","") == "email") {
+            if (emailValidation(user_enter.trim())) {
+              json2[curr_check_id.replace("check","")] = user_enter.trim();
+            }
+          } else {
+            json2[curr_check_id.replace("check","")] = user_enter.trim();
+          }
         }// end if
 
       }// end for
@@ -61,6 +82,7 @@
       console.log("save header");
     }
 
+// edit education
     function editCheckedItems1(jsonString){
       var json1list = JSON.parse(jsonString);
       var eduvNum = document.getElementById("text-edu-view").value -1;
@@ -76,7 +98,21 @@
             var curr_input_id = curr_check_id.replace("check","replace");
             var user_enter = document.getElementById(curr_input_id).value;
             console.log("curr_check_id:"+curr_check_id + " curr_input_id:"+curr_input_id + " user_enter:" + user_enter + "\n");
-            json1[curr_check_id.replace("check","")] = user_enter.trim();
+            if (curr_check_id.replace("check","") == "GPA") {
+              if (gpaValidation(user_enter.trim())) {
+                json1[curr_check_id.replace("check","")] = user_enter.trim();
+              }
+            } else if (curr_check_id.replace("check","") == "starty"){
+              if (dateOrderValidation(user_enter.trim(), json1["endy"])){
+                json1[curr_check_id.replace("check","")] = user_enter.trim();
+              }
+            } else if (curr_check_id.replace("check","") == "endy"){
+              if (dateOrderValidation(json1["starty"], user_enter.trim())){
+                json1[curr_check_id.replace("check","")] = user_enter.trim();
+              }
+            } else {
+              json1[curr_check_id.replace("check","")] = user_enter.trim();
+            }
           }// end if
         }// end for
         json1list[eduvNum] = json1;
@@ -87,9 +123,9 @@
       else{
         alert("Please enter a valid number");
       }
-      
     }
 
+//edit honor
     function editCheckedItems4(jsonString){
     
       var json4list = JSON.parse(jsonString);
@@ -122,7 +158,7 @@
 
 
 
-    // ------------------  Skill -------------------------------
+// edit skill
     
     function editCheckedItems5(jsonString){
     
@@ -154,8 +190,7 @@
       
     }
 
-// --------------------- free text ----------------------------
-
+// edit free text
     function editCheckedItems6(jsonString){
     
       var json6list = JSON.parse(jsonString);
@@ -185,7 +220,62 @@
       }
       
     }
+    
+    
+// ---------------------- validation -------------------------
+// checks if GPA is numeric
+   function gpaValidation(gpa) {
+      if (isNaN(gpa)) {
+         alert("Please Enter Numeric Values Only for GPA");
+         return false;
+       }
+      return true;
+   }
+// checks if email is valid
+  function emailValidation(email) {
+      const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (re.test(email) || (email == "")) {
+        return true;
+      } else {
+        alert("invalid email address");
+        return false;
+      }
+    }
+  
+// checks if start date is before end date
+  function dateOrderValidation(date1, date2) {
+      if (date1<=date2) {
+          return true;
+    } else {
+           alert("Ending Date must be later than Starting Date");
+      }
 
+      return false;
+   }
+   
+// checks for valid year
+  function dateNumberValidation(year) {
+    //var text = /^[0-9]+$/;
+    if (year != 0) {
+        if (isNaN(year)) {
+
+            alert("Please Enter Numeric Values Only for the Year");
+            return false;
+        }
+
+        if (year.length != 4) {
+            alert("Year is not proper. Please check");
+            return false;
+        }
+        var current_year=new Date().getFullYear();
+        if((year < 1920) || (year > (current_year+10))) {
+            var year = current_year+10;
+            alert("Year should be in range 1920 to " + year );
+            return false;
+        }
+        return true;
+      }
+    }
 
  // ---------------- education -------------------------------
      function showEditEdu(listEdu){
